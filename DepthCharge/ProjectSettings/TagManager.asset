@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ZoneWall
   - Hit
+  - PlayerLimb
   layers:
   - Default
   - TransparentFX
