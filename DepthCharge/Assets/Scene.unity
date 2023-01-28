@@ -760,6 +760,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1487955007}
     m_Modifications:
+    - target: {fileID: 179009768922448622, guid: 09f96282577fc96449dbd37f3827a8d7, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 18a9ae8e5c3481a4c8ea7fc84195cd8a, type: 3}
     - target: {fileID: 7540327897591348393, guid: 09f96282577fc96449dbd37f3827a8d7, type: 3}
       propertyPath: m_Name
       value: Button (3)
@@ -3274,6 +3278,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1487955007}
     m_Modifications:
+    - target: {fileID: 179009768922448622, guid: 09f96282577fc96449dbd37f3827a8d7, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 88daf7b9ccfe5ce4dadfd315a30da3e7, type: 3}
     - target: {fileID: 7540327897591348393, guid: 09f96282577fc96449dbd37f3827a8d7, type: 3}
       propertyPath: m_Name
       value: Button (1)
@@ -4735,6 +4743,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1487955007}
     m_Modifications:
+    - target: {fileID: 179009768922448622, guid: 09f96282577fc96449dbd37f3827a8d7, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: d3500d2cd84c5cf4bbb1f63b0fe3fb9f, type: 3}
     - target: {fileID: 7540327897591348393, guid: 09f96282577fc96449dbd37f3827a8d7, type: 3}
       propertyPath: m_Name
       value: Button (4)
@@ -7031,6 +7043,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1487955007}
     m_Modifications:
+    - target: {fileID: 179009768922448622, guid: 09f96282577fc96449dbd37f3827a8d7, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 96c8bc6025b77c14f9c5cd08a3c6c23d, type: 3}
     - target: {fileID: 7540327897591348393, guid: 09f96282577fc96449dbd37f3827a8d7, type: 3}
       propertyPath: m_Name
       value: Button (2)
@@ -7847,7 +7863,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1890226168
 Transform:
   m_ObjectHideFlags: 0
@@ -8628,6 +8644,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1487955007}
     m_Modifications:
+    - target: {fileID: 179009768922448622, guid: 09f96282577fc96449dbd37f3827a8d7, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 1d2d3b2002f5c2c4cb0f1fee3ebf0b37, type: 3}
     - target: {fileID: 7540327897591348393, guid: 09f96282577fc96449dbd37f3827a8d7, type: 3}
       propertyPath: m_Name
       value: Button
