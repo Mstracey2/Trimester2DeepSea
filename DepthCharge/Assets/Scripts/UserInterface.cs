@@ -9,6 +9,12 @@ public class UserInterface : MonoBehaviour
     public GameObject rightKey;
     public GameObject leftKey;
 
+    public GameObject leftLegDisplay;
+    public GameObject rightLegDisplay;
+    public GameObject leftArmDisplay;
+    public GameObject rightArmDisplay;
+    [SerializeField] PlayerDamage playerDamageScript;
+    [SerializeField] Material removedLimbMaterial;
     public void Update()
     {
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
@@ -45,6 +51,24 @@ public class UserInterface : MonoBehaviour
         else
         {
             downKey.SetActive(true);
+        }
+
+
+        if (playerDamageScript.limbsRemoved[0] == true)
+        {
+            leftLegDisplay.gameObject.GetComponent<Renderer>().material = removedLimbMaterial;
+        }
+        if (playerDamageScript.limbsRemoved[1] == true)
+        {
+            rightLegDisplay.gameObject.GetComponent<Renderer>().material = removedLimbMaterial;
+        }
+        if (playerDamageScript.limbsRemoved[2] == true)
+        {
+            leftArmDisplay.gameObject.GetComponent<Renderer>().material = removedLimbMaterial;
+        }
+        if (playerDamageScript.limbsRemoved[3] == true)
+        {
+            rightArmDisplay.gameObject.GetComponent<Renderer>().material = removedLimbMaterial;
         }
     }
 }
