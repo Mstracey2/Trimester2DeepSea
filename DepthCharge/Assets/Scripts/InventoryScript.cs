@@ -8,11 +8,13 @@ public class InventoryScript : MonoBehaviour
     [SerializeField] private string[] cosmeticItemTitle = new string[10];
     [SerializeField] private GameObject[] cosmeticItemObject = new GameObject[10];
     [SerializeField] private int[] cosmeticItemPrice = new int[10];
-    [SerializeField] private bool[] unlockedBool = new bool[10];
+    [SerializeField] public bool[] unlockedBool = new bool[10];
     [SerializeField] private Sprite[] cosmeticItemSprite = new Sprite[10];
     [SerializeField] private string[] cosmeticItemDescription = new string[10];
     [SerializeField] private int[] cosmeticItemType = new int[10];
     [SerializeField] private int[] cosmeticItemNumber = new int[10];
+    [SerializeField] public string[] cosmeticRarity = new string[10];
+   
 
     public bool inventoryOpen;
     [SerializeField] private GameObject inventoryObject;
