@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 2;
+    [SerializeField] private float speed = 2;
+
     void Update()
     {
         float x = Input.GetAxis("Horizontal");
