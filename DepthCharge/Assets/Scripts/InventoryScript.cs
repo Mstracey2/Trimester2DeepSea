@@ -54,7 +54,7 @@ public class InventoryScript : MonoBehaviour
         rolloverDescription.text = cosmeticItemDescription[itemNumber].ToString();
         rolloverPrice.text = cosmeticItemPrice[itemNumber].ToString();
         //rolloverPicture. = cosmeticItemSprite[itemNumber];
-        //
+        
         
         if (unlockedBool[itemNumber] == true)
         {

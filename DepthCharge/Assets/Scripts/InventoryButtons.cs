@@ -7,26 +7,39 @@ public class InventoryButtons : MonoBehaviour
     public int itemNumber;
     public InventoryScript inventoryScript;
 
-    private GameObject borderDefault;
-    private GameObject borderEpic;
-    private GameObject borderLegendary;
-    private GameObject filterNotOwned;
-    private GameObject filterEquipt;
+    [SerializeField] private GameObject borderDefault;
+    [SerializeField] private GameObject borderRare;
+    [SerializeField] private GameObject borderEpic;
+    [SerializeField] private GameObject borderLegendary;
+    [SerializeField] private GameObject filterNotOwned;
+    [SerializeField] private GameObject filterEquipt;
 
     public void Update()
     {
-    //    if(inventoryScript.)
+        if(inventoryScript.unlockedBool[itemNumber] == true)
+        {
+            //filterNotOwned.SetActive(true);
+        }
     }
 
     public void Start()
     {
-        
-        //if(inventoryScript.cosmeticRarity)
+
+
         switch (inventoryScript.cosmeticRarity[itemNumber])
         {
             case "Default":
-              //  borderDefault = this.g
+                borderDefault.SetActive(true);
             break;
+            case "Rare":
+                borderRare.SetActive(true);
+                break;
+            case "Epic":
+                borderEpic.SetActive(true);
+                break;
+            case "Legendary":
+                borderLegendary.SetActive(true);
+                break;
         }
             
             
