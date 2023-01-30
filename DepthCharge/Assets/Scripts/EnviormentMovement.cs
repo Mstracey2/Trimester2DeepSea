@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnviormentMovement : MonoBehaviour
 {
-
+    [SerializeField] private GameObject destroyOrb;
     public float movementSpeed = 2;
     public bool running = true;
 
@@ -13,6 +13,14 @@ public class EnviormentMovement : MonoBehaviour
         if (running)
         {
             transform.position += Vector3.back * Time.deltaTime * movementSpeed;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject == destroyOrb)
+        {
+            Destroy(gameObject);
         }
     }
 
