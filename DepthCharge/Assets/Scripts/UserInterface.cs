@@ -54,21 +54,21 @@ public class UserInterface : MonoBehaviour
         }
 
 
-        if (playerDamageScript.limbsRemoved[0] == true)
-        {
-            leftLegDisplay.gameObject.GetComponent<Renderer>().material = removedLimbMaterial;
-        }
-        if (playerDamageScript.limbsRemoved[1] == true)
-        {
-            rightLegDisplay.gameObject.GetComponent<Renderer>().material = removedLimbMaterial;
-        }
-        if (playerDamageScript.limbsRemoved[2] == true)
-        {
-            leftArmDisplay.gameObject.GetComponent<Renderer>().material = removedLimbMaterial;
-        }
-        if (playerDamageScript.limbsRemoved[3] == true)
-        {
-            rightArmDisplay.gameObject.GetComponent<Renderer>().material = removedLimbMaterial;
-        }
+        //if (playerDamageScript.limbsRemoved[0] == true)
+        //{
+        //    leftLegDisplay.gameObject.GetComponent<Renderer>().material = removedLimbMaterial;
+        //}
+        //if (playerDamageScript.limbsRemoved[1] == true)
+        //{
+        //    rightLegDisplay.gameObject.GetComponent<Renderer>().material = removedLimbMaterial;
+        //}
+        //if (playerDamageScript.limbsRemoved[2] == true)
+        //{
+        //    leftArmDisplay.gameObject.GetComponent<Renderer>().material = removedLimbMaterial;
+        //}
+        //if (playerDamageScript.limbsRemoved[3] == true)
+        //{
+        //    rightArmDisplay.gameObject.GetComponent<Renderer>().material = removedLimbMaterial;
+        //}
     }
 }
