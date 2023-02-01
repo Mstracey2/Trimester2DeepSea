@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryButtons : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class InventoryButtons : MonoBehaviour
     [SerializeField] private GameObject filterNotOwned;
     [SerializeField] private GameObject filterEquipt;
 
+    [SerializeField] private RawImage sprite;
+
+    public bool disableButton = false;
+
     public void Update()
     {
         if(inventoryScript.unlockedBool[itemNumber] == true)
@@ -24,7 +29,14 @@ public class InventoryButtons : MonoBehaviour
 
     public void Start()
     {
+        //sprite = 
+        //Sprite sprite1 = inventoryScript.cosmeticItemSprite[itemNumber];
+        //sprite.texture = this.gameObject.GetComponentInParent<RawImage>();
 
+        if(disableButton == true)
+        {
+            pickRandom();
+        }
 
         switch (inventoryScript.cosmeticRarity[itemNumber])
         {
@@ -44,9 +56,20 @@ public class InventoryButtons : MonoBehaviour
             
             
     }
-    public void onRollOver() 
+    public void onRollOver()
     {
+        if (disableButton == false)
+        {
+            inventoryScript.rollover(itemNumber);
+        }
+    }
 
-        inventoryScript.rollover(itemNumber);
-    } 
+    public void pickRandom()
+    {
+        itemNumber = Random.Range(0, 11);
+        if(inventoryScript.unlockedBool[itemNumber] == true)
+        {
+            pickRandom();
+        }
+    }
 }
