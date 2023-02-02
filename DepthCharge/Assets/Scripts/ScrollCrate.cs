@@ -1,26 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
+using TMPro;
 
 public class ScrollCrate : MonoBehaviour
 {
     [SerializeField] float speed;
+    public InventoryScript inventoryScript;
     public bool stopping;
     private float randomness;
     private float timer = 5;
     private bool rollStoppedRunOnce = true;
-    public List<GameObject> buttons = new List<GameObject>();
-    public GameObject[] buttonsObject = new GameObject[100];
+    public int itemNumber;
+    private bool gambled = false;
+    [SerializeField] private GameObject crate;
+    [SerializeField] private GameObject normalButtons;
+    [SerializeField] private GameObject gambleButtons;
 
-    [SerializeField] private GameObject ticker;
-    public GameObject closestButton;
+    [SerializeField] public GameObject closestButton;
     [SerializeField] private GameObject stopButton;
     [SerializeField] private GameObject collectButton;
     [SerializeField] private GameObject gambleButton;
 
     [SerializeField] private GameObject wonScreen;
-  //  [SerializeField] private GameObject loseScreen;
+    [SerializeField] private GameObject wonButton;
+    [SerializeField] private TextMeshProUGUI wonTitle;
+    [SerializeField] private TextMeshProUGUI wonType;
+
+      [SerializeField] private GameObject loseScreen;
 
     private void Start()
     {
@@ -36,7 +43,6 @@ public class ScrollCrate : MonoBehaviour
         if (timer < 0)
         {
             stopping = true;
-
         }
         if (stopping == true)
         {
@@ -60,29 +66,24 @@ public class ScrollCrate : MonoBehaviour
     public void RollStopped()
     {
         rollStoppedRunOnce = false;
-        collectButton.SetActive(true);
-        gambleButton.SetActive(true);
-        //closestButton = buttonsObject.OrderBy(go => (transform.position - go.transform.position).sqrMagnitude).First().transform;
+
+
+        if (closestButton.GetComponent<InventoryButtons>() != null)
+        {
+            collectButton.SetActive(true);
+            if (gambled == false)
+            {
+                gambleButton.SetActive(true);
+            }
+        }
+        else
+        {
+            loseScreen.SetActive(true);
+        }
+
+
 
     }
-
-    //Transform GetClosestButton(List<Transform> buttons, Transform ticker)
-    //{
-    //    Transform bestTarget = null;
-    //    float closestDistanceSqr = Mathf.Infinity;
-    //    Vector3 currentPosition = ticker.position;
-    //    foreach (Transform potentialTarget in buttons)
-    //    {
-    //        Vector3 directionToTarget = potentialTarget.position - currentPosition;
-    //        float dSqrToTarget = directionToTarget.sqrMagnitude;
-    //        if (dSqrToTarget < closestDistanceSqr)
-    //        {
-    //            closestDistanceSqr = dSqrToTarget;
-    //            bestTarget = potentialTarget;
-    //        }
-    //    }
-    //    return bestTarget;
-    //}
 
     public void Stop()
     {
@@ -91,11 +92,40 @@ public class ScrollCrate : MonoBehaviour
 
     public void Collect()
     {
+        gambleButton.SetActive(false);
+        wonScreen.SetActive(true);
+        itemNumber = closestButton.GetComponent<InventoryButtons>().itemNumber;
+        wonButton.GetComponent<InventoryButtons>().itemNumber = itemNumber;
+        wonButton.GetComponent<InventoryButtons>().Invoke("SetVariables", 0);
+        wonTitle.text = "You Won: " + inventoryScript.cosmeticItemTitle[itemNumber];
+        inventoryScript.unlockedBool[itemNumber] = true;
+        wonType.text = inventoryScript.cosmeticRarity[itemNumber];
+    }
 
+    public void Claim()
+    {
+        crate.gameObject.SetActive(false);
+    }
+
+    public void Enable()
+    {
+        inventoryScript.DespawnOfType(inventoryScript.cosmeticItemType[itemNumber]);
+        inventoryScript.cosmeticItemObject[itemNumber].SetActive(true);
     }
 
     public void Gamble()
     {
+        gambled = true;
+        timer = 5;
+        speed = 500;
+        gambleButtons.SetActive(true);
+        normalButtons.SetActive(false);
+        rollStoppedRunOnce = true;
+        stopping = false;
+        gambleButton.SetActive(false);
+        collectButton.SetActive(false);
+        stopButton.SetActive(true);
+
 
     }
 

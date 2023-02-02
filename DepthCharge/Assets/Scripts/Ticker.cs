@@ -5,20 +5,10 @@ using UnityEngine.UI;
 
 public class Ticker : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public ScrollCrate scrollCrate;
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Collide");
+        scrollCrate.closestButton = collision.gameObject;
     }
 }

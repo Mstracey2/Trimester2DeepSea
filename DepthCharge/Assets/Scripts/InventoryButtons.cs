@@ -22,13 +22,20 @@ public class InventoryButtons : MonoBehaviour
 
     public void Update()
     {
-        if(inventoryScript.unlockedBool[itemNumber] == true)
-        {
-            //filterNotOwned.SetActive(true);
-        }
+        //if(inventoryScript.unlockedBool[itemNumber] == true)
+        //{
+        //    //filterNotOwned.SetActive(true);
+        //}
     }
 
     public void Start()
+    {
+
+
+        SetVariables();
+    }
+
+    public void SetVariables()
     {
         //sprite = 
         //Sprite sprite1 = inventoryScript.cosmeticItemSprite[itemNumber];
@@ -54,8 +61,6 @@ public class InventoryButtons : MonoBehaviour
                 borderLegendary.SetActive(true);
                 break;
         }
-            
-            
     }
     public void onRollOver()
     {
@@ -71,10 +76,6 @@ public class InventoryButtons : MonoBehaviour
         if(inventoryScript.unlockedBool[itemNumber] == true)
         {
             pickRandom();
-        }
-        else
-        {
-            scrollCrate.buttons.Add(this.gameObject);
         }
     }
 }
