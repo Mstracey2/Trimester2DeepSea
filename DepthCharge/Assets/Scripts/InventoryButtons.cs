@@ -7,6 +7,7 @@ public class InventoryButtons : MonoBehaviour
 {
     public int itemNumber;
     public InventoryScript inventoryScript;
+    public ScrollCrate scrollCrate;
 
     [SerializeField] private GameObject borderDefault;
     [SerializeField] private GameObject borderRare;
@@ -70,6 +71,10 @@ public class InventoryButtons : MonoBehaviour
         if(inventoryScript.unlockedBool[itemNumber] == true)
         {
             pickRandom();
+        }
+        else
+        {
+            scrollCrate.buttons.Add(this.gameObject);
         }
     }
 }
