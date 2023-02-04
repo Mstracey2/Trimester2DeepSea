@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class InventoryButtons : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class InventoryButtons : MonoBehaviour
     [SerializeField] private GameObject borderLegendary;
     [SerializeField] private GameObject filterNotOwned;
     [SerializeField] private GameObject filterEquipt;
+    private VideoPlayer videoPlayer;
 
     [SerializeField] private RawImage sprite;
 
@@ -31,26 +33,30 @@ public class InventoryButtons : MonoBehaviour
     public void Start()
     {
 
-
         SetVariables();
     }
 
     public void SetVariables()
     {
-        //sprite = 
-        //Sprite sprite1 = inventoryScript.cosmeticItemSprite[itemNumber];
-        //sprite.texture = this.gameObject.GetComponentInParent<RawImage>();
-
-        if(disableButton == true)
+        if (disableButton == true)
         {
             pickRandom();
         }
 
+        videoPlayer = this.GetComponent<VideoPlayer>();
+
+        if (inventoryScript.textureLoaded[itemNumber] == false)
+        {
+            videoPlayer.clip = inventoryScript.cosmeticItemSprite[itemNumber];
+            inventoryScript.textureLoaded[itemNumber] = true;
+        }
+        this.GetComponent<VideoPlayer>().targetTexture = (RenderTexture)inventoryScript.cosmeticTexture[itemNumber];
+        this.GetComponent<RawImage>().texture = inventoryScript.cosmeticTexture[itemNumber];
         switch (inventoryScript.cosmeticRarity[itemNumber])
         {
             case "Default":
                 borderDefault.SetActive(true);
-            break;
+                break;
             case "Rare":
                 borderRare.SetActive(true);
                 break;
@@ -73,7 +79,7 @@ public class InventoryButtons : MonoBehaviour
     public void pickRandom()
     {
         itemNumber = Random.Range(0, 11);
-        if(inventoryScript.unlockedBool[itemNumber] == true)
+        if (inventoryScript.unlockedBool[itemNumber] == true)
         {
             pickRandom();
         }

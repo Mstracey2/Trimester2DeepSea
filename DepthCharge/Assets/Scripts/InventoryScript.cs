@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEditor.UI;
+using UnityEngine.Video;
+
 public class InventoryScript : MonoBehaviour
 {
     [SerializeField] public string[] cosmeticItemTitle = new string[10];
     [SerializeField] public GameObject[] cosmeticItemObject = new GameObject[10];
     [SerializeField] private int[] cosmeticItemPrice = new int[10];
     [SerializeField] public bool[] unlockedBool = new bool[10];
-    [SerializeField] public Sprite[] cosmeticItemSprite = new Sprite[10];
+    [SerializeField] public VideoClip[] cosmeticItemSprite = new VideoClip[10];
     [SerializeField] private string[] cosmeticItemDescription = new string[10];
     [SerializeField] public int[] cosmeticItemType = new int[10];
     [SerializeField] private int[] cosmeticItemNumber = new int[10];
     [SerializeField] public string[] cosmeticRarity = new string[10];
+    [SerializeField] public Texture[] cosmeticTexture = new Texture[10];
+    [SerializeField] public bool[] textureLoaded = new bool[10];
    
 
     public bool inventoryOpen;
