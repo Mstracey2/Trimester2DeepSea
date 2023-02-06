@@ -25,6 +25,13 @@ public class EnviormentMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.CompareTag("ZoneWall"))
+        {
+            returnToRest();
+        }
+    }
+    public void returnToRest()
+    {
         transform.position = restingPos;
         running = false;
     }
