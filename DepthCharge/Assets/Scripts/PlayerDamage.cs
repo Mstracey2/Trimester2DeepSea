@@ -9,7 +9,7 @@ public class PlayerDamage : MonoBehaviour
     // Minimum limb number: set in editor
     public int minNumOfLimbs;
     public bool[] limbsRemoved = new bool[4];
-
+    public List<GameObject> children = new List<GameObject>();
 
     private void Start()
     {
@@ -18,6 +18,11 @@ public class PlayerDamage : MonoBehaviour
         //{
         //    limbs.Add(limb);
         //}
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            children.Add(transform.GetChild(i).gameObject);
+        }
     }
 
     //public void OnCollisionEnter(Collision collision)
@@ -43,9 +48,9 @@ public class PlayerDamage : MonoBehaviour
     //    }
     //}
 
-    public void RemoveLimb(GameObject limb, string limbName)
+    public void RemoveLimb(string limbName)
     {
-        limb.SetActive(false);
+        
         Debug.Log("Removed Limb" + limbName);
 
         switch (limbName)
