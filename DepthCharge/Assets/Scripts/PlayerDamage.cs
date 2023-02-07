@@ -9,22 +9,55 @@ public class PlayerDamage : MonoBehaviour
     // Minimum limb number: set in editor
     public int minNumOfLimbs;
     public bool[] limbsRemoved = new bool[4];
-    public List<GameObject> children = new List<GameObject>();
+    [SerializeField] private List<GameObject> children = new List<GameObject>();
+    [SerializeField] private List<Renderer> childrensRenders = new List<Renderer>();
+    private Renderer playerRend;
+    private float dullTimer = 0;
+    private bool inDull = false;
 
     private void Start()
     {
+        foreach(GameObject thisChild in children)
+        {
+            childrensRenders.Add(thisChild.GetComponent<Renderer>());
+        }
+        playerRend = GetComponent<Renderer>();
         //// Populate the limb list
         //foreach (GameObject limb in GameObject.FindGameObjectsWithTag("PlayerLimb"))
         //{
         //    limbs.Add(limb);
         //}
 
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            children.Add(transform.GetChild(i).gameObject);
-        }
+        //for (int i = 0; i < transform.childCount; i++)
+        //{
+        //    children.Add(transform.GetChild(i).gameObject);
+        //}
     }
 
+    private void Update()
+    {
+        if (inDull)
+        {
+            dullTimer -= Time.deltaTime;
+            playerRend.enabled = !playerRend.enabled;
+            foreach (Renderer thisRend in childrensRenders)
+            {
+                thisRend.enabled = !thisRend.enabled;
+            }
+
+            if (dullTimer <= 0)
+            {
+                dullTimer = 0;
+                inDull = false;
+                BreakDull();
+                playerRend.enabled = true;
+                foreach (Renderer thisRend in childrensRenders)
+                {
+                    thisRend.enabled = true;
+                }
+            }
+        }
+    }
     //public void OnCollisionEnter(Collision collision)
     //{
     //    if (collision.gameObject.CompareTag("Hit"))
@@ -71,5 +104,44 @@ public class PlayerDamage : MonoBehaviour
                 limbsRemoved[3] = true;
                 break;
         }
+    }
+
+    public void DullPlayer()
+    {
+        this.gameObject.layer = LayerMask.NameToLayer("DullZone");
+        foreach(GameObject thisChild in children)
+        {
+            thisChild.gameObject.layer = LayerMask.NameToLayer("DullZone");
+        }
+        dullTimer = 2;
+        inDull = true;
+    }
+
+    public void BreakDull()
+    {
+        this.gameObject.layer = LayerMask.NameToLayer("Player");
+
+        foreach (GameObject thisChild in children)
+        {
+            thisChild.gameObject.layer = LayerMask.NameToLayer("Player");
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Hit") && children.Count > 0)
+        {
+            GameObject chosenLimb = children[Random.Range(0, children.Count)];
+            chosenLimb.GetComponent<PlayerDamageLimb>().RemoveLimb();
+        }
+        else if (collision.gameObject.CompareTag("Hit"))
+        {
+            DullPlayer();
+        }
+    }
+
+    public void RemoveLimbFromList(GameObject limb)
+    {
+        children.Remove(limb);
     }
 }
