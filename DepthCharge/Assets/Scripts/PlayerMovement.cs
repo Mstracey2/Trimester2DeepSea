@@ -19,11 +19,11 @@ public class PlayerMovement : MonoBehaviour
         
         if(x != 0)
         {
-            playerRB.AddForce(new Vector3(x, 0, 0) * 10);
+            playerRB.AddForce(new Vector3(x, 0, 0) * 15);
         }
         if(y != 0)
         {
-            playerRB.AddForce(new Vector3(0, y, 0) * 10);
+            playerRB.AddForce(new Vector3(0, y, 0) * 15);
         }
 
 
