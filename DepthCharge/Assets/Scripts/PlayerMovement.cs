@@ -26,6 +26,11 @@ public class PlayerMovement : MonoBehaviour
             playerRB.AddForce(new Vector3(0, y, 0) * 15);
         }
 
+        if (Input.GetKey(KeyCode.Space))
+        {
+            playerRB.AddForce(new Vector3(x, y, 0) * 50);
+        }
+
 
     //    if(Input.GetKeyDown(Keycode.M))
       //  {
