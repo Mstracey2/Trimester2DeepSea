@@ -9,14 +9,17 @@ public class PlayerDamage : MonoBehaviour
     // Minimum limb number: set in editor
     public int minNumOfLimbs;
     public bool[] limbsRemoved = new bool[4];
+    public int remainingLimbs;
     [SerializeField] private List<GameObject> children = new List<GameObject>();
     [SerializeField] private List<Renderer> childrensRenders = new List<Renderer>();
     private Renderer playerRend;
     private float dullTimer = 0;
     private bool inDull = false;
+    public PercentageBarScript percentageBarScript;
 
     private void Start()
     {
+        remainingLimbs = 4;
         foreach(GameObject thisChild in children)
         {
             childrensRenders.Add(thisChild.GetComponent<Renderer>());
@@ -36,6 +39,9 @@ public class PlayerDamage : MonoBehaviour
 
     private void Update()
     {
+
+
+        percentageBarScript.currentInput = remainingLimbs;
         if (inDull)
         {
             dullTimer -= Time.deltaTime;
