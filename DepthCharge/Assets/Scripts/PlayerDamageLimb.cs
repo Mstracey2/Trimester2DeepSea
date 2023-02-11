@@ -8,10 +8,12 @@ public class PlayerDamageLimb : MonoBehaviour
     private PlayerDamage playerDamageScript;
     [SerializeField] GameObject[] limbStatus = new GameObject[2];
     private Rigidbody limbRB;
+    private Collider limbCol;
 
     private void Start()
     {
         limbRB = GetComponent<Rigidbody>();
+        limbCol = GetComponent<Collider>();
         playerDamageScript = gameObject.transform.parent.GetComponent<PlayerDamage>();
     }
 

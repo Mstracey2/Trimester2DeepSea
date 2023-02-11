@@ -10,6 +10,7 @@ public class BlipScript : MonoBehaviour
     [SerializeField] private VolumeProfile RadarEffect;
     [SerializeField] private VolumeProfile defaultEffect;
     [SerializeField] private PercentageBarScript percentageBarScript;
+    [SerializeField] private Transform startLocation;
 
     private LineRenderer blipLine;
     [SerializeField] private GameObject blipDestination;
@@ -28,14 +29,14 @@ public class BlipScript : MonoBehaviour
     {
         timer -= Time.deltaTime;
         percentageBarScript.currentInput = timer;
-        blipLine.SetPosition(0, gameObject.transform.parent.position);
-        blipLine.SetPosition(1, gameObject.transform.parent.position);
+        blipLine.SetPosition(0, startLocation.transform.position);
+        blipLine.SetPosition(1, startLocation.transform.position);
 
         if (timer<= 0)
         {
              blipLine.SetPosition(0, transform.position);
-             blipLine.SetPosition(1, gameObject.transform.parent.position);
-             transform.RotateAround(gameObject.transform.parent.position, Vector3.up, angularSpeed * Time.deltaTime);
+             blipLine.SetPosition(1,startLocation.transform.position);
+             transform.RotateAround(startLocation.transform.position, Vector3.up, angularSpeed * Time.deltaTime);
 
             processingRadar.profile = RadarEffect;
 

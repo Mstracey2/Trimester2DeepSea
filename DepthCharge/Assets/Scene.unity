@@ -15,9 +15,9 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0, g: 0.37964034, b: 0.6320754, a: 1}
+  m_FogColor: {r: 0, g: 0.41960785, b: 0.78431374, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.09
+  m_FogDensity: 0.21
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: eae25a26a926770408fe659178f5619c, type: 2}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18457055, g: 0.5429687, b: 1.0039052, a: 1}
+  m_IndirectSpecularColor: {r: 0.4373885, g: 0.48518276, b: 0.565457, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -909,6 +909,7 @@ MonoBehaviour:
   RadarEffect: {fileID: 11400000, guid: 58415d9ea332a2b46b627a178cafd98d, type: 2}
   defaultEffect: {fileID: 11400000, guid: 7ab1beeefe92582408d21a831c4a6d64, type: 2}
   percentageBarScript: {fileID: 1623141536}
+  startLocation: {fileID: 649952208}
   blipDestination: {fileID: 2022364925}
   angularSpeed: -500
   newDestination: 180
@@ -6970,7 +6971,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215286315}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.25, y: -5.319731, z: -24.63}
+  m_LocalPosition: {x: -3.25, y: -5.319731, z: 62.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20006,6 +20007,7 @@ Transform:
   - {fileID: 1241031873}
   - {fileID: 18063970}
   - {fileID: 2022364926}
+  - {fileID: 649952208}
   m_Father: {fileID: 6138687632369858501}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20515,6 +20517,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3975787375d82844bbef030faf35dc3, type: 3}
+--- !u!1 &649952207
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 649952208}
+  m_Layer: 7
+  m_Name: RadarLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &649952208
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649952207}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.292, z: -0.334}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 620663627}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &650364362 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7540327897591348398, guid: 09f96282577fc96449dbd37f3827a8d7, type: 3}
@@ -23256,7 +23289,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &742139781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50067,7 +50100,7 @@ GameObject:
   - component: {fileID: 1598223443}
   - component: {fileID: 1598223442}
   - component: {fileID: 1598223441}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TempEnviorment (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60279,7 +60312,7 @@ GameObject:
   - component: {fileID: 1843582250}
   - component: {fileID: 1843582249}
   - component: {fileID: 1843582248}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TempEnviorment (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60551,8 +60584,8 @@ Camera:
   m_GameObject: {fileID: 1854170219}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0.4950002, b: 0.9339623, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -70929,7 +70962,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 207710621987084382}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.25, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -71526,7 +71559,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7908107738004475273}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.27, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

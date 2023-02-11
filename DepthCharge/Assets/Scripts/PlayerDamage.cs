@@ -17,6 +17,7 @@ public class PlayerDamage : MonoBehaviour
     private bool inDull = false;
     public PercentageBarScript percentageBarScript;
 
+
     private void Start()
     {
         remainingLimbs = 4;
@@ -114,8 +115,8 @@ public class PlayerDamage : MonoBehaviour
 
     public void DullPlayer()
     {
-        this.gameObject.layer = LayerMask.NameToLayer("DullZone");
-        foreach(GameObject thisChild in children)
+        gameObject.layer = LayerMask.NameToLayer("HurtLayer");
+        foreach (GameObject thisChild in children)
         {
             thisChild.gameObject.layer = LayerMask.NameToLayer("DullZone");
         }
