@@ -9,9 +9,10 @@ public class EnviormentMovement : MonoBehaviour
     private float movementSpeed = 0;
     private bool running = false;
 
-    private void Start()
+    public void Start()
     {
         restingPos = transform.position;
+
     }
 
     void Update()
@@ -28,6 +29,7 @@ public class EnviormentMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("ZoneWall"))
         {
             returnToRest();
+            this.gameObject.GetComponent<fishRandomScale>().restartScale();
         }
     }
     public void returnToRest()

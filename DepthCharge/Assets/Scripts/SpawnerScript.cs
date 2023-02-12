@@ -29,6 +29,7 @@ public class SpawnerScript : MonoBehaviour
            if(currentObstacle.checkRunning() == false)
            {
                 randomObstacle.transform.position = spawnChildren[(int)Randomizer(1, spawnChildren.Length)].position;
+                randomObstacle.GetComponent<fishRandomScale>().randomiseScale();
 
                 currentObstacle.obstacleActive(true);
            }

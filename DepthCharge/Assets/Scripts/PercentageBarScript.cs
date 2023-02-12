@@ -8,6 +8,10 @@ public class PercentageBarScript : MonoBehaviour
     public GameObject movingBar;
     public GameObject staticBar;
 
+    public Material green;
+    public Material orange;
+    public Material red;
+
     public float maxInput;
     public float currentInput;
 
@@ -35,5 +39,23 @@ public class PercentageBarScript : MonoBehaviour
        
 
         movingBar.gameObject.transform.localScale = new Vector3(percentage,1,1);
+    }
+
+    public void changeColour(string Colour)
+    {
+        switch (Colour)
+        {
+            case "green":
+                movingBar.GetComponent<MeshRenderer>().material = green;
+                break;
+
+            case "orange":
+                movingBar.GetComponent<MeshRenderer>().material = orange;
+                break;
+
+            case "red":
+                movingBar.GetComponent<MeshRenderer>().material = red;
+                break;
+        } 
     }
 }

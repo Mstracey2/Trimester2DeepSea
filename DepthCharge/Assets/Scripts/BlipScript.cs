@@ -37,20 +37,25 @@ public class BlipScript : MonoBehaviour
     {
         timer -= Time.deltaTime;
         percentageBarScript.currentInput = timer;
+        percentageBarScript.changeColour("green");
         blipLine.SetPosition(0, startLocation.transform.position);
         blipLine.SetPosition(1, startLocation.transform.position);
         if (timer<= 0)
         {
              blipLine.SetPosition(0, transform.position);
              blipLine.SetPosition(1,startLocation.transform.position);
-             transform.RotateAround(startLocation.transform.position, Vector3.up, angularSpeed * Time.deltaTime);
-             MoveWall();
+             transform.RotateAround(startLocation.transform.position, Vector3.up, angularSpeed * Time.deltaTime);         
+             percentageBarScript.currentInput = Mathf.Abs(timer);
+            percentageBarScript.changeColour("red");
+
+            MoveWall();
              
              ChangeFogColour(radarFog);              
              processingRadar.profile = RadarEffect;
             
             if (timer <= -10)
             {
+
                 radarWall.transform.position = radarWallOriginalPos;
                 timer = 10;
                 processingRadar.profile = defaultEffect;

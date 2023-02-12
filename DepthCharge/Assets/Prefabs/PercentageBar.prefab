@@ -145,6 +145,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movingBar: {fileID: 2114399182374338157}
   staticBar: {fileID: 2114399183267172620}
+  green: {fileID: 2100000, guid: a7995d9f9ae85294d862a1520f245dde, type: 2}
+  orange: {fileID: 2781410738928257789, guid: 5bef5ec3f678f4145957e16d03ccf6eb, type: 3}
+  red: {fileID: 2100000, guid: 015b0785cbc2569478d308030f2f9de8, type: 2}
   maxInput: 10
   currentInput: 0
   percentage: 0
