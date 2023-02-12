@@ -1,0 +1,30 @@
+fileFormatVersion: 2
+guid: 6e2be3bf730df6640bee69ada418c1cf
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Antipasto Pro
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 3d95ee6abf18727419dc3af9705f6116, type: 3}
+  - {fileID: 12800000, guid: 07f60a49f4e100e4d97ae70a610d97a1, type: 3}
+  - {fileID: 12800000, guid: 9b6fbac301bdc6f4fbd7db1939484bf8, type: 3}
+  - {fileID: 12800000, guid: 093e65738d88eb9479499d90e1c322c4, type: 3}
+  - {fileID: 12800000, guid: 7de92078dd441c341b27600bbeb5933e, type: 3}
+  - {fileID: 12800000, guid: b3b2582af0f89d04daf997e5ccdf022b, type: 3}
+  - {fileID: 12800000, guid: f3894c1778d5cef4fb342288f5b0327f, type: 3}
+  - {fileID: 12800000, guid: 4b210eb4e5966d8418e64c82d157421e, type: 3}
+  - {fileID: 12800000, guid: 552eae469e943d942ae2cc56ca9cb9e2, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
