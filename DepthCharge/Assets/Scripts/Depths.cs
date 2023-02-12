@@ -6,5 +6,6 @@ using UnityEngine;
 public class Depths : ScriptableObject
 {
     public float obstacleSpeed;
+    public float nextLevelTarget;
     public string cameraBackgroundColour;
 }

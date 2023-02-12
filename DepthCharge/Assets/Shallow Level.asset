@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Shallow Level
   m_EditorClassIdentifier: 
   obstacleSpeed: 25
+  nextLevelTarget: 250
   cameraBackgroundColour: 20ACFB

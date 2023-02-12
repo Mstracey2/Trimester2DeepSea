@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Mid Level
   m_EditorClassIdentifier: 
   obstacleSpeed: 50
+  nextLevelTarget: 500
   cameraBackgroundColour: 0035BA

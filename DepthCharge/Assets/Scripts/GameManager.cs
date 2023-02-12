@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     private float obstacleSpeed;
     [SerializeField] private List<Depths> levels = new List<Depths>();
     public Depths thisLevel;
+    private int levelCounter = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -33,16 +34,15 @@ public class GameManager : MonoBehaviour
 
     private void CheckDepth()
     {
-        if(depthMeter>= 200 && depthMeter<= 400)
+        
+        if(depthMeter >= thisLevel.nextLevelTarget)
         {
-            thisLevel = levels[1];
+            levelCounter++;
+            thisLevel = levels[levelCounter];
+            ChangeLevel();
         }
-        else if (depthMeter >= 400 && depthMeter <= 600)
-        {
-            thisLevel = levels[2];
-        }
-
-        ChangeLevel();
+    
+       
     }
 
     private void ChangeLevel()
