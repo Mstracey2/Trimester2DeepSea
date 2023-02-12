@@ -36,22 +36,22 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
+    wrapU: 0
+    wrapV: 0
     wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 0
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 1
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
-  alphaIsTransparency: 1
+  alphaIsTransparency: 0
   spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
@@ -66,7 +66,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -391,7 +391,7 @@ TextureImporter:
         width: 23
         height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -399,6 +399,111 @@ TextureImporter:
       bones: []
       spriteID: 1e69febb942174f4db3e620f247dc29a
       internalID: -759489257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 756
+        width: 73
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 444a392dd15094e4a8963af1b548349a
+      internalID: -433779192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border2
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 757
+        width: 72
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb618aae1c243b04495b8730ab98f271
+      internalID: -1423687965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Modern_UI_Style_2_48x48_12
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 1329
+        width: 79
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 15, y: 15, z: 16, w: 17}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 493135f79f129df469547088df347573
+      internalID: -2130178434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Modern_UI_Style_2_48x48_13
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 1395
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73e99f486521f6f469699ea91ccaf42c
+      internalID: 1069620194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Modern_UI_Style_2_48x48_14
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 1489
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 10, y: 10, z: 10, w: 10}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 185e9c9365daff04abe9fe66d077e997
+      internalID: -869800468
       vertices: []
       indices: 
       edges: []
@@ -416,7 +521,10 @@ TextureImporter:
     nameFileIdTable:
       Modern_UI_Style_2_48x48_8: 1227039204
       Modern_UI_Style_2_48x48_4: 1630185703
+      Border: -433779192
+      Modern_UI_Style_2_48x48_13: 1069620194
       Modern_UI_Style_2_48x48_0: -1430610021
+      Modern_UI_Style_2_48x48_12: -2130178434
       Modern_UI_Style_2_48x48_7: -1436024719
       Modern_UI_Style_2_48x48_11: -759489257
       Modern_UI_Style_2_48x48_10: 2027609709
@@ -426,6 +534,8 @@ TextureImporter:
       Modern_UI_Style_2_48x48_9: -1585925857
       Modern_UI_Style_2_48x48_1: -1958526409
       Modern_UI_Style_2_48x48_6: 1104553473
+      Modern_UI_Style_2_48x48_14: -869800468
+      Border2: -1423687965
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
