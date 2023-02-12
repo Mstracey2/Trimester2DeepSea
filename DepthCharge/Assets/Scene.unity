@@ -905,6 +905,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd1057e3ade9f2e4693b61dd5d30f2e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 731840080}
   processingRadar: {fileID: 1050107113}
   RadarEffect: {fileID: 11400000, guid: 58415d9ea332a2b46b627a178cafd98d, type: 2}
   defaultEffect: {fileID: 11400000, guid: 7ab1beeefe92582408d21a831c4a6d64, type: 2}
@@ -22741,7 +22742,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DepthText: {fileID: 304511455}
-  cam: {fileID: 0}
+  cam: {fileID: 1854170221}
+  levels:
+  - {fileID: 11400000, guid: 9947cd0478c8530499fedd397eea86ea, type: 2}
+  - {fileID: 11400000, guid: b89a2ab74d98c9144bdf944c4fbf33a6, type: 2}
+  - {fileID: 11400000, guid: 9777ed943b3e6e54d920ad1818bfc478, type: 2}
+  thisLevel: {fileID: 0}
 --- !u!4 &731840081
 Transform:
   m_ObjectHideFlags: 0
@@ -71248,6 +71254,7 @@ GameObject:
   - component: {fileID: 1451253643}
   - component: {fileID: 1451253639}
   - component: {fileID: 1451253642}
+  - component: {fileID: 7464576456543978725}
   m_Layer: 8
   m_Name: Right Arm
   m_TagString: Untagged
@@ -71447,6 +71454,7 @@ GameObject:
   - component: {fileID: 281617057}
   - component: {fileID: 281617053}
   - component: {fileID: 281617056}
+  - component: {fileID: 4269560509267705614}
   m_Layer: 8
   m_Name: Left Leg
   m_TagString: Untagged
@@ -71660,6 +71668,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1871397892678384398}
   m_Mesh: {fileID: 5911031926278098127, guid: 3426c91ad4b0f9e44bbbd1018e667027, type: 3}
+--- !u!95 &4269560509267705614
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871397892678384398}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aaa349adefcc73e4396a62eef2d9a164, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4367126221889178538
 GameObject:
   m_ObjectHideFlags: 0
@@ -72286,6 +72314,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 207710621987084382}
   m_Mesh: {fileID: 1361157573658370839, guid: 3426c91ad4b0f9e44bbbd1018e667027, type: 3}
+--- !u!95 &7464576456543978725
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207710621987084382}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eed1762ccf0eb314882c12ccca49476e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!33 &7477428107073742765
 MeshFilter:
   m_ObjectHideFlags: 0

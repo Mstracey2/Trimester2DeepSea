@@ -10,14 +10,14 @@ public class GameManager : MonoBehaviour
     private float depthMeter;
     private bool gameStart;
     private float obstacleSpeed;
-
-  
+    [SerializeField] private List<Depths> levels = new List<Depths>();
+    public Depths thisLevel;
 
     // Start is called before the first frame update
     void Start()
     {
         gameStart = true;
-
+        thisLevel = levels[0];
     }
 
     // Update is called once per frame
@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
         {
             depthMeter += Time.deltaTime * 10;
             DepthText.text = depthMeter.ToString("F0") + "m";
-                 
+            CheckDepth();     
         }
     }
 
@@ -35,7 +35,24 @@ public class GameManager : MonoBehaviour
     {
         if(depthMeter>= 200 && depthMeter<= 400)
         {
+            thisLevel = levels[1];
+        }
+        else if (depthMeter >= 400 && depthMeter <= 600)
+        {
+            thisLevel = levels[2];
+        }
 
+        ChangeLevel();
+    }
+
+    private void ChangeLevel()
+    {
+        obstacleSpeed = thisLevel.obstacleSpeed;
+        
+        if (ColorUtility.TryParseHtmlString("#" + thisLevel.cameraBackgroundColour, out Color colour))
+        {
+            cam.backgroundColor = colour;
+            RenderSettings.fogColor = colour;
         }
     }
 }

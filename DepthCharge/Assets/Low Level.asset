@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80cc20d51d1a0ca4e9ae781f04a44df2, type: 3}
-  m_Name: Mid Level
+  m_Name: Low Level
   m_EditorClassIdentifier: 
-  obstacleSpeed: 50
-  cameraBackgroundColour: 0035BA
+  obstacleSpeed: 150
+  cameraBackgroundColour: 05062E
