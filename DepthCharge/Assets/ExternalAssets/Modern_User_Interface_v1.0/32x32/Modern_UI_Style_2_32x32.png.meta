@@ -643,7 +643,7 @@ TextureImporter:
         width: 32
         height: 34
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -651,6 +651,258 @@ TextureImporter:
       bones: []
       spriteID: 1dd6efc66ac0ebf4b8cfe2c43f7fd3dd
       internalID: -1978635753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Modern_UI_Style_2_32x32_3
+      rect:
+        serializedVersion: 2
+        x: 1214
+        y: 834
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d83c169db4b487745b84ca98f50b55cf
+      internalID: -29853348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Modern_UI_Style_2_32x32_4
+      rect:
+        serializedVersion: 2
+        x: 1248
+        y: 834
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d949fa1cac1e8a40a9558b7c91f012d
+      internalID: -1069806495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Modern_UI_Style_2_32x32_5
+      rect:
+        serializedVersion: 2
+        x: 1282
+        y: 834
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6c86e3ca74d69247a14047262579639
+      internalID: -1540091441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Modern_UI_Style_2_32x32_6
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 834
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba41541f649d4214190acf265bde9ac4
+      internalID: 1176017601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Modern_UI_Style_2_32x32_7
+      rect:
+        serializedVersion: 2
+        x: 1354
+        y: 834
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f1d5c18ac7752949bee7b6b75ac27ae
+      internalID: 138116861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Modern_UI_Style_2_32x32_8
+      rect:
+        serializedVersion: 2
+        x: 1388
+        y: 834
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b58a9a30d106d6042943c9e5f2a5a8c0
+      internalID: 1041909959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Modern_UI_Style_2_32x32_9
+      rect:
+        serializedVersion: 2
+        x: 1214
+        y: 720
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d7df4c7f6a5fc547bcc250162778bde
+      internalID: 1913442305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Modern_UI_Style_2_32x32_10
+      rect:
+        serializedVersion: 2
+        x: 1248
+        y: 720
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 500a02d32d397de499b2fb346087398c
+      internalID: 1704307472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Modern_UI_Style_2_32x32_11
+      rect:
+        serializedVersion: 2
+        x: 1282
+        y: 720
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c85fe15bb1c2b24fa74d39762263255
+      internalID: 1704853494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Modern_UI_Style_2_32x32_12
+      rect:
+        serializedVersion: 2
+        x: 1532
+        y: 682
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d3030bab4df81b4189c5ae0bc9dfab2
+      internalID: -1147615855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Modern_UI_Style_2_32x32_13
+      rect:
+        serializedVersion: 2
+        x: 1566
+        y: 682
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf32a43ac71fbe6428df694df6c8cc6e
+      internalID: 510595493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Modern_UI_Style_2_32x32_14
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 682
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e816d8674e1c806439754a520cfa281d
+      internalID: -331930203
       vertices: []
       indices: 
       edges: []
@@ -675,23 +927,32 @@ TextureImporter:
       ButtonShoppingMin: -778251369
       ButtonUnlockedMax: -571890040
       ButtonLockedMin: 1324534427
+      Modern_UI_Style_2_32x32_14: -331930203
       ButtonQuestMid: 171817126
       ButtonUnlockedMid: -276237061
       ButtonRestartMid: 1659733010
+      Modern_UI_Style_2_32x32_6: 1176017601
       Bar: 1110258433
       Modern_UI_Style_2_32x32_2: 1454126889
+      Modern_UI_Style_2_32x32_8: 1041909959
       ButtonLowX: -1600883081
       ButtonLockedMax: -552322050
       ButtonMidX: -622032820
       Modern_UI_Style_2_32x32_5: -1540091441
       ButtonQuestMin: -1978635753
+      Modern_UI_Style_2_32x32_3: -29853348
       Modern_UI_Style_2_32x32_1: 84100267
+      Modern_UI_Style_2_32x32_9: 1913442305
       SimpleBox: 537861603
       Modern_UI_Style_2_32x32_7: 138116861
       ButtonUnlockedMin: -775725227
+      Modern_UI_Style_2_32x32_12: -1147615855
+      Modern_UI_Style_2_32x32_13: 510595493
       ButtonRestartMin: 151366011
       ButtonLockedMid: -1688108080
+      Modern_UI_Style_2_32x32_10: 1704307472
       Modern_UI_Style_2_32x32_4: -1069806495
+      Modern_UI_Style_2_32x32_11: 1704853494
       ButtonShoppingMid: 101246847
   spritePackingTag: 
   pSDRemoveMatte: 0
