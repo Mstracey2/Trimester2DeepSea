@@ -41,8 +41,6 @@ public class InventoryScript : MonoBehaviour
 
     void Update()
     {
-
-
         if (inventoryOpen)
         {
             inventoryObject.SetActive(true);
@@ -104,9 +102,6 @@ public class InventoryScript : MonoBehaviour
             }
         }
     }
-
-
-
 
     public void SaveInventory()
     {
