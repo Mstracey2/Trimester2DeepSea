@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Depths> levels = new List<Depths>();
     public Depths thisLevel;
     private int levelCounter = 0;
+    public DepthScreen depthScreen;
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +49,7 @@ public class GameManager : MonoBehaviour
     private void ChangeLevel()
     {
         obstacleSpeed = thisLevel.obstacleSpeed;
-        
+        depthScreen.DisplayScreen();
         if (ColorUtility.TryParseHtmlString("#" + thisLevel.cameraBackgroundColour, out Color colour))
         {
             cam.backgroundColor = colour;
