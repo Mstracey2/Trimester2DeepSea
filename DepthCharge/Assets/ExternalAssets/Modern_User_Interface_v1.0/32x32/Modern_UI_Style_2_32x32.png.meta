@@ -979,7 +979,7 @@ TextureImporter:
         width: 32
         height: 34
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 12, y: 12, z: 12, w: 12}
       outline: []
       physicsShape: []
@@ -987,6 +987,69 @@ TextureImporter:
       bones: []
       spriteID: 6c7a4b71c8e6b8b4daadb1685ffabbb9
       internalID: 1225532350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Modern_UI_Style_2_32x32_19
+      rect:
+        serializedVersion: 2
+        x: 1108
+        y: 720
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d5e833f1da1df54c9827e9d766df7a0
+      internalID: 1672786254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Modern_UI_Style_2_32x32_20
+      rect:
+        serializedVersion: 2
+        x: 1142
+        y: 720
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 531480347d53dc540b190ce23a4741e1
+      internalID: -2018923227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Modern_UI_Style_2_32x32_21
+      rect:
+        serializedVersion: 2
+        x: 1176
+        y: 720
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d92136d70e38b844e9554efff8425535
+      internalID: 949560592
       vertices: []
       indices: 
       edges: []
@@ -1003,45 +1066,48 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       ButtonHighX: 1682314681
-      EmptyBar: 1219322484
-      Modern_UI_Style_2_32x32_16: 52741614
       ButtonQuestsMax: 1264657316
       Modern_UI_Style_2_32x32_0: -222560303
-      ButtonShoppingMax: -984845589
       ButtonRestartMax: -2129950779
+      ButtonQuestMid: 171817126
+      Modern_UI_Style_2_32x32_14: -331930203
+      Modern_UI_Style_2_32x32_6: 1176017601
+      ButtonRestartMid: 1659733010
+      Modern_UI_Style_2_32x32_19: 1158480334
+      Bar: 1110258433
+      Modern_UI_Style_2_32x32_2: 1454126889
+      ButtonLowX: -1600883081
+      ButtonLockedMax: -552322050
+      Modern_UI_Style_2_32x32_1: 84100267
+      Modern_UI_Style_2_32x32_21: 949560592
+      SimpleBox: 537861603
+      Modern_UI_Style_2_32x32_13: 510595493
+      Modern_UI_Style_2_32x32_20: -2018923227
+      ButtonLockedMid: -1688108080
+      Modern_UI_Style_2_32x32_4: -1069806495
+      Modern_UI_Style_2_32x32_17: 1401124555
+      ButtonShoppingMid: 101246847
+      Modern_UI_Style_2_32x32_16: 52741614
+      EmptyBar: 1219322484
+      ButtonShoppingMax: -984845589
       ButtonShoppingMin: -778251369
       ButtonUnlockedMax: -571890040
       ButtonLockedMin: 1324534427
-      Modern_UI_Style_2_32x32_14: -331930203
-      ButtonQuestMid: 171817126
       ButtonUnlockedMid: -276237061
-      ButtonRestartMid: 1659733010
-      Modern_UI_Style_2_32x32_6: 1176017601
-      Bar: 1110258433
-      Modern_UI_Style_2_32x32_2: 1454126889
       Modern_UI_Style_2_32x32_15: 1657919725
       Modern_UI_Style_2_32x32_8: 1041909959
-      ButtonLowX: -1600883081
-      ButtonLockedMax: -552322050
       ButtonMidX: -622032820
       Modern_UI_Style_2_32x32_5: -1540091441
       Modern_UI_Style_2_32x32_18: 1225532350
       ButtonQuestMin: -1978635753
       Modern_UI_Style_2_32x32_3: -29853348
-      Modern_UI_Style_2_32x32_1: 84100267
       Modern_UI_Style_2_32x32_9: 1913442305
-      SimpleBox: 537861603
       Modern_UI_Style_2_32x32_7: 138116861
       ButtonUnlockedMin: -775725227
       Modern_UI_Style_2_32x32_12: -1147615855
-      Modern_UI_Style_2_32x32_13: 510595493
       ButtonRestartMin: 151366011
-      ButtonLockedMid: -1688108080
       Modern_UI_Style_2_32x32_10: 1704307472
-      Modern_UI_Style_2_32x32_4: -1069806495
       Modern_UI_Style_2_32x32_11: 1704853494
-      ButtonShoppingMid: 101246847
-      Modern_UI_Style_2_32x32_17: 1401124555
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

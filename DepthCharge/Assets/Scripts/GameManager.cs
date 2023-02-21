@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     public Depths thisLevel;
     private int levelCounter = 0;
     public DepthScreen depthScreen;
+    [SerializeField] private GameObject pausedScreen;
+
+    private bool gamePaused = false;
 
     // Start is called before the first frame update
     void Start()
@@ -29,21 +32,40 @@ public class GameManager : MonoBehaviour
         {
             depthMeter += Time.deltaTime * 10;
             DepthText.text = depthMeter.ToString("F0") + "m";
-            CheckDepth();     
+            CheckDepth();
         }
     }
 
     private void CheckDepth()
     {
-        
-        if(depthMeter >= thisLevel.nextLevelTarget)
+
+        if (depthMeter >= thisLevel.nextLevelTarget)
         {
+
             levelCounter++;
             thisLevel = levels[levelCounter];
             ChangeLevel();
         }
-    
-       
+
+
+    }
+
+    public void PauseGame()
+
+    {
+
+        if (gamePaused == false)
+        {        
+            gamePaused = true;
+            pausedScreen.SetActive(true);
+            Time.timeScale = 0;
+        }
+        else
+        {
+            pausedScreen.SetActive(false);
+            gamePaused = false;
+            Time.timeScale = 1;
+        }
     }
 
     private void ChangeLevel()
