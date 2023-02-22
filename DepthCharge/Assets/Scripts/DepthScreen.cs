@@ -12,6 +12,7 @@ public class DepthScreen : MonoBehaviour
     [SerializeField] private GameObject information;
     [SerializeField] private TextMeshProUGUI titleText;
     [SerializeField] private TextMeshProUGUI depthText;
+    [SerializeField] private GameManager gameManager;
 
     [SerializeField] private float alpha = 0;
     public float timer = 2;
@@ -28,34 +29,35 @@ public class DepthScreen : MonoBehaviour
     {
         var tempColor = screen.color;
         tempColor.a = alpha;
-        screen.color = tempColor;
+        screen.color = (tempColor);
 
         if (turningOn == true)
         {
-            alpha += Time.deltaTime;
+            alpha += Time.deltaTime*1000;
+        }
+
+        if (alpha >= 1)
+        {
+            turningOn = false;
+            information.SetActive(true);
+
+            timer -= Time.deltaTime*100;
+
+            if (timer <= 0)
+            {
+                turningOff = true;
+                information.SetActive(false);
+            }
 
         }
-            if (alpha >= 1)
-            {
-                turningOn = false;
-                information.SetActive(true);
 
-                timer -= Time.deltaTime;
-
-                if (timer <= 0)
-                {
-                    turningOff = true;
-                information.SetActive(false);
-                }
-
-            }
-        
         if (turningOff == true)
         {
-            alpha -= Time.deltaTime;
-            if(alpha <= 0)
+            alpha -= Time.deltaTime*100;
+            if (alpha <= 0)
             {
                 turningOff = false;
+                gameManager.PauseGame();
             }
         }
     }

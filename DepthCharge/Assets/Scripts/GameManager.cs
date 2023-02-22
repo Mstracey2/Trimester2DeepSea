@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (gameStart)
         {
             depthMeter += Time.deltaTime * 10;
@@ -38,7 +39,6 @@ public class GameManager : MonoBehaviour
 
     private void CheckDepth()
     {
-
         if (depthMeter >= thisLevel.nextLevelTarget)
         {
 
@@ -46,19 +46,17 @@ public class GameManager : MonoBehaviour
             thisLevel = levels[levelCounter];
             ChangeLevel();
         }
-
-
     }
 
-    public void PauseGame()
 
+    public void PauseGame()
     {
 
         if (gamePaused == false)
-        {        
+        {
             gamePaused = true;
             pausedScreen.SetActive(true);
-            Time.timeScale = 0;
+            Time.timeScale = 0.01f;
         }
         else
         {
@@ -66,10 +64,13 @@ public class GameManager : MonoBehaviour
             gamePaused = false;
             Time.timeScale = 1;
         }
+
+
     }
 
     private void ChangeLevel()
     {
+        PauseGame();
         obstacleSpeed = thisLevel.obstacleSpeed;
         depthScreen.DisplayScreen();
         if (ColorUtility.TryParseHtmlString("#" + thisLevel.cameraBackgroundColour, out Color colour))
@@ -77,5 +78,6 @@ public class GameManager : MonoBehaviour
             cam.backgroundColor = colour;
             RenderSettings.fogColor = colour;
         }
+
     }
 }
