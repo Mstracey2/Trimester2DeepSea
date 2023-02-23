@@ -16,6 +16,11 @@ public class GameManager : MonoBehaviour
     public DepthScreen depthScreen;
     [SerializeField] private GameObject pausedScreen;
 
+    public int experienceLevel;
+    public float experienceFloat;
+    public float[] requiredExperience = new float[50];
+
+
     private bool gamePaused = false;
 
     // Start is called before the first frame update
@@ -23,11 +28,28 @@ public class GameManager : MonoBehaviour
     {
         gameStart = true;
         thisLevel = levels[0];
+
+        requiredExperience[1] = 10;
+        requiredExperience[2] = 100;
+        requiredExperience[3] = 250;
+        requiredExperience[4] = 500;
+        requiredExperience[5] = 1000;
+        requiredExperience[6] = 2000;
+        requiredExperience[7] = 4000;
+        requiredExperience[8] = 7500;
+        requiredExperience[9] = 12000;
+        requiredExperience[10] = 20000;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        for (int i = 0; i < 10; i++)
+        {
+            if(experienceFloat >= requiredExperience[i])
+            {
+                experienceLevel = i;
+            }
+        }
 
         if (gameStart)
         {
@@ -51,7 +73,6 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
-
         if (gamePaused == false)
         {
             gamePaused = true;
@@ -64,8 +85,6 @@ public class GameManager : MonoBehaviour
             gamePaused = false;
             Time.timeScale = 1;
         }
-
-
     }
 
     private void ChangeLevel()
@@ -78,6 +97,5 @@ public class GameManager : MonoBehaviour
             cam.backgroundColor = colour;
             RenderSettings.fogColor = colour;
         }
-
     }
 }
