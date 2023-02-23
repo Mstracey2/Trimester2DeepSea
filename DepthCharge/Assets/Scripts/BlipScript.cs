@@ -22,6 +22,8 @@ public class BlipScript : MonoBehaviour
     [SerializeField] private float angularSpeed = -500; //degrees per second
     [SerializeField] private float newDestination = 180;
 
+    private bool activated;
+
     private string radarFog = "78C879";
     private string naturalFog;
 
@@ -35,14 +37,20 @@ public class BlipScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer -= Time.deltaTime;
+     
+        if(timer < 10 && !activated)
+        {
+            timer += Time.deltaTime;
+        }
+        
         percentageBarScript.currentInput = timer;
         percentageBarScript.changeColour("green");
         blipLine.SetPosition(0, startLocation.transform.position);
         blipLine.SetPosition(1, startLocation.transform.position);
-        if (timer<= 0)
+        if (activated)
         {
-             blipLine.SetPosition(0, transform.position);
+            timer -= Time.deltaTime;
+            blipLine.SetPosition(0, transform.position);
              blipLine.SetPosition(1,startLocation.transform.position);
              transform.RotateAround(startLocation.transform.position, Vector3.up, angularSpeed * Time.deltaTime);         
              percentageBarScript.currentInput = Mathf.Abs(timer);
@@ -53,13 +61,12 @@ public class BlipScript : MonoBehaviour
              ChangeFogColour(radarFog);              
              processingRadar.profile = RadarEffect;
             
-            if (timer <= -10)
+            if (timer <= 0)
             {
-
                 radarWall.transform.position = radarWallOriginalPos;
-                timer = 10;
                 processingRadar.profile = defaultEffect;
                 ChangeFogColour(manager.thisLevel.cameraBackgroundColour);
+                activated = false;
             }
         }
         
@@ -90,6 +97,14 @@ public class BlipScript : MonoBehaviour
             angularSpeed = angularSpeed * -1;
             newDestination = newDestination * -1;
             other.transform.RotateAround(gameObject.transform.parent.position, Vector3.up, newDestination);
+        }
+    }
+
+    public void active(bool act)
+    {
+        if(timer >= 10)
+        {
+            activated = act;
         }
     }
 }

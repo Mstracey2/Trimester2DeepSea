@@ -6,21 +6,27 @@ public class EnviormentMovement : MonoBehaviour
 {
     private Vector3 restingPos;
     [SerializeField] private List<GameObject> revertOnCollisionObjects = new List<GameObject>();
-    private float movementSpeed = 0;
+    [SerializeField] private GameObject playerWall;
+    public float movementSpeed = 0;
     private bool running = false;
-
+    private Transform target;
     public void Start()
     {
         restingPos = transform.position;
-
     }
 
     void Update()
     {
         if (running)
         {
-            movementSpeed = Random.Range(5, 20);
-            transform.position += Vector3.back * Time.deltaTime * movementSpeed;
+            float step = movementSpeed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position,step);
+            if(transform.position == target.transform.position)
+            {
+                returnToRest();
+                this.gameObject.GetComponent<fishRandomScale>().restartScale();
+            }
+            
         }
     }
 
@@ -28,8 +34,7 @@ public class EnviormentMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("ZoneWall"))
         {
-            returnToRest();
-            this.gameObject.GetComponent<fishRandomScale>().restartScale();
+           
         }
     }
     public void returnToRest()
@@ -49,4 +54,13 @@ public class EnviormentMovement : MonoBehaviour
         return running;
     }
 
+    public void RandomizeSpeed()
+    {
+        movementSpeed =  Random.Range(5,20);
+    }
+
+    public void setTarget(Transform tar)
+    {
+        target = tar;
+    }
 }

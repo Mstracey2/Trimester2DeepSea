@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class SpawnerScript : MonoBehaviour
 {
-    public Transform[] spawnChildren;
+    public GameObject[] spawnChildren;
     [SerializeField] private GameObject[] obstacles;
     private float countdown;
     private GameObject randomObstacle;
-
+    private GameObject randomTarget;
+    public int num;
+    public Transform target;
     // Start is called before the first frame update
     void Start()
     {
-      spawnChildren =  GetComponentsInChildren<Transform>();
       countdown = Randomizer(0, 1);
     }
 
@@ -23,14 +24,18 @@ public class SpawnerScript : MonoBehaviour
         countdown -= Time.deltaTime;
         if (countdown <= 0)
         {
+           num = (int)Randomizer(0, spawnChildren.Length);
            countdown = Randomizer(0,1);
            randomObstacle = obstacles[(int)Randomizer(0, obstacles.Length)];
            EnviormentMovement currentObstacle = randomObstacle.GetComponent<EnviormentMovement>();
            if(currentObstacle.checkRunning() == false)
            {
-                randomObstacle.transform.position = spawnChildren[(int)Randomizer(1, spawnChildren.Length)].position;
+                GameObject location = spawnChildren[num];
+                randomObstacle.transform.position = location.transform.position;
                 randomObstacle.GetComponent<fishRandomScale>().randomiseScale();
-
+                target = location.transform.GetChild(0);
+                currentObstacle.setTarget(target);
+                currentObstacle.RandomizeSpeed();
                 currentObstacle.obstacleActive(true);
            }
         }
