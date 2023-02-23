@@ -28,7 +28,7 @@ public class Statistics : MonoBehaviour
         //listOfStats[1] = Int32.Parse(runs.ToString());
         ////playtimeSeconds =+Time.deltaTime;
 
-        listOfStats[1] = gameManager.experienceFloat.ToString();
+        //listOfStats[1] = gameManager.experienceFloat.ToString();
 
         saveStats();
         
