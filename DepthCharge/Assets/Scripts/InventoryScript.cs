@@ -21,8 +21,12 @@ public class InventoryScript : MonoBehaviour
     [SerializeField] public Texture[] cosmeticTexture = new Texture[10];
     [SerializeField] public bool[] textureLoaded = new bool[10];
 
-    private int deskToyEnabled;
+    [SerializeField] public int[] EquiptedObject = new int[3];
+    [SerializeField] private Material[] mechMaterial = new Material[10];
+    [SerializeField] private GameObject[] mechObject = new GameObject[5];
 
+
+    public GameManager gameManager;
 
     public bool inventoryOpen;
     [SerializeField] private GameObject inventoryObject;
@@ -33,9 +37,6 @@ public class InventoryScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dynamicButtonText;
     [SerializeField] private GameObject dynamicButtonObject;
     private int lastRollover;
-    // [SerializeField] private RawImageEditor rolloverPicture;
-
-
 
     public string path = "Assets/Saves/Inventory.txt";
 
@@ -62,8 +63,6 @@ public class InventoryScript : MonoBehaviour
         rolloverTitle.text = cosmeticItemTitle[itemNumber].ToString();
         rolloverDescription.text = cosmeticItemDescription[itemNumber].ToString();
         rolloverPrice.text = cosmeticItemPrice[itemNumber].ToString();
-        //rolloverPicture. = cosmeticItemSprite[itemNumber];
-
 
         if (unlockedBool[itemNumber] == true)
         {
@@ -77,12 +76,9 @@ public class InventoryScript : MonoBehaviour
 
     public void DynamicButton()
     {
-        //Add something to check player has enough moneyz
-
         if (unlockedBool[lastRollover] == true)
         {
-            DespawnOfType(cosmeticItemType[lastRollover]);
-            cosmeticItemObject[lastRollover].SetActive(true);
+            EnableObject(lastRollover);
         }
 
         else if (unlockedBool[lastRollover] == false)
@@ -91,14 +87,40 @@ public class InventoryScript : MonoBehaviour
         }
     }
 
+    public void EnableObject(int ObjectNumber)
+    {
+        for (int i = 1; i < 4; i++)
+        {
+            if (cosmeticItemType[ObjectNumber] == i)
+            {
+                EquiptedObject[i] = ObjectNumber;
+            }
+        }
+        if (cosmeticItemType[ObjectNumber] == 1 || cosmeticItemType[ObjectNumber] == 3)
+        {
+            DespawnOfType(cosmeticItemType[ObjectNumber]);
+            cosmeticItemObject[ObjectNumber].SetActive(true);
+
+        }
+        else if (cosmeticItemType[ObjectNumber] == 2)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                mechObject[i].gameObject.GetComponent<MeshRenderer>().material = mechMaterial[ObjectNumber - 10];
+            }
+        }
+
+        SaveInventory();
+    }
+
     public void DespawnOfType(int type)
     {
         for (int i = 0; i < cosmeticItemType.Length; i++)
         {
-            if (cosmeticItemType[i] == type)
+            if (cosmeticItemType[i] == type && cosmeticItemType[i] != 2)
             {
                 cosmeticItemObject[i].SetActive(false);
-                deskToyEnabled = i;
+
             }
         }
     }
@@ -106,13 +128,20 @@ public class InventoryScript : MonoBehaviour
     public void SaveInventory()
     {
         File.WriteAllText(path, string.Empty);
+
         StreamWriter writer = new StreamWriter(path, true);
 
         for (int i = 0; i < unlockedBool.Length; i++)
         {
             writer.WriteLine(unlockedBool[i]);
         }
-        writer.Close();
+
+        for (int j = 1; j < 3; j++)
+        {
+            writer.WriteLine(EquiptedObject[j]);
+        }
+
+            writer.Close();
     }
 
     public void ReadSave()
@@ -122,10 +151,13 @@ public class InventoryScript : MonoBehaviour
         using StreamReader reader = new StreamReader(path);
         for (int i = 0; i < unlockedBool.Length; i++)
         {
-           if(lines[i] == "True")
+            if (lines[i] == "True")
             {
                 unlockedBool[i] = true;
-            } 
+            }
         }
+
+        EnableObject(int.Parse(lines[31]));
+        EnableObject(int.Parse(lines[32]));
     }
 }

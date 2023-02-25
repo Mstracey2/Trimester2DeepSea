@@ -75,7 +75,7 @@ public class InventoryButtons : MonoBehaviour
 
     public void pickRandom()
     {
-        itemNumber = Random.Range(0, 11);
+        itemNumber = Random.Range(0, 30);
         if (inventoryScript.unlockedBool[itemNumber] == true)
         {
             pickRandom();
