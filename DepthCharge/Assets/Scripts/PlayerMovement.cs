@@ -35,16 +35,5 @@ public class PlayerMovement : MonoBehaviour
         {
             radarBlip.active(true);
         }
-
-
-    //    if(Input.GetKeyDown(Keycode.M))
-    //  {
-    //    Inventory.SetActive(true);
-    //}
-
-            //if(Input.GetKeyDown("N"))
-            //{
-            //  Inventory.SetActive(false);
-            //}
     }
 }

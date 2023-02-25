@@ -8,11 +8,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text DepthText;
     [SerializeField] private Camera cam;
     private float depthMeter;
-    private bool gameStart;
+    public bool gameStart;
     private float obstacleSpeed;
     [SerializeField] private List<Depths> levels = new List<Depths>();
     public Depths thisLevel;
     private int levelCounter = 0;
+    [SerializeField] private GameObject deathScreen;
+
+    [SerializeField] private Statistics saveStatistics;
+    [SerializeField] private InventoryScript saveInventory;
+
     public DepthScreen depthScreen;
     [SerializeField] private GameObject pausedScreen;
 
@@ -20,10 +25,10 @@ public class GameManager : MonoBehaviour
     public float experienceFloat;
     public float[] requiredExperience = new float[50];
 
+    public float earntExperience;
 
     private bool gamePaused = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         gameStart = true;
@@ -39,6 +44,8 @@ public class GameManager : MonoBehaviour
         requiredExperience[8] = 7500;
         requiredExperience[9] = 12000;
         requiredExperience[10] = 20000;
+
+        LoadMasterFunction();
     }
 
     void Update()
@@ -87,6 +94,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void EndGame()
+    {
+
+        gameStart = false;
+        earntExperience = depthMeter;
+        deathScreen.SetActive(true);
+    }
+
     private void ChangeLevel()
     {
         PauseGame();
@@ -97,5 +112,17 @@ public class GameManager : MonoBehaviour
             cam.backgroundColor = colour;
             RenderSettings.fogColor = colour;
         }
+    }
+
+    public void SaveMasterFunction()
+    {
+        saveInventory.SaveInventory();
+        saveStatistics.saveStats();
+    }
+
+    public void LoadMasterFunction()
+    {
+        saveInventory.ReadSave();
+        saveStatistics.loadStats();
     }
 }

@@ -24,10 +24,7 @@ public class InventoryButtons : MonoBehaviour
 
     public void Update()
     {
-        //if(inventoryScript.unlockedBool[itemNumber] == true)
-        //{
-        //    //filterNotOwned.SetActive(true);
-        //}
+
     }
 
     public void Start()

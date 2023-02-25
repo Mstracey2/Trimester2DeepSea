@@ -5,6 +5,8 @@ using TMPro;
 
 public class ScrollCrate : MonoBehaviour
 {
+    [SerializeField] private GameObject crateObject;
+
     [SerializeField] float speed;
     public InventoryScript inventoryScript;
     public bool stopping;
@@ -104,7 +106,7 @@ public class ScrollCrate : MonoBehaviour
 
     public void Claim()
     {
-        crate.gameObject.SetActive(false);
+        crateObject.SetActive(false);
     }
 
     public void Enable()

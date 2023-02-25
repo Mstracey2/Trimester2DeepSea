@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerDamage : MonoBehaviour
-{
+{  
+    
+    public GameManager gameManager;
     // Create a list to house the player's limb objects
   //  public List<GameObject> limbs = new List<GameObject>();
     // Minimum limb number: set in editor
@@ -16,6 +18,8 @@ public class PlayerDamage : MonoBehaviour
     private float dullTimer = 0;
     private bool inDull = false;
     public PercentageBarScript percentageBarScript;
+
+
 
 
     private void Start()
@@ -38,11 +42,18 @@ public class PlayerDamage : MonoBehaviour
         //}
     }
 
-    private void Update()
+    public void Update()
     {
-
-
         percentageBarScript.currentInput = remainingLimbs;
+
+        if (remainingLimbs <= minNumOfLimbs)
+        {
+            if (gameManager.gameStart == true)
+            {
+                gameManager.EndGame();
+            }
+        }
+
         if (inDull)
         {
             dullTimer -= Time.deltaTime;

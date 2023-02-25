@@ -22,7 +22,6 @@ public class DepthScreen : MonoBehaviour
     public void DisplayScreen()
     {
         turningOn = true;
-
     }
 
     public void Update()

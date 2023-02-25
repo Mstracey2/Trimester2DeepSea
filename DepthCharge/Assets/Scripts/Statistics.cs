@@ -21,16 +21,8 @@ public class Statistics : MonoBehaviour
 
     void Update()
     {
-        //runs = Int32.Parse(listOfStats[1]);
-        //itemsOwned = Int32.Parse(listOfStats[2]);
-        //playtimeSeconds = Int32.Parse(listOfStats[3]);
-
-        //listOfStats[1] = Int32.Parse(runs.ToString());
-        ////playtimeSeconds =+Time.deltaTime;
-
-        //listOfStats[1] = gameManager.experienceFloat.ToString();
-
-        saveStats();
+        listOfStats[1] = gameManager.experienceFloat.ToString();
+        loadStats();
         
     }
 
@@ -52,9 +44,8 @@ public class Statistics : MonoBehaviour
 
         using StreamReader reader = new StreamReader(path);
 
-        runs = Int32.Parse(lines[0]);
-        experience = Int32.Parse(lines[1]);
-        playtimeSeconds = Int32.Parse(lines[2]);
+
+        gameManager.experienceFloat = float.Parse(lines[1]);
     }
 }
 
