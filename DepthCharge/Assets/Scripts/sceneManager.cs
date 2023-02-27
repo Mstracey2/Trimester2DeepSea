@@ -11,6 +11,7 @@ public class sceneManager : MonoBehaviour
     public Transform waypoint1;
     public Transform waypoint2;
     public float launch = 0f;
+    [SerializeField] private Statistics statistics;
 
     private void Update()
     {
@@ -57,6 +58,7 @@ public class sceneManager : MonoBehaviour
     public void setToClipboard()
     {
         GUIUtility.systemCopyBuffer = Link;
+        statistics.timesReviewed++;
     }
 
     // Load the main level

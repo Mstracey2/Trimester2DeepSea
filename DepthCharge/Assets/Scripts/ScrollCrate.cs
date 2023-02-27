@@ -6,6 +6,7 @@ using TMPro;
 public class ScrollCrate : MonoBehaviour
 {
     [SerializeField] private GameObject crateObject;
+    [SerializeField] private Statistics statistics;
 
     [SerializeField] float speed;
     public InventoryScript inventoryScript;
@@ -102,6 +103,7 @@ public class ScrollCrate : MonoBehaviour
         wonTitle.text = "You Won: " + inventoryScript.cosmeticItemTitle[itemNumber];
         inventoryScript.unlockedBool[itemNumber] = true;
         wonType.text = inventoryScript.cosmeticRarity[itemNumber];
+        statistics.boxesOpened++;
     }
 
     public void Claim()

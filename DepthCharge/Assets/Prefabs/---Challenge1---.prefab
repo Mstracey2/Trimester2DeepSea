@@ -50,6 +50,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 893bc7e6714e0904eb0b05ae8b1fd662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  statistics: {fileID: 0}
   achivementString:
   - 
   - 
@@ -113,13 +115,49 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  requiredInt: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  statisticAssosiated:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   descriptionText: {fileID: 1706585352962623029}
   achivementImage: {fileID: 5813876290251265787}
   difficultyFilter: {fileID: 5813876289496512352}
   rewardText: {fileID: 5813876290132792201}
+  claimButton: {fileID: 1602209231719610008}
   percentageBar: {fileID: 873406927262607586}
   percentageComplete: 0
   achivementNumber: 2
+  claimed: 0
+  unlockedButton: {fileID: -571890040, guid: 53d8c46f2b69043498586919b85495b0, type: 3}
+  percentageCurrent: 0
 --- !u!1 &1602209230929424151
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,8 +730,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: be096e9c0b189124ca5a07e5daf5fad8, type: 2}
-  m_sharedMaterial: {fileID: -5264365401383813100, guid: be096e9c0b189124ca5a07e5daf5fad8, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b4df20a347918f94686055fcee09f0dc, type: 2}
+  m_sharedMaterial: {fileID: 8261783523450343731, guid: b4df20a347918f94686055fcee09f0dc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

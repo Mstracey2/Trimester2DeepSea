@@ -6,23 +6,37 @@ using System;
 
 public class Statistics : MonoBehaviour
 {
-
     public string path = "Assets/Saves/Statistics.txt";
 
-    public int runs;
-    public int itemsOwned;
-    public int playtimeSeconds;
+    public float runs;
+    public float itemsOwned;
+    public float playtimeSeconds;
+    public float boxesOpened;
+    public float itemsBought;
+    public float timesLaunched;
+    public float timesReviewed;
 
     public GameManager gameManager;
 
     public float experience;
 
-    public List<string> listOfStats = new List<string>(3);
+    public List<string> listOfStats = new List<string>(10);
+
+
+    public void Start()
+    {
+       // loadStats();
+    }
 
     void Update()
-    {
+    {       
         listOfStats[1] = gameManager.experienceFloat.ToString();
-        loadStats();
+        listOfStats[2] = runs.ToString();
+        listOfStats[3] = playtimeSeconds.ToString();
+        listOfStats[4] = boxesOpened.ToString();
+        listOfStats[5] = itemsBought.ToString();
+        listOfStats[6] = timesLaunched.ToString();
+        listOfStats[7] = timesReviewed.ToString();
         
     }
 
@@ -31,7 +45,7 @@ public class Statistics : MonoBehaviour
         File.WriteAllText(path, string.Empty);
         StreamWriter writer = new StreamWriter(path, true);
 
-        for (int i = 0; i < listOfStats.Count; i++)
+        for (int i = 0; i < 10; i++)
         {
             writer.WriteLine(listOfStats[i]);
         }
@@ -46,6 +60,12 @@ public class Statistics : MonoBehaviour
 
 
         gameManager.experienceFloat = float.Parse(lines[1]);
+        runs = float.Parse(lines[2]);
+        playtimeSeconds = float.Parse(lines[3]);
+        boxesOpened = float.Parse(lines[4]);
+        itemsBought = float.Parse(lines[5]);
+        timesLaunched = float.Parse(lines[6]);
+        timesReviewed = float.Parse(lines[7]);
     }
 }
 

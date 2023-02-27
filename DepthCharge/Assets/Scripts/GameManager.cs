@@ -29,8 +29,12 @@ public class GameManager : MonoBehaviour
 
     private bool gamePaused = false;
 
-    void Start()
+    public void Start()
     {
+
+        LoadMasterFunction();
+
+        saveStatistics.timesLaunched++;
         gameStart = true;
         thisLevel = levels[0];
 
@@ -45,14 +49,14 @@ public class GameManager : MonoBehaviour
         requiredExperience[9] = 12000;
         requiredExperience[10] = 20000;
 
-        LoadMasterFunction();
+
     }
 
     void Update()
     {
         for (int i = 0; i < 10; i++)
         {
-            if(experienceFloat >= requiredExperience[i])
+            if (experienceFloat >= requiredExperience[i])
             {
                 experienceLevel = i;
             }
@@ -63,6 +67,7 @@ public class GameManager : MonoBehaviour
             depthMeter += Time.deltaTime * 10;
             DepthText.text = depthMeter.ToString("F0") + "m";
             CheckDepth();
+            saveStatistics.playtimeSeconds = saveStatistics.playtimeSeconds + Time.deltaTime;
         }
     }
 
@@ -96,7 +101,7 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
-
+        saveStatistics.runs++;
         gameStart = false;
         earntExperience = depthMeter;
         deathScreen.SetActive(true);
@@ -115,14 +120,18 @@ public class GameManager : MonoBehaviour
     }
 
     public void SaveMasterFunction()
-    {
+    { 
+        Debug.Log("GAME SAVED - " + Time.time);
         saveInventory.SaveInventory();
         saveStatistics.saveStats();
+
     }
 
     public void LoadMasterFunction()
-    {
+    {   
+        Debug.Log("GAME LOADED - " + Time.time);
         saveInventory.ReadSave();
         saveStatistics.loadStats();
+
     }
 }

@@ -110,7 +110,7 @@ public class InventoryScript : MonoBehaviour
             }
         }
 
-        SaveInventory();
+       // gameManager.SaveMasterFunction();
     }
 
     public void DespawnOfType(int type)
@@ -157,7 +157,7 @@ public class InventoryScript : MonoBehaviour
             }
         }
 
+        EnableObject(int.Parse(lines[30]));
         EnableObject(int.Parse(lines[31]));
-        EnableObject(int.Parse(lines[32]));
     }
 }
