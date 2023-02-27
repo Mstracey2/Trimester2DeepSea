@@ -47,7 +47,7 @@ public class ExperiencePageManager : MonoBehaviour
         
         if (sentFromAchivements == false)
         {
-            gameManager.PauseGame();
+            gameManager.ResumeGame();
             addedExperience = gameManager.earntExperience;
         }
         else

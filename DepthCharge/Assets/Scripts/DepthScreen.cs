@@ -13,8 +13,11 @@ public class DepthScreen : MonoBehaviour
     [SerializeField] private TextMeshProUGUI titleText;
     [SerializeField] private TextMeshProUGUI depthText;
     [SerializeField] private GameManager gameManager;
+    
 
+    
     [SerializeField] private float alpha = 0;
+    public float depth;
     public float timer = 2;
     public bool turningOn = false;
     public bool turningOff = false;
@@ -22,6 +25,29 @@ public class DepthScreen : MonoBehaviour
     public void DisplayScreen()
     {
         turningOn = true;
+
+
+
+        if (depth >= 250)
+        {
+            titleText.text = "Middle Zone";
+            depthText.text = "250 - 500";
+        }
+        else if (depth >= 500)
+        {
+
+            titleText.text = "Deep Zone";
+            depthText.text = "500 - 2500";
+        }
+
+        else if (depth >= 2500)
+        {
+
+            titleText.text = "The unknown Zone";
+            depthText.text = "2500 - ...";
+        }
+
+
     }
 
     public void Update()

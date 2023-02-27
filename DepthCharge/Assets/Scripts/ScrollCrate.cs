@@ -7,6 +7,7 @@ public class ScrollCrate : MonoBehaviour
 {
     [SerializeField] private GameObject crateObject;
     [SerializeField] private Statistics statistics;
+    [SerializeField] private GameManager gameManager;
 
     [SerializeField] float speed;
     public InventoryScript inventoryScript;
@@ -34,6 +35,7 @@ public class ScrollCrate : MonoBehaviour
 
     public void StartRoll()
     {
+
         this.transform.localPosition = new Vector3(0, 26, 0);
         stopping = false;
         wonTitle.text = "";
@@ -46,12 +48,13 @@ public class ScrollCrate : MonoBehaviour
         gambleButton.SetActive(false);
         wonScreen.SetActive(false);
         stopButton.SetActive(true);
+        gameManager.PauseGame();
     }
 
     void Update()
     {
         this.transform.position += Vector3.right * Time.deltaTime * speed;
-        timer = timer - Time.deltaTime*100;
+        timer = timer - Time.deltaTime * 100;
         if (timer < 0)
         {
             stopping = true;
@@ -62,7 +65,7 @@ public class ScrollCrate : MonoBehaviour
 
             if (speed > 0)
             {
-                speed = speed - Time.deltaTime * randomness*10000;
+                speed = speed - Time.deltaTime * randomness * 10000;
                 if (speed <= 0)
                 {
                     speed = 0;
@@ -92,9 +95,6 @@ public class ScrollCrate : MonoBehaviour
         {
             loseScreen.SetActive(true);
         }
-
-
-
     }
 
     public void Stop()
@@ -122,9 +122,13 @@ public class ScrollCrate : MonoBehaviour
 
     public void Enable()
     {
-        inventoryScript.DespawnOfType(inventoryScript.cosmeticItemType[itemNumber]);
-        inventoryScript.cosmeticItemObject[itemNumber].SetActive(true);
-    }
+        //if (inventoryScript.cosmeticItemType[itemNumber] != 2) { 
+        //inventoryScript.DespawnOfType(inventoryScript.cosmeticItemType[itemNumber]);
+        //inventoryScript.cosmeticItemObject[itemNumber].SetActive(true);
+
+            inventoryScript.EnableObject(itemNumber);
+    } 
+
 
     public void Gamble()
     {

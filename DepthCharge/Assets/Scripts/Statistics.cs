@@ -37,7 +37,7 @@ public class Statistics : MonoBehaviour
         listOfStats[5] = itemsBought.ToString();
         listOfStats[6] = timesLaunched.ToString();
         listOfStats[7] = timesReviewed.ToString();
-        
+       
     }
 
     public void saveStats()

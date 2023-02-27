@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -83,6 +84,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ReturnToMenu()
+    {
+        SaveMasterFunction();
+        SceneManager.LoadScene(0);
+    }
+
     public void ResumeGame()
     {
         pausedScreen.SetActive(false);
@@ -129,6 +136,7 @@ public class GameManager : MonoBehaviour
         PauseGame();
         obstacleSpeed = thisLevel.obstacleSpeed;
         depthScreen.DisplayScreen();
+        depthScreen.depth = depthMeter;
         if (ColorUtility.TryParseHtmlString("#" + thisLevel.cameraBackgroundColour, out Color colour))
         {
             cam.backgroundColor = colour;

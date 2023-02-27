@@ -21,11 +21,12 @@ public class Achivements : MonoBehaviour
     [SerializeField] private RawImage difficultyFilter;
     [SerializeField] private TextMeshProUGUI rewardText;
     [SerializeField] private TextMeshProUGUI percentageText;
-    
+
     [SerializeField] private Image claimButton;
     [SerializeField] private Sprite claimedSprite;
     [SerializeField] private Image percentageBar;
     [SerializeField] private float percentageComplete;
+    [SerializeField] private TextMeshProUGUI progressText;
 
     public int achivementNumber;
     public bool claimed;
@@ -210,32 +211,43 @@ public class Achivements : MonoBehaviour
 
     public void UpdateInformation()
     {
-
+        progressText.text = "0 / 1";
         switch (statisticAssosiated[achivementNumber])
         {
+
             case "runs":
                 percentageCurrent = statistics.runs / requiredInt[achivementNumber];
+
+                progressText.text = statistics.runs + "/" + requiredInt[achivementNumber];
                 break;
 
             case "itemsBought":
                 percentageCurrent = statistics.itemsBought / requiredInt[achivementNumber];
+                progressText.text = statistics.itemsBought + "/" + requiredInt[achivementNumber];
                 break;
 
             case "playtimeSeconds":
                 percentageCurrent = statistics.playtimeSeconds / requiredInt[achivementNumber];
+                progressText.text = (statistics.playtimeSeconds / 60).ToString("0") + "/" + (requiredInt[achivementNumber] / 60).ToString("0");
                 break;
 
             case "timesLaunched":
                 percentageCurrent = statistics.timesLaunched / requiredInt[achivementNumber];
+                progressText.text = statistics.timesLaunched + "/" + requiredInt[achivementNumber];
+
                 break;
+        }
+        if (percentageCurrent >= 1)
+        {
+            progressText.text = requiredInt[achivementNumber] + "/" + requiredInt[achivementNumber];
         }
 
         if (percentageCurrent <= 1 && percentageCurrent >= 0)
         {
-            percentageBar.gameObject.transform.localScale = new Vector3(percentageCurrent, 1, 1);   
+            percentageBar.gameObject.transform.localScale = new Vector3(percentageCurrent, 1, 1);
             percentageText.text = (percentageCurrent * 100).ToString("0") + "%";
         }
-        if(percentageCurrent >= 1)
+        if (percentageCurrent >= 1)
         {
             percentageBar.gameObject.transform.localScale = new Vector3(1, 1, 1);
             percentageText.text = "100%";
@@ -243,13 +255,13 @@ public class Achivements : MonoBehaviour
 
 
 
-        if(claimed == false && percentageCurrent >= 1)
+        if (claimed == false && percentageCurrent >= 1)
         {
             claimButton.sprite = unlockedButton;
         }
 
 
-        if(claimed == true)
+        if (claimed == true)
         {
             claimButton.sprite = claimedSprite;
             claimButton.GetComponent<Button>().interactable = false;
@@ -258,7 +270,7 @@ public class Achivements : MonoBehaviour
 
     public void ClaimReward()
     {
-        if (percentageCurrent >= 1)
+        if (percentageCurrent >= 1 && claimed == false)
         {
             claimed = true;
             UpdateInformation();
