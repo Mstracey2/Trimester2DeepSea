@@ -8,8 +8,11 @@ public class ExperiencePageManager : MonoBehaviour
 {
 
     public GameManager gameManager;
+    public GameObject deathScreen;
 
     public float addedExperience;
+
+    public bool sentFromAchivements = false;
 
     [SerializeField] private GameObject barCurrent;
     [SerializeField] private GameObject barDisplacement;
@@ -23,6 +26,9 @@ public class ExperiencePageManager : MonoBehaviour
     [SerializeField] private float requiredExperienceFloat;
     [SerializeField] private int currentLevel;
 
+    [SerializeField] private GameObject claimButtonObj;
+    [SerializeField] private GameObject continueButtonObj;
+    [SerializeField] private GameObject rewardsObj;
 
 
     [SerializeField] private float percentageCurrent;
@@ -34,42 +40,55 @@ public class ExperiencePageManager : MonoBehaviour
     [SerializeField] private GameObject claimButton;
 
     [SerializeField] private GameObject crateObject;
+    [SerializeField] private ScrollCrate scrollCrate;
 
     void Start()
-    {      
-        addedExperience = gameManager.earntExperience;
-        percentageCurrent = ((currentExperienceFloat - gameManager.requiredExperience[currentLevel]) / requiredExperienceFloat);      
+    {
+        
+        if (sentFromAchivements == false)
+        {
+            gameManager.PauseGame();
+            addedExperience = gameManager.earntExperience;
+        }
+        else
+        {
+            gameManager.ResumeGame();
+        }
+        percentageCurrent = ((currentExperienceFloat - gameManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
         experienceEarnt.text = addedExperience.ToString("0");
         lootcratesEarnt = 1;
     }
 
-    // Update is called once per frame
     void Update()
     {
         currentLevel = gameManager.experienceLevel;
-        requiredExperienceFloat = gameManager.requiredExperience[currentLevel+1];
+        requiredExperienceFloat = gameManager.requiredExperience[currentLevel + 1];
         currentExperienceFloat = gameManager.experienceFloat;
         levelCurrent.text = currentLevel.ToString();
         levelNext.text = (currentLevel + 1).ToString();
 
         if (gameManager.experienceFloat >= 1)
         {
-            percentageChange  = ((currentExperienceFloat - gameManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
+            percentageChange = ((currentExperienceFloat - gameManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
         }
 
 
         if (addedExperience > 0 && claimExperience == true)
         {
-            addedExperience -= Time.deltaTime*100;
-            gameManager.experienceFloat += Time.deltaTime*100;
+            addedExperience -= Time.deltaTime * 100;
+            gameManager.experienceFloat += Time.deltaTime * 100;
 
-        barCurrent.transform.localScale = new Vector2(percentageCurrent,1);
-        barDisplacement.transform.localScale = new Vector2(percentageChange, 1);
+            if (percentageCurrent > 0)
+            {
+                barCurrent.transform.localScale = new Vector2(percentageCurrent*2, 1);
+            }
+
+            barDisplacement.transform.localScale = new Vector2(percentageChange*2, 1);
         }
 
 
 
-        if(lootcratesEarnt >= 0)
+        if (lootcratesEarnt >= 0)
         {
             claimButton.SetActive(true);
         }
@@ -80,32 +99,53 @@ public class ExperiencePageManager : MonoBehaviour
 
     }
 
-    public void StartSequence()
-    {
-
-
-    }
-
-    public void AddExperience()
-    {
-
-
-    }
-
     public void ClaimExperience()
     {
+
         claimExperience = true;
+        claimButtonObj.SetActive(false);
+        continueButtonObj.SetActive(true);      
+        gameManager.SaveMasterFunction();
+    }
+
+    public void Continue()
+    {
+        if (sentFromAchivements == false)
+        {
+            rewardsObj.SetActive(true);
+        }
+        else
+        {
+            deathScreen.SetActive(false);
+            this.gameObject.SetActive(false);
+        }
     }
 
     public void OpenCrate()
     {
+        if (sentFromAchivements == false)
+        {
+            gameManager.PauseGame();
+        }
         crateObject.SetActive(true);
+        scrollCrate.StartRoll();
         lootcratesEarnt--;
     }
 
     public void ReturnToGame()
     {
         gameManager.SaveMasterFunction();
-        SceneManager.LoadScene("Scene");
+
+        if (sentFromAchivements == false)
+        {
+            gameManager.ResumeGame();
+            SceneManager.LoadScene("Scene");
+        }
+        else
+        {
+
+            this.gameObject.SetActive(false);
+            deathScreen.SetActive(false);
+        }
     }
 }

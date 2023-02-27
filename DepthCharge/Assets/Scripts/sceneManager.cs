@@ -58,7 +58,7 @@ public class sceneManager : MonoBehaviour
     public void setToClipboard()
     {
         GUIUtility.systemCopyBuffer = Link;
-        statistics.timesReviewed++;
+  //      statistics.timesReviewed++;
     }
 
     // Load the main level

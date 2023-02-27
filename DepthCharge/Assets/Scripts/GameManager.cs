@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Statistics saveStatistics;
     [SerializeField] private InventoryScript saveInventory;
+    [SerializeField] private AchivementsManager achivementsManager;
 
     public DepthScreen depthScreen;
     [SerializeField] private GameObject pausedScreen;
@@ -82,8 +83,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ResumeGame()
+    {
+        pausedScreen.SetActive(false);
+        gamePaused = false;
+        Time.timeScale = 1;
+    }
 
     public void PauseGame()
+    {
+        gamePaused = true;
+        pausedScreen.SetActive(true);
+        Time.timeScale = 0.01f;
+    }
+
+    public void TogglePause()
     {
         if (gamePaused == false)
         {
@@ -97,7 +111,10 @@ public class GameManager : MonoBehaviour
             gamePaused = false;
             Time.timeScale = 1;
         }
+
     }
+
+
 
     public void EndGame()
     {
@@ -120,18 +137,19 @@ public class GameManager : MonoBehaviour
     }
 
     public void SaveMasterFunction()
-    { 
+    {
         Debug.Log("GAME SAVED - " + Time.time);
         saveInventory.SaveInventory();
         saveStatistics.saveStats();
+        achivementsManager.SaveAchievements();
 
     }
 
     public void LoadMasterFunction()
-    {   
+    {
         Debug.Log("GAME LOADED - " + Time.time);
         saveInventory.ReadSave();
         saveStatistics.loadStats();
-
+        achivementsManager.ReadSave();
     }
 }

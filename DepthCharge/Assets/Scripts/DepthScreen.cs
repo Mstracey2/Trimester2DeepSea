@@ -56,7 +56,7 @@ public class DepthScreen : MonoBehaviour
             if (alpha <= 0)
             {
                 turningOff = false;
-                gameManager.PauseGame();
+                gameManager.ResumeGame();
             }
         }
     }

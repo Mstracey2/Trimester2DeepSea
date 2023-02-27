@@ -30,19 +30,28 @@ public class ScrollCrate : MonoBehaviour
     [SerializeField] private TextMeshProUGUI wonTitle;
     [SerializeField] private TextMeshProUGUI wonType;
 
-      [SerializeField] private GameObject loseScreen;
+    [SerializeField] private GameObject loseScreen;
 
-    private void Start()
+    public void StartRoll()
     {
+        this.transform.localPosition = new Vector3(0, 26, 0);
+        stopping = false;
+        wonTitle.text = "";
+        timer = 5;
+        gambled = false;
+        rollStoppedRunOnce = true;
+        speed = 50000;
         randomness = Random.Range(100, 300);
         collectButton.SetActive(false);
         gambleButton.SetActive(false);
+        wonScreen.SetActive(false);
+        stopButton.SetActive(true);
     }
 
     void Update()
     {
         this.transform.position += Vector3.right * Time.deltaTime * speed;
-        timer = timer - Time.deltaTime;
+        timer = timer - Time.deltaTime*100;
         if (timer < 0)
         {
             stopping = true;
@@ -53,7 +62,7 @@ public class ScrollCrate : MonoBehaviour
 
             if (speed > 0)
             {
-                speed = speed - Time.deltaTime * randomness;
+                speed = speed - Time.deltaTime * randomness*10000;
                 if (speed <= 0)
                 {
                     speed = 0;
@@ -129,9 +138,5 @@ public class ScrollCrate : MonoBehaviour
         gambleButton.SetActive(false);
         collectButton.SetActive(false);
         stopButton.SetActive(true);
-
-
     }
-
-
 }

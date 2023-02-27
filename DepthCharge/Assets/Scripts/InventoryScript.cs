@@ -109,8 +109,6 @@ public class InventoryScript : MonoBehaviour
                 mechObject[i].gameObject.GetComponent<MeshRenderer>().material = mechMaterial[ObjectNumber - 10];
             }
         }
-
-       // gameManager.SaveMasterFunction();
     }
 
     public void DespawnOfType(int type)

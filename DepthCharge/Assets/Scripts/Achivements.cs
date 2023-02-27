@@ -8,6 +8,7 @@ public class Achivements : MonoBehaviour
 {
     [SerializeField] GameManager gameManager;
     [SerializeField] Statistics statistics;
+    [SerializeField] AchivementsManager achivementsManager;
 
     [SerializeField] private string[] achivementString = new string[30];
     [SerializeField] private int[] difficulty = new int[30];
@@ -19,8 +20,10 @@ public class Achivements : MonoBehaviour
     [SerializeField] private Image achivementImage;
     [SerializeField] private RawImage difficultyFilter;
     [SerializeField] private TextMeshProUGUI rewardText;
+    [SerializeField] private TextMeshProUGUI percentageText;
     
     [SerializeField] private Image claimButton;
+    [SerializeField] private Sprite claimedSprite;
     [SerializeField] private Image percentageBar;
     [SerializeField] private float percentageComplete;
 
@@ -40,6 +43,7 @@ public class Achivements : MonoBehaviour
     {
         gameManager = (GameManager)FindObjectOfType(typeof(GameManager));
         statistics = gameManager.GetComponent<Statistics>();
+        achivementsManager = (AchivementsManager)FindObjectOfType(typeof(AchivementsManager));
 
 
         achivementString[0] = "Play 5 Runs";
@@ -228,16 +232,38 @@ public class Achivements : MonoBehaviour
 
         if (percentageCurrent <= 1 && percentageCurrent >= 0)
         {
-            percentageBar.gameObject.transform.localScale = new Vector3(percentageCurrent, 1, 1);
+            percentageBar.gameObject.transform.localScale = new Vector3(percentageCurrent, 1, 1);   
+            percentageText.text = (percentageCurrent * 100).ToString("0") + "%";
         }
         if(percentageCurrent >= 1)
         {
             percentageBar.gameObject.transform.localScale = new Vector3(1, 1, 1);
+            percentageText.text = "100%";
         }
+
+
 
         if(claimed == false && percentageCurrent >= 1)
         {
             claimButton.sprite = unlockedButton;
+        }
+
+
+        if(claimed == true)
+        {
+            claimButton.sprite = claimedSprite;
+            claimButton.GetComponent<Button>().interactable = false;
+        }
+    }
+
+    public void ClaimReward()
+    {
+        if (percentageCurrent >= 1)
+        {
+            claimed = true;
+            UpdateInformation();
+            achivementsManager.lootcratesReward++;
+            achivementsManager.experienceReward += (difficulty[achivementNumber] * 100);
         }
     }
 }
