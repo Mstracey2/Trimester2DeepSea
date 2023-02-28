@@ -67,5 +67,17 @@ public class Statistics : MonoBehaviour
         timesLaunched = float.Parse(lines[6]);
         timesReviewed = float.Parse(lines[7]);
     }
+
+    public void ResetStats()
+    {
+        File.WriteAllText(path, string.Empty);
+        StreamWriter writer = new StreamWriter(path, true);
+
+        for (int i = 0; i < 10; i++)
+        {
+            writer.WriteLine(0);
+        }
+        writer.Close();
+    }
 }
 

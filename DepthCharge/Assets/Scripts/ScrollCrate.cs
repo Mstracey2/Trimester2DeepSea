@@ -81,11 +81,12 @@ public class ScrollCrate : MonoBehaviour
     public void RollStopped()
     {
         rollStoppedRunOnce = false;
+        closestButton.TryGetComponent<InventoryButtons>(out InventoryButtons chosenButton);
 
-
-        if (closestButton.GetComponent<InventoryButtons>() != null)
+        if (chosenButton != null)
         {
             collectButton.SetActive(true);
+
             if (gambled == false)
             {
                 gambleButton.SetActive(true);
@@ -134,7 +135,7 @@ public class ScrollCrate : MonoBehaviour
     {
         gambled = true;
         timer = 5;
-        speed = 500;
+        speed = 50000;
         gambleButtons.SetActive(true);
         normalButtons.SetActive(false);
         rollStoppedRunOnce = true;

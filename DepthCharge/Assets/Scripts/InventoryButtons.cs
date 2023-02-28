@@ -17,6 +17,7 @@ public class InventoryButtons : MonoBehaviour
     [SerializeField] private GameObject filterNotOwned;
     [SerializeField] private GameObject filterEquipt;
     private VideoPlayer videoPlayer;
+    private bool randomObject;
 
     [SerializeField] private RawImage sprite;
 
@@ -37,7 +38,8 @@ public class InventoryButtons : MonoBehaviour
     {
         if (disableButton == true)
         {
-            pickRandom();
+            StartCoroutine(PickRandomObject());
+            StopCoroutine(PickRandomObject());
         }
 
         videoPlayer = this.GetComponent<VideoPlayer>();
@@ -75,10 +77,28 @@ public class InventoryButtons : MonoBehaviour
 
     public void pickRandom()
     {
-        itemNumber = Random.Range(0, 30);
+        itemNumber = Random.Range(1, 30);
         if (inventoryScript.unlockedBool[itemNumber] == true)
         {
             pickRandom();
         }
+    }
+
+
+    private IEnumerator PickRandomObject()
+    {
+        randomObject = false;
+
+        while(randomObject == false)
+        {
+            itemNumber = Random.Range(1, 30);
+            if(inventoryScript.unlockedBool[itemNumber] == false)
+            {
+                randomObject = true;
+            }
+        }
+
+        yield return null;
+
     }
 }

@@ -44,7 +44,7 @@ public class ExperiencePageManager : MonoBehaviour
 
     void Start()
     {
-        
+
         if (sentFromAchivements == false)
         {
             gameManager.ResumeGame();
@@ -57,6 +57,8 @@ public class ExperiencePageManager : MonoBehaviour
         percentageCurrent = ((currentExperienceFloat - gameManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
         experienceEarnt.text = addedExperience.ToString("0");
         lootcratesEarnt = 1;
+
+
     }
 
     void Update()
@@ -67,9 +69,16 @@ public class ExperiencePageManager : MonoBehaviour
         levelCurrent.text = currentLevel.ToString();
         levelNext.text = (currentLevel + 1).ToString();
 
-        if (gameManager.experienceFloat >= 1)
+
+        if (gameManager.experienceFloat <= 1)
         {
             percentageChange = ((currentExperienceFloat - gameManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
+        }
+
+
+        if (percentageCurrent > 0)
+        {
+            barCurrent.transform.localScale = new Vector2(percentageCurrent * 2, 1);
         }
 
 
@@ -78,12 +87,9 @@ public class ExperiencePageManager : MonoBehaviour
             addedExperience -= Time.deltaTime * 100;
             gameManager.experienceFloat += Time.deltaTime * 100;
 
-            if (percentageCurrent > 0)
-            {
-                barCurrent.transform.localScale = new Vector2(percentageCurrent*2, 1);
-            }
 
-            barDisplacement.transform.localScale = new Vector2(percentageChange*2, 1);
+
+            barDisplacement.transform.localScale = new Vector2(percentageChange * 2, 1);
         }
 
 
@@ -104,7 +110,7 @@ public class ExperiencePageManager : MonoBehaviour
 
         claimExperience = true;
         claimButtonObj.SetActive(false);
-        continueButtonObj.SetActive(true);      
+        continueButtonObj.SetActive(true);
         gameManager.SaveMasterFunction();
     }
 

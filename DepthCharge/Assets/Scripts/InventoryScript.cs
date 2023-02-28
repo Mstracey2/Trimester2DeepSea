@@ -158,4 +158,23 @@ public class InventoryScript : MonoBehaviour
         EnableObject(int.Parse(lines[30]));
         EnableObject(int.Parse(lines[31]));
     }
+
+    public void ResetSave()
+    {
+        File.WriteAllText(path, string.Empty);
+
+        StreamWriter writer = new StreamWriter(path, true);
+
+        for (int i = 0; i < unlockedBool.Length; i++)
+        {
+            writer.WriteLine("False");
+        }
+
+        for (int j = 1; j < 3; j++)
+        {
+            writer.WriteLine(-1);
+        }
+
+        writer.Close();
+    }
 }

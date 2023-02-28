@@ -15,3 +15,4 @@ MonoBehaviour:
   obstacleSpeed: 150
   nextLevelTarget: 2500
   cameraBackgroundColour: 05062E
+  depthDensity: 0.09

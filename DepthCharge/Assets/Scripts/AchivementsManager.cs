@@ -105,4 +105,17 @@ public class AchivementsManager : MonoBehaviour
             }
         }
     }
+
+    public void ResetSave()
+    {
+        File.WriteAllText(path, string.Empty);
+
+        StreamWriter writer = new StreamWriter(path, true);
+
+        for (int i = 0; i < 27; i++)
+        {
+            writer.WriteLine("False");
+        }
+        writer.Close();
+    }
 }

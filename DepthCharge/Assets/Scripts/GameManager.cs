@@ -118,7 +118,6 @@ public class GameManager : MonoBehaviour
             gamePaused = false;
             Time.timeScale = 1;
         }
-
     }
 
 
@@ -142,6 +141,7 @@ public class GameManager : MonoBehaviour
             cam.backgroundColor = colour;
             RenderSettings.fogColor = colour;
         }
+        RenderSettings.fogDensity = thisLevel.depthDensity;
     }
 
     public void SaveMasterFunction()
@@ -150,7 +150,6 @@ public class GameManager : MonoBehaviour
         saveInventory.SaveInventory();
         saveStatistics.saveStats();
         achivementsManager.SaveAchievements();
-
     }
 
     public void LoadMasterFunction()
@@ -159,5 +158,14 @@ public class GameManager : MonoBehaviour
         saveInventory.ReadSave();
         saveStatistics.loadStats();
         achivementsManager.ReadSave();
+    }
+
+    public void ResetMasterFunction()
+    {
+        Debug.Log("SAVE DELETED - " + Time.time);
+        saveInventory.ResetSave();
+        saveStatistics.ResetStats();
+        achivementsManager.ResetSave();
+       // SaveMasterFunction();
     }
 }

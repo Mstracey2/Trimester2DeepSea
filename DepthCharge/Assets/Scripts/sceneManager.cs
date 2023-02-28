@@ -12,6 +12,9 @@ public class sceneManager : MonoBehaviour
     public Transform waypoint2;
     public float launch = 0f;
     [SerializeField] private Statistics statistics;
+    [SerializeField] private InventoryScript saveInventory;
+    [SerializeField] private Statistics saveStatistics;
+    [SerializeField] private AchivementsManager achivementsManager;
 
     private void Update()
     {
