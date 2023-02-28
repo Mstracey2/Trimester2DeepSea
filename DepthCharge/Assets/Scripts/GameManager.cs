@@ -77,7 +77,6 @@ public class GameManager : MonoBehaviour
     {
         if (depthMeter >= thisLevel.nextLevelTarget)
         {
-
             levelCounter++;
             thisLevel = levels[levelCounter];
             ChangeLevel();
@@ -138,7 +137,7 @@ public class GameManager : MonoBehaviour
         depthScreen.depth = depthMeter;
         if (ColorUtility.TryParseHtmlString("#" + thisLevel.cameraBackgroundColour, out Color colour))
         {
-            cam.backgroundColor = colour;
+            cam.backgroundColor = Color.Lerp(cam.backgroundColor, colour, 1f * Time.deltaTime);
             RenderSettings.fogColor = colour;
         }
         RenderSettings.fogDensity = thisLevel.depthDensity;

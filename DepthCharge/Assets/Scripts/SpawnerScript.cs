@@ -13,6 +13,8 @@ public class SpawnerScript : MonoBehaviour
     private GameObject randomTarget;
     public int num;
     public Transform target;
+    GameObject location;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +53,7 @@ public class SpawnerScript : MonoBehaviour
     public Transform GetDestination()
     {
         num = (int)Randomizer(0, spawnChildren.Length);
-        GameObject location = spawnChildren[num];
+        location = spawnChildren[num];
         randomObstacle.transform.position = location.transform.position;
         return location.transform.GetChild(0); ;
     }
