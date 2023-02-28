@@ -16,3 +16,5 @@ MonoBehaviour:
   nextLevelTarget: 250
   cameraBackgroundColour: 20ACFB
   depthDensity: 0.02
+  smallFishChance: 30
+  mammelChance: 300

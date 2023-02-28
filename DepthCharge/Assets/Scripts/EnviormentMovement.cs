@@ -54,11 +54,6 @@ public class EnviormentMovement : MonoBehaviour
         return running;
     }
 
-    public void RandomizeSpeed()
-    {
-        movementSpeed =  Random.Range(5,20);
-    }
-
     public void setTarget(Transform tar)
     {
         target = tar;

@@ -9,4 +9,6 @@ public class Depths : ScriptableObject
     public float nextLevelTarget;
     public string cameraBackgroundColour;
     public float depthDensity;
+    public int smallFishChance;
+    public int mammelChance;
 }

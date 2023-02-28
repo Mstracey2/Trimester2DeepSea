@@ -168,4 +168,17 @@ public class GameManager : MonoBehaviour
         achivementsManager.ResetSave();
        // SaveMasterFunction();
     }
+
+    public int GetFishChance(int fishType)
+    {
+        if(fishType == 1)
+        {
+            return thisLevel.smallFishChance;
+        }
+        else
+        {
+            return thisLevel.mammelChance;
+        }
+        
+    }
 }
