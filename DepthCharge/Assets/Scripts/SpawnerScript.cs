@@ -43,7 +43,7 @@ public class SpawnerScript : MonoBehaviour
             EnviormentMovement currentObstacle = randomObstacle.GetComponent<EnviormentMovement>();
             if (currentObstacle.checkRunning() == false)
             {
-                randomObstacle.GetComponent<fishRandomScale>().randomiseScale();
+           //     randomObstacle.GetComponent<fishRandomScale>().randomiseScale();
                 currentObstacle.setTarget(GetDestination());
                 currentObstacle.obstacleActive(true);
             }

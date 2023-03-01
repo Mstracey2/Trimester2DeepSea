@@ -19,8 +19,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Statistics saveStatistics;
     [SerializeField] private InventoryScript saveInventory;
     [SerializeField] private AchivementsManager achivementsManager;
+    [SerializeField] private DailyChallengesManager dailyChallengesManager;
 
-    public DepthScreen depthScreen;
+ //   public DepthScreen depthScreen;
     [SerializeField] private GameObject pausedScreen;
 
     public int experienceLevel;
@@ -131,10 +132,10 @@ public class GameManager : MonoBehaviour
 
     private void ChangeLevel()
     {
-        PauseGame();
+      //  PauseGame();
         obstacleSpeed = thisLevel.obstacleSpeed;
-        depthScreen.DisplayScreen();
-        depthScreen.depth = depthMeter;
+     //   depthScreen.DisplayScreen();
+     //   depthScreen.depth = depthMeter;
         if (ColorUtility.TryParseHtmlString("#" + thisLevel.cameraBackgroundColour, out Color colour))
         {
             cam.backgroundColor = Color.Lerp(cam.backgroundColor, colour, 1f * Time.deltaTime);
@@ -149,6 +150,7 @@ public class GameManager : MonoBehaviour
         saveInventory.SaveInventory();
         saveStatistics.saveStats();
         achivementsManager.SaveAchievements();
+        dailyChallengesManager.SaveChallenges();
     }
 
     public void LoadMasterFunction()
@@ -157,6 +159,7 @@ public class GameManager : MonoBehaviour
         saveInventory.ReadSave();
         saveStatistics.loadStats();
         achivementsManager.ReadSave();
+        dailyChallengesManager.ReadSave();
     }
 
     public void ResetMasterFunction()
@@ -165,6 +168,7 @@ public class GameManager : MonoBehaviour
         saveInventory.ResetSave();
         saveStatistics.ResetStats();
         achivementsManager.ResetSave();
+        dailyChallengesManager.ResetSave();
        // SaveMasterFunction();
     }
 

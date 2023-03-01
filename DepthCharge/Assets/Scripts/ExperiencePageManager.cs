@@ -21,6 +21,7 @@ public class ExperiencePageManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI experienceEarnt;
 
     public bool claimExperience = false;
+    public bool runOnce = false;
 
     [SerializeField] private float currentExperienceFloat;
     [SerializeField] private float requiredExperienceFloat;
@@ -54,6 +55,8 @@ public class ExperiencePageManager : MonoBehaviour
         {
             gameManager.ResumeGame();
         }
+
+
         percentageCurrent = ((currentExperienceFloat - gameManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
         experienceEarnt.text = addedExperience.ToString("0");
         lootcratesEarnt = 1;
@@ -63,14 +66,23 @@ public class ExperiencePageManager : MonoBehaviour
 
     void Update()
     {
+        if(gameManager.experienceLevel == currentLevel + 1)
+        {
+            barCurrent.gameObject.SetActive(false);
+        }
         currentLevel = gameManager.experienceLevel;
         requiredExperienceFloat = gameManager.requiredExperience[currentLevel + 1];
         currentExperienceFloat = gameManager.experienceFloat;
         levelCurrent.text = currentLevel.ToString();
         levelNext.text = (currentLevel + 1).ToString();
 
+        if (runOnce == false) 
+        {
+            runOnce = true;
+            percentageCurrent = ((currentExperienceFloat - gameManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
+        }
 
-        if (gameManager.experienceFloat <= 1)
+        if (gameManager.experienceFloat >= 1)
         {
             percentageChange = ((currentExperienceFloat - gameManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
         }
@@ -85,9 +97,8 @@ public class ExperiencePageManager : MonoBehaviour
         if (addedExperience > 0 && claimExperience == true)
         {
             addedExperience -= Time.deltaTime * 100;
+         //   percentageCurrent = ((currentExperienceFloat - Time.deltaTime * 200 - gameManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
             gameManager.experienceFloat += Time.deltaTime * 100;
-
-
 
             barDisplacement.transform.localScale = new Vector2(percentageChange * 2, 1);
         }

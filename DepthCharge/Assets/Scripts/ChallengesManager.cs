@@ -22,12 +22,12 @@ public class ChallengesManager : MonoBehaviour
         challengeStringPart1[0] = "Travel ";
         rangeMin[0] = 500;
         rangeMax[0] = 1500;
-        challengeStringPart2[0] = " M in a single run!";
+        challengeStringPart2[0] = "M in a single run!";
 
         challengeStringPart1[1] = "Travel ";
         rangeMin[1] = 500;
         rangeMax[1] = 1500;
-        challengeStringPart2[1] = " M underwater!";
+        challengeStringPart2[1] = "M underwater!";
 
         challengeStringPart1[2] = "Play ";
         rangeMin[2] = 3;
@@ -37,7 +37,7 @@ public class ChallengesManager : MonoBehaviour
         challengeStringPart1[3] = "Narrowly avoid ";
         rangeMin[3] = 10;
         rangeMax[3] = 30;
-        challengeStringPart2[3] = "Objects close to your mech!";
+        challengeStringPart2[3] = " Objects close to your mech!";
 
         challengeStringPart1[4] = "Open ";
         rangeMin[4] = 2;
@@ -52,7 +52,7 @@ public class ChallengesManager : MonoBehaviour
         challengeStringPart1[6] = "Enter ";
         rangeMin[6] = 2;
         rangeMax[6] = 4;
-        challengeStringPart2[6] = "Zones in the ocean!";
+        challengeStringPart2[6] = " Zones in the ocean!";
 
         SetChallenge(0);
         SetChallenge(1);

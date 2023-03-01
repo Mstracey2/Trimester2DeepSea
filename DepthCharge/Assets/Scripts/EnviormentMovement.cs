@@ -24,7 +24,7 @@ public class EnviormentMovement : MonoBehaviour
             if(transform.position == target.transform.position)
             {
                 returnToRest();
-                this.gameObject.GetComponent<fishRandomScale>().restartScale();
+              //  this.gameObject.GetComponent<fishRandomScale>().restartScale();
             }
             
         }
