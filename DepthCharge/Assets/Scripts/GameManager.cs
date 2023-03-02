@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour
       //  PauseGame();
         obstacleSpeed = thisLevel.obstacleSpeed;
      //   depthScreen.DisplayScreen();
-     //   depthScreen.depth = depthMeter;
+     // depthScreen.depth = depthMeter;
         if (ColorUtility.TryParseHtmlString("#" + thisLevel.cameraBackgroundColour, out Color colour))
         {
             cam.backgroundColor = Color.Lerp(cam.backgroundColor, colour, 1f * Time.deltaTime);
@@ -150,7 +150,7 @@ public class GameManager : MonoBehaviour
         saveInventory.SaveInventory();
         saveStatistics.saveStats();
         achivementsManager.SaveAchievements();
-        dailyChallengesManager.SaveChallenges();
+       // dailyChallengesManager.SaveChallenges();
     }
 
     public void LoadMasterFunction()
@@ -159,7 +159,7 @@ public class GameManager : MonoBehaviour
         saveInventory.ReadSave();
         saveStatistics.loadStats();
         achivementsManager.ReadSave();
-        dailyChallengesManager.ReadSave();
+       // dailyChallengesManager.ReadSave();
     }
 
     public void ResetMasterFunction()
