@@ -56,9 +56,9 @@ public class DailyChallengesManager : MonoBehaviour
         minuteUntil = 60 - minute;
         hourUntil = 24 - hour;
 
-        hourUntilText.text = hourUntil.ToString("00");
-        minuteUntilText.text = minuteUntil.ToString("00");
-        secondUntilText.text = secondUnitl.ToString("00");
+        hourUntilText.text = hourUntil.ToString("00") + " Hours";
+        minuteUntilText.text = minuteUntil.ToString("00" + " Minutes");
+        secondUntilText.text = secondUnitl.ToString("00" + " Seconds");
 
         listOfStats[0] = hour.ToString();
         listOfStats[1] = metersSingle.ToString();
