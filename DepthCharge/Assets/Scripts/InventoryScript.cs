@@ -1,9 +1,8 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEditor.UI;
+using UnityEngine.UI;
 using UnityEngine.Video;
 using System.IO;
 
@@ -66,7 +65,7 @@ public class InventoryScript : MonoBehaviour
 
         if (unlockedBool[itemNumber] == true)
         {
-            dynamicButtonText.text = "Equipt";
+            dynamicButtonText.text = "Equip";
         }
         else if (unlockedBool[itemNumber] == false)
         {
@@ -155,8 +154,14 @@ public class InventoryScript : MonoBehaviour
             }
         }
 
-        EnableObject(int.Parse(lines[30]));
-        EnableObject(int.Parse(lines[31]));
+        if (lines[30] != "null")
+        {
+            EnableObject(int.Parse(lines[30]));
+        }
+        if (lines[31] != "null")
+        {
+            EnableObject(int.Parse(lines[31]));
+        }
     }
 
     public void ResetSave()

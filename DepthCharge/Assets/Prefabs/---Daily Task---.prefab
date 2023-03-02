@@ -526,6 +526,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6819579085458459812}
+  - component: {fileID: -7333407125101979138}
   m_Layer: 0
   m_Name: ---Daily Task---
   m_TagString: Untagged
@@ -555,6 +556,161 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-7333407125101979138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637976818894752425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6784d64dde8d8d45a0e5b8f6f9654ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  statistics: {fileID: 0}
+  dailyChallengesManager: {fileID: 0}
+  challengeString:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  challengeString2:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  imageCover:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  rangeMin: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  rangeMax: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  statisticAssosiated:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  descriptionText: {fileID: 388969162775377836}
+  achivementImage: {fileID: 4784492534569658210}
+  rewardText: {fileID: 4784492534688129552}
+  percentageText: {fileID: 9183025999040107511}
+  required: 0
+  claimButton: {fileID: 4784492534569658210}
+  claimedSprite: {fileID: 1502534690, guid: 53d8c46f2b69043498586919b85495b0, type: 3}
+  percentageBar: {fileID: 2221420082497329531}
+  percentageComplete: 0
+  progressText: {fileID: 7744721804492898698}
+  challengeNumber: 0
+  claimed: 0
+  unlockedButton: {fileID: 0}
+  percentageCurrent: 0
 --- !u!1 &1715282122838316549
 GameObject:
   m_ObjectHideFlags: 0

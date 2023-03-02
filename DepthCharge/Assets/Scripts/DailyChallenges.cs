@@ -13,15 +13,15 @@ public class DailyChallenges : MonoBehaviour
     [SerializeField] private string[] challengeString = new string[30];
     [SerializeField] private string[] challengeString2 = new string[30];
     [SerializeField] private Sprite[] imageCover = new Sprite[30];
-    [SerializeField] private int[] rangeMin = new int[10];
-    [SerializeField] private int[] rangeMax = new int[10];
+    [SerializeField] public int[] rangeMin = new int[10];
+    [SerializeField] public int[] rangeMax = new int[10];
     [SerializeField] private string[] statisticAssosiated = new string[30];
 
     [SerializeField] private TextMeshProUGUI descriptionText;
     [SerializeField] private Image achivementImage;
-    [SerializeField] private RawImage difficultyFilter;
     [SerializeField] private TextMeshProUGUI rewardText;
     [SerializeField] private TextMeshProUGUI percentageText;
+    [SerializeField] public int required;
 
     [SerializeField] private Image claimButton;
     [SerializeField] private Sprite claimedSprite;
@@ -73,7 +73,7 @@ public class DailyChallenges : MonoBehaviour
         statisticAssosiated[3] = "lootcratesOpened";
 
         challengeString[4] = "Buy ";
-        challengeString2[4] = " Items Today today";
+        challengeString2[4] = " Items Today";
         rangeMin[4] = 1;
         rangeMax[4] = 5;
         statisticAssosiated[4] = "itemsBought";
@@ -84,20 +84,22 @@ public class DailyChallenges : MonoBehaviour
         rangeMax[5] = 1;
         statisticAssosiated[5] = "itemsPutOn";
 
+        // SetInformation();
+        // UpdateInformation();
 
-
-
-
-
-        SetInformation();
-       // UpdateInformation();
+      //  required = Random.Range(rangeMin[challengeNumber], rangeMax[challengeNumber]);
     }
 
-    public void SetInformation()
+    public void Update()
     {
-        descriptionText.text = challengeString[challengeNumber];
+        descriptionText.text = challengeString[challengeNumber] + required + challengeString2[challengeNumber];
         achivementImage.sprite = imageCover[challengeNumber];
         rewardText.text = (100).ToString();
+    }
+
+    public void SetInformation(int challengeNumber, int required)
+    {
+
     }
 }
 
