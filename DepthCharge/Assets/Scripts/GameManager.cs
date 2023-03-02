@@ -111,6 +111,7 @@ public class GameManager : MonoBehaviour
         pausedScreen.SetActive(false);
         gamePaused = false;
         Time.timeScale = 1;
+        gameStart = true;
 
     }
 

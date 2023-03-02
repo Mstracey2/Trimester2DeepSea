@@ -29,6 +29,7 @@ public class InventoryScript : MonoBehaviour
 
     public bool inventoryOpen;
     [SerializeField] private GameObject inventoryObject;
+    [SerializeField] private Statistics statistics;
 
     [SerializeField] private TextMeshProUGUI rolloverTitle;
     [SerializeField] private TextMeshProUGUI rolloverDescription;
@@ -48,7 +49,7 @@ public class InventoryScript : MonoBehaviour
 
         if (unlockedBool[lastRollover] == true)
         {
-            dynamicButtonText.text = "Equipt";
+            dynamicButtonText.text = "Equip";
         }
         else if (unlockedBool[lastRollover] == false)
         {
@@ -83,6 +84,8 @@ public class InventoryScript : MonoBehaviour
         else if (unlockedBool[lastRollover] == false)
         {
             unlockedBool[lastRollover] = true;
+            statistics.itemsBought++;
+            
         }
     }
 

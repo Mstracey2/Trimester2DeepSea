@@ -25,7 +25,7 @@ public class Statistics : MonoBehaviour
 
     public void Start()
     {
-       // loadStats();
+        loadStats();
     }
 
     void Update()
