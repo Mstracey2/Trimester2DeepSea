@@ -118,7 +118,7 @@ public class Achivements : MonoBehaviour
 
         achivementString[15] = "Play for 5 Minutes";
         difficulty[15] = 1;
-        requiredInt[15] = 600;
+        requiredInt[15] = 300;
         statisticAssosiated[15] = "playtimeSeconds";
 
         achivementString[16] = "Play for 25 Minutes";

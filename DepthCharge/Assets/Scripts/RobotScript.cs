@@ -8,9 +8,9 @@ public class RobotScript : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            animator.Play(-1);
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    animator.Play(-1);
+        //}
     }
 }

@@ -88,13 +88,13 @@ public class ExperiencePageManager : MonoBehaviour
         }
 
 
-        if (percentageCurrent > 0)
+        if (percentageCurrent > 0 )
         {
             barCurrent.transform.localScale = new Vector2(percentageCurrent * 2, 1);
         }
 
 
-        if (addedExperience > 0 && claimExperience == true)
+        if (addedExperience > 0 && claimExperience == true && percentageChange <= 1)
         {
             addedExperience -= Time.deltaTime * 100;
          //   percentageCurrent = ((currentExperienceFloat - Time.deltaTime * 200 - gameManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
