@@ -20,7 +20,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private InventoryScript saveInventory;
     [SerializeField] private AchivementsManager achivementsManager;
     [SerializeField] private DailyChallengesManager dailyChallengesManager;
-
+    [SerializeField] private BlipScript radar;
+    private Color sceneColour;
  //   public DepthScreen depthScreen;
     [SerializeField] private GameObject pausedScreen;
 
@@ -34,7 +35,7 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
-
+        sceneColour = cam.backgroundColor;
         LoadMasterFunction();
 
         saveStatistics.timesLaunched++;
@@ -71,6 +72,12 @@ public class GameManager : MonoBehaviour
             DepthText.text = depthMeter.ToString("F0") + "m";
             CheckDepth();
             saveStatistics.playtimeSeconds = saveStatistics.playtimeSeconds + Time.deltaTime;
+        }
+
+        cam.backgroundColor = Color.Lerp(cam.backgroundColor, sceneColour, 1f * Time.deltaTime);
+        if(radar.activated != true)
+        {
+            RenderSettings.fogColor = Color.Lerp(cam.backgroundColor, sceneColour, 1f * Time.deltaTime);
         }
     }
 
@@ -138,8 +145,8 @@ public class GameManager : MonoBehaviour
      // depthScreen.depth = depthMeter;
         if (ColorUtility.TryParseHtmlString("#" + thisLevel.cameraBackgroundColour, out Color colour))
         {
-            cam.backgroundColor = Color.Lerp(cam.backgroundColor, colour, 1f * Time.deltaTime);
-            RenderSettings.fogColor = colour;
+            sceneColour = colour;
+            
         }
         RenderSettings.fogDensity = thisLevel.depthDensity;
     }

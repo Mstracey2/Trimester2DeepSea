@@ -22,7 +22,7 @@ public class BlipScript : MonoBehaviour
     [SerializeField] private float angularSpeed = -500; //degrees per second
     [SerializeField] private float newDestination = 180;
 
-    private bool activated;
+    public bool activated;
 
     private string radarFog = "78C879";
     private string naturalFog;

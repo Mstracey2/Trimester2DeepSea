@@ -19,16 +19,16 @@ public class PlayerMovement : MonoBehaviour
         
         if(x != 0)
         {
-            playerRB.AddForce(new Vector3(x, 0, 0) * 15);
+            playerRB.AddForce(new Vector3(x, 0, 0) * 30);
         }
         if(y != 0)
         {
-            playerRB.AddForce(new Vector3(0, y, 0) * 15);
+            playerRB.AddForce(new Vector3(0, y, 0) * 30);
         }
 
         if (Input.GetKey(KeyCode.Space))
         {
-            playerRB.AddForce(new Vector3(x, y, 0) * 50);
+            playerRB.AddForce(new Vector3(x, y, 0) * 75);
         }
         
         if (Input.GetKey(KeyCode.Q))
