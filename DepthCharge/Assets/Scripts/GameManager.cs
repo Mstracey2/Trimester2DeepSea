@@ -15,14 +15,17 @@ public class GameManager : MonoBehaviour
     public Depths thisLevel;
     private int levelCounter = 0;
     [SerializeField] private GameObject deathScreen;
+    [SerializeField] public int volume = 100;
 
     [SerializeField] private Statistics saveStatistics;
     [SerializeField] private InventoryScript saveInventory;
     [SerializeField] private AchivementsManager achivementsManager;
     [SerializeField] private DailyChallengesManager dailyChallengesManager;
     [SerializeField] private BlipScript radar;
+    [SerializeField] private TextMeshProUGUI depthText;
+    [SerializeField] private TextMeshProUGUI timeText;
+    [SerializeField] private TextMeshProUGUI experienceText;
     private Color sceneColour;
- //   public DepthScreen depthScreen;
     [SerializeField] private GameObject pausedScreen;
 
     public int experienceLevel;
@@ -31,15 +34,16 @@ public class GameManager : MonoBehaviour
 
     public float earntExperience;
 
-    private bool gamePaused = false;
+    private bool gamePaused;
 
     public void Start()
-    {
+    {     
+        //Time.timeScale = 0.01f;
         sceneColour = cam.backgroundColor;
         LoadMasterFunction();
-
+      //  PauseGame();
         saveStatistics.timesLaunched++;
-        gameStart = true;
+        //  gameStart = true;
         thisLevel = levels[0];
 
         requiredExperience[1] = 10;
@@ -53,6 +57,9 @@ public class GameManager : MonoBehaviour
         requiredExperience[9] = 12000;
         requiredExperience[10] = 20000;
 
+        gameStart = false;
+        gamePaused = true;
+        pausedScreen.SetActive(true);
 
     }
 
@@ -66,16 +73,23 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (gameStart)
+        if (gameStart == true)
         {
             depthMeter += Time.deltaTime * 10;
             DepthText.text = depthMeter.ToString("F0") + "m";
             CheckDepth();
             saveStatistics.playtimeSeconds = saveStatistics.playtimeSeconds + Time.deltaTime;
         }
+        if(gameStart == false)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                StartGame();
+            }
+        }
 
         cam.backgroundColor = Color.Lerp(cam.backgroundColor, sceneColour, 1f * Time.deltaTime);
-        if(radar.activated != true)
+        if (radar.activated != true)
         {
             RenderSettings.fogColor = Color.Lerp(cam.backgroundColor, sceneColour, 1f * Time.deltaTime);
         }
@@ -102,6 +116,16 @@ public class GameManager : MonoBehaviour
         pausedScreen.SetActive(false);
         gamePaused = false;
         Time.timeScale = 1;
+    }
+
+    public void StartGame()
+    {     
+        Time.timeScale = 1;
+        pausedScreen.SetActive(false);
+        gamePaused = false;
+        gameStart = true;
+
+
     }
 
     public void PauseGame()
@@ -135,18 +159,21 @@ public class GameManager : MonoBehaviour
         gameStart = false;
         earntExperience = depthMeter;
         deathScreen.SetActive(true);
+        depthText.text = "Depth: " + depthMeter.ToString("0") + "M";
+        timeText.text = "Time: " + (depthMeter / 10).ToString("0" + " Seconds");
+        experienceText.text = "Experience: " + experienceFloat.ToString("0");
     }
 
     private void ChangeLevel()
     {
-      //  PauseGame();
+        //  PauseGame();
         obstacleSpeed = thisLevel.obstacleSpeed;
-     //   depthScreen.DisplayScreen();
-     // depthScreen.depth = depthMeter;
+        //   depthScreen.DisplayScreen();
+        // depthScreen.depth = depthMeter;
         if (ColorUtility.TryParseHtmlString("#" + thisLevel.cameraBackgroundColour, out Color colour))
         {
             sceneColour = colour;
-            
+
         }
         RenderSettings.fogDensity = thisLevel.depthDensity;
     }
@@ -157,7 +184,7 @@ public class GameManager : MonoBehaviour
         saveInventory.SaveInventory();
         saveStatistics.saveStats();
         achivementsManager.SaveAchievements();
-       // dailyChallengesManager.SaveChallenges();
+        // dailyChallengesManager.SaveChallenges();
     }
 
     public void LoadMasterFunction()
@@ -166,7 +193,7 @@ public class GameManager : MonoBehaviour
         saveInventory.ReadSave();
         saveStatistics.loadStats();
         achivementsManager.ReadSave();
-       // dailyChallengesManager.ReadSave();
+        // dailyChallengesManager.ReadSave();
     }
 
     public void ResetMasterFunction()
@@ -176,12 +203,12 @@ public class GameManager : MonoBehaviour
         saveStatistics.ResetStats();
         achivementsManager.ResetSave();
         dailyChallengesManager.ResetSave();
-       // SaveMasterFunction();
+        // SaveMasterFunction();
     }
 
     public int GetFishChance(int fishType)
     {
-        if(fishType == 1)
+        if (fishType == 1)
         {
             return thisLevel.smallFishChance;
         }
@@ -189,6 +216,6 @@ public class GameManager : MonoBehaviour
         {
             return thisLevel.mammelChance;
         }
-        
+
     }
 }

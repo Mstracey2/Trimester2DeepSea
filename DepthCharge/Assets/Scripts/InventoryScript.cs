@@ -23,6 +23,7 @@ public class InventoryScript : MonoBehaviour
     [SerializeField] public int[] EquiptedObject = new int[3];
     [SerializeField] private Material[] mechMaterial = new Material[10];
     [SerializeField] private GameObject[] mechObject = new GameObject[5];
+    [SerializeField] private Material[] additonalMechMaterial = new Material[5];
 
 
     public GameManager gameManager;
@@ -108,7 +109,15 @@ public class InventoryScript : MonoBehaviour
         {
             for (int i = 0; i < 5; i++)
             {
-                mechObject[i].gameObject.GetComponent<MeshRenderer>().material = mechMaterial[ObjectNumber - 10];
+                if (ObjectNumber != int.Parse("19"))
+                {
+
+                    mechObject[i].gameObject.GetComponent<MeshRenderer>().material = mechMaterial[ObjectNumber - 10];
+                }
+                else
+                {
+                    mechObject[i].gameObject.GetComponent<MeshRenderer>().material = additonalMechMaterial[i];
+                }
             }
         }
     }
@@ -157,13 +166,25 @@ public class InventoryScript : MonoBehaviour
             }
         }
 
+        Debug.Log(lines[30]);
+        Debug.Log(lines[31]);
+
         if (lines[30] != "null")
         {
             EnableObject(int.Parse(lines[30]));
         }
+        else
+        {
+
+        }
         if (lines[31] != "null")
         {
             EnableObject(int.Parse(lines[31]));
+        }
+        else
+        {
+
+
         }
     }
 

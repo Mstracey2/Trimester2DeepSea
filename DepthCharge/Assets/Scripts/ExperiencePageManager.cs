@@ -105,7 +105,7 @@ public class ExperiencePageManager : MonoBehaviour
 
 
 
-        if (lootcratesEarnt >= 0)
+        if (lootcratesEarnt >= 1)
         {
             claimButton.SetActive(true);
         }
@@ -138,6 +138,17 @@ public class ExperiencePageManager : MonoBehaviour
         }
     }
 
+
+    public void OpenCrateFromAchivements()
+    {    
+        
+        lootcratesEarnt--;
+            gameManager.PauseGame();
+        
+        crateObject.SetActive(true);
+        scrollCrate.StartRoll();
+
+    }
     public void OpenCrate()
     {
         if (sentFromAchivements == false)
