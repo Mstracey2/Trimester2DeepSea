@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public Depths thisLevel;
     private int levelCounter = 0;
     [SerializeField] private GameObject deathScreen;
+    [SerializeField] public int volume = 100;
 
     [SerializeField] private Statistics saveStatistics;
     [SerializeField] private InventoryScript saveInventory;
@@ -25,7 +26,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timeText;
     [SerializeField] private TextMeshProUGUI experienceText;
     private Color sceneColour;
- //   public DepthScreen depthScreen;
+    //   public DepthScreen depthScreen;
     [SerializeField] private GameObject pausedScreen;
 
     public int experienceLevel;
@@ -34,7 +35,7 @@ public class GameManager : MonoBehaviour
 
     public float earntExperience;
 
-    private bool gamePaused = false;
+    private bool gamePaused = true;
 
     public void Start()
     {
@@ -42,7 +43,7 @@ public class GameManager : MonoBehaviour
         LoadMasterFunction();
 
         saveStatistics.timesLaunched++;
-        gameStart = true;
+        //  gameStart = true;
         thisLevel = levels[0];
 
         requiredExperience[1] = 10;
@@ -56,7 +57,7 @@ public class GameManager : MonoBehaviour
         requiredExperience[9] = 12000;
         requiredExperience[10] = 20000;
 
-
+        PauseGame();
     }
 
     void Update()
@@ -76,9 +77,16 @@ public class GameManager : MonoBehaviour
             CheckDepth();
             saveStatistics.playtimeSeconds = saveStatistics.playtimeSeconds + Time.deltaTime;
         }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                StartGame();
+            }
+        }
 
         cam.backgroundColor = Color.Lerp(cam.backgroundColor, sceneColour, 1f * Time.deltaTime);
-        if(radar.activated != true)
+        if (radar.activated != true)
         {
             RenderSettings.fogColor = Color.Lerp(cam.backgroundColor, sceneColour, 1f * Time.deltaTime);
         }
@@ -105,6 +113,15 @@ public class GameManager : MonoBehaviour
         pausedScreen.SetActive(false);
         gamePaused = false;
         Time.timeScale = 1;
+    }
+
+    public void StartGame()
+    {
+        pausedScreen.SetActive(false);
+        gamePaused = false;
+        gameStart = true;
+        Time.timeScale = 1;
+
     }
 
     public void PauseGame()
@@ -145,14 +162,14 @@ public class GameManager : MonoBehaviour
 
     private void ChangeLevel()
     {
-      //  PauseGame();
+        //  PauseGame();
         obstacleSpeed = thisLevel.obstacleSpeed;
-     //   depthScreen.DisplayScreen();
-     // depthScreen.depth = depthMeter;
+        //   depthScreen.DisplayScreen();
+        // depthScreen.depth = depthMeter;
         if (ColorUtility.TryParseHtmlString("#" + thisLevel.cameraBackgroundColour, out Color colour))
         {
             sceneColour = colour;
-            
+
         }
         RenderSettings.fogDensity = thisLevel.depthDensity;
     }
@@ -163,7 +180,7 @@ public class GameManager : MonoBehaviour
         saveInventory.SaveInventory();
         saveStatistics.saveStats();
         achivementsManager.SaveAchievements();
-       // dailyChallengesManager.SaveChallenges();
+        // dailyChallengesManager.SaveChallenges();
     }
 
     public void LoadMasterFunction()
@@ -172,7 +189,7 @@ public class GameManager : MonoBehaviour
         saveInventory.ReadSave();
         saveStatistics.loadStats();
         achivementsManager.ReadSave();
-       // dailyChallengesManager.ReadSave();
+        // dailyChallengesManager.ReadSave();
     }
 
     public void ResetMasterFunction()
@@ -182,12 +199,12 @@ public class GameManager : MonoBehaviour
         saveStatistics.ResetStats();
         achivementsManager.ResetSave();
         dailyChallengesManager.ResetSave();
-       // SaveMasterFunction();
+        // SaveMasterFunction();
     }
 
     public int GetFishChance(int fishType)
     {
-        if(fishType == 1)
+        if (fishType == 1)
         {
             return thisLevel.smallFishChance;
         }
@@ -195,6 +212,6 @@ public class GameManager : MonoBehaviour
         {
             return thisLevel.mammelChance;
         }
-        
+
     }
 }

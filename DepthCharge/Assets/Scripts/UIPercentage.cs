@@ -11,23 +11,17 @@ public class UIPercentage : MonoBehaviour
     public float number;
     [SerializeField] private float percentage;
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         number = 0;
 
-        for (int i = rangeMin; i < rangeMax; i++)
+        for (int i = rangeMin; i <= rangeMax; i++)
         {
             if (inventoryScript.unlockedBool[i] == true)
             {
                 number++;
-                percentage = number / rangeMax;
-                scaleObject.gameObject.transform.localScale = new Vector2 (percentage, 1);
+                percentage = number / (rangeMax+1);
+                scaleObject.gameObject.transform.localScale = new Vector2 (percentage*2, 1);
             }
         }
     }  
