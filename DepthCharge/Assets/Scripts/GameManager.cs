@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timeText;
     [SerializeField] private TextMeshProUGUI experienceText;
     private Color sceneColour;
-    //   public DepthScreen depthScreen;
     [SerializeField] private GameObject pausedScreen;
 
     public int experienceLevel;
@@ -35,13 +34,14 @@ public class GameManager : MonoBehaviour
 
     public float earntExperience;
 
-    private bool gamePaused = true;
+    private bool gamePaused;
 
     public void Start()
-    {
+    {     
+        //Time.timeScale = 0.01f;
         sceneColour = cam.backgroundColor;
         LoadMasterFunction();
-
+      //  PauseGame();
         saveStatistics.timesLaunched++;
         //  gameStart = true;
         thisLevel = levels[0];
@@ -57,7 +57,10 @@ public class GameManager : MonoBehaviour
         requiredExperience[9] = 12000;
         requiredExperience[10] = 20000;
 
-        PauseGame();
+        gameStart = false;
+        gamePaused = true;
+        pausedScreen.SetActive(true);
+
     }
 
     void Update()
@@ -70,14 +73,14 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (gameStart)
+        if (gameStart == true)
         {
             depthMeter += Time.deltaTime * 10;
             DepthText.text = depthMeter.ToString("F0") + "m";
             CheckDepth();
             saveStatistics.playtimeSeconds = saveStatistics.playtimeSeconds + Time.deltaTime;
         }
-        else
+        if(gameStart == false)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -116,11 +119,12 @@ public class GameManager : MonoBehaviour
     }
 
     public void StartGame()
-    {
+    {     
+        Time.timeScale = 1;
         pausedScreen.SetActive(false);
         gamePaused = false;
         gameStart = true;
-        Time.timeScale = 1;
+
 
     }
 

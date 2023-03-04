@@ -166,13 +166,25 @@ public class InventoryScript : MonoBehaviour
             }
         }
 
+        Debug.Log(lines[30]);
+        Debug.Log(lines[31]);
+
         if (lines[30] != "null")
         {
             EnableObject(int.Parse(lines[30]));
         }
+        else
+        {
+
+        }
         if (lines[31] != "null")
         {
             EnableObject(int.Parse(lines[31]));
+        }
+        else
+        {
+
+
         }
     }
 
