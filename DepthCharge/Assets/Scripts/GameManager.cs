@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AchivementsManager achivementsManager;
     [SerializeField] private DailyChallengesManager dailyChallengesManager;
     [SerializeField] private BlipScript radar;
+    [SerializeField] private TextMeshProUGUI depthText;
+    [SerializeField] private TextMeshProUGUI timeText;
+    [SerializeField] private TextMeshProUGUI experienceText;
     private Color sceneColour;
  //   public DepthScreen depthScreen;
     [SerializeField] private GameObject pausedScreen;
@@ -135,6 +138,9 @@ public class GameManager : MonoBehaviour
         gameStart = false;
         earntExperience = depthMeter;
         deathScreen.SetActive(true);
+        depthText.text = "Depth: " + depthMeter.ToString("0") + "M";
+        timeText.text = "Time: " + (depthMeter / 10).ToString("0" + " Seconds");
+        experienceText.text = "Experience: " + experienceFloat.ToString("0");
     }
 
     private void ChangeLevel()

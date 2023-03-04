@@ -6,7 +6,6 @@ True
 True
 True
 True
-False
 True
 True
 True
@@ -16,7 +15,8 @@ True
 True
 True
 True
-False
+True
+True
 True
 True
 True
@@ -29,4 +29,4 @@ True
 True
 True
 1
-17
+19
