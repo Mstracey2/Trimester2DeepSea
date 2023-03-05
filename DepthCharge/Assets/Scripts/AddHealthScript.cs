@@ -7,7 +7,9 @@ public class AddHealthScript : MonoBehaviour
     [SerializeField] private PlayerDamage playerStatus;
     private AbilityScript abilityBubble;
     GameObject newLimb;
-    // Start is called before the first frame update
+
+
+
     void Start()
     {
         abilityBubble = GetComponent<AbilityScript>();
@@ -25,7 +27,10 @@ public class AddHealthScript : MonoBehaviour
         {
             playerStatus.DamagedLimbs.Remove(newLimb);
             playerStatus.limbs.Add(newLimb);
+            playerStatus.remainingLimbs++;
             PlayerDamageLimb currentLimb = newLimb.GetComponent<PlayerDamageLimb>();
+            newLimb.GetComponent<PlayerDamageLimb>().limbStatus[0].SetActive(true);
+            newLimb.GetComponent<PlayerDamageLimb>().limbStatus[1].SetActive(false);
             newLimb.transform.parent = playerStatus.gameObject.transform;
             newLimb.transform.localPosition = currentLimb.limbPosition;
             newLimb.transform.localRotation = currentLimb.limbRotation;

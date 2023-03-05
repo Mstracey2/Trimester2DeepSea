@@ -171,7 +171,7 @@ public class GameManager : MonoBehaviour
         deathScreen.SetActive(true);
         depthText.text = "Depth: " + depthMeter.ToString("0") + "M";
         timeText.text = "Time: " + (depthMeter / 10).ToString("0" + " Seconds");
-        experienceText.text = "Experience: " + experienceFloat.ToString("0");
+        experienceText.text = "Experience: " + earntExperience.ToString("0");
     }
 
     private void ChangeLevel()
@@ -189,19 +189,20 @@ public class GameManager : MonoBehaviour
 
     public void SaveMasterFunction()
     {
-        Debug.Log("GAME SAVED - " + Time.time);
-        saveInventory.SaveInventory();
-        saveStatistics.saveStats();
-        achivementsManager.SaveAchievements();
+        //Debug.Log("GAME SAVED - " + Time.time);
+        //saveInventory.SaveInventory();
+        //saveStatistics.saveStats();
+        //achivementsManager.SaveAchievements();
+
         // dailyChallengesManager.SaveChallenges();
     }
 
     public void LoadMasterFunction()
     {
-        Debug.Log("GAME LOADED - " + Time.time);
-        saveInventory.Invoke("ReadSave",0f);
-        saveStatistics.Invoke("loadStats", 0f);
-        achivementsManager.Invoke("ReadSave", 0f);
+        //Debug.Log("GAME LOADED - " + Time.time);
+        //saveInventory.Invoke("ReadSave",0f);
+        //saveStatistics.Invoke("loadStats", 0f);
+        //achivementsManager.Invoke("ReadSave", 0f);
 
         //saveInventory.ReadSave();
         //saveStatistics.loadStats();
@@ -211,11 +212,11 @@ public class GameManager : MonoBehaviour
 
     public void ResetMasterFunction()
     {
-        Debug.Log("SAVE DELETED - " + Time.time);
-        saveInventory.ResetSave();
-        saveStatistics.ResetStats();
-        achivementsManager.ResetSave();
-        dailyChallengesManager.ResetSave();
+        //Debug.Log("SAVE DELETED - " + Time.time);
+        //saveInventory.ResetSave();
+        //saveStatistics.ResetStats();
+        //achivementsManager.ResetSave();
+        //dailyChallengesManager.ResetSave();
         // SaveMasterFunction();
     }
 

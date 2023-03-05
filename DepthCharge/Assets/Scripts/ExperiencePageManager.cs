@@ -68,7 +68,7 @@ public class ExperiencePageManager : MonoBehaviour
         {
             barCurrent.gameObject.SetActive(false);
         }
-        currentLevel =GameManager.currentManager.experienceLevel;
+        currentLevel = GameManager.currentManager.experienceLevel;
         requiredExperienceFloat = GameManager.currentManager.requiredExperience[currentLevel + 1];
         currentExperienceFloat = GameManager.currentManager.experienceFloat;
         levelCurrent.text = currentLevel.ToString();
@@ -120,7 +120,7 @@ public class ExperiencePageManager : MonoBehaviour
         claimExperience = true;
         claimButtonObj.SetActive(false);
         continueButtonObj.SetActive(true);
-       GameManager.currentManager.SaveMasterFunction();
+        GameManager.currentManager.SaveMasterFunction();
     }
 
     public void Continue()
@@ -141,7 +141,7 @@ public class ExperiencePageManager : MonoBehaviour
     {    
         
         lootcratesEarnt--;
-           GameManager.currentManager.PauseGame();
+        GameManager.currentManager.PauseGame();
         
         crateObject.SetActive(true);
         scrollCrate.StartRoll();

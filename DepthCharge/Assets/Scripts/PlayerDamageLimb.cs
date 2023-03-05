@@ -6,7 +6,7 @@ public class PlayerDamageLimb : MonoBehaviour
 {
     [SerializeField] string limbName;
     private PlayerDamage playerDamageScript;
-    [SerializeField] GameObject[] limbStatus = new GameObject[2];
+    [SerializeField]public GameObject[] limbStatus = new GameObject[2];
     private Rigidbody limbRB;
     private Collider limbCol;
     public Vector3 limbPosition;

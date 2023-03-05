@@ -45,7 +45,7 @@ public class PlayerDamage : MonoBehaviour
     public void Update()
     {
         percentageBarScript.currentInput = remainingLimbs;
-
+        
         if (remainingLimbs <= minNumOfLimbs)
         {
             if (GameManager.currentManager.gameStart == true)
