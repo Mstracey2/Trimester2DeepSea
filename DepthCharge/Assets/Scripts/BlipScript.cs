@@ -61,6 +61,7 @@ public class BlipScript : MonoBehaviour
              ChangeFogColour(radarFog);              
              processingRadar.profile = RadarEffect;
             
+            // Radar end condition
             if (timer <= 0)
             {
                 radarWall.transform.position = radarWallOriginalPos;

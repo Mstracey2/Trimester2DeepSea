@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody playerRB;
     [SerializeField] private GameObject Inventory;
     [SerializeField] private BlipScript radarBlip;
+
     private void Start()
     {
       playerRB = GetComponent<Rigidbody>();
@@ -31,9 +32,12 @@ public class PlayerMovement : MonoBehaviour
             playerRB.AddForce(new Vector3(x, y, 0) * 75);
         }
         
+        // Trigger the radar
         if (Input.GetKey(KeyCode.Q))
         {
             radarBlip.active(true);
+
+            FindObjectOfType<AudioManager>().Play("Radar Blip");
         }
     }
 }
