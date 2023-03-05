@@ -25,19 +25,11 @@ public class EnviormentMovement : MonoBehaviour
             if(transform.position == target.transform.position)
             {
                 returnToRest();
-              //  this.gameObject.GetComponent<fishRandomScale>().restartScale();
             }
             
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("ZoneWall"))
-        {
-           
-        }
-    }
     public void returnToRest()
     {
         transform.position = restingPos;

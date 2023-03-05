@@ -206,15 +206,19 @@ public class GameManager : MonoBehaviour
         // SaveMasterFunction();
     }
 
-    public int GetChance(int fishType)
+    public int GetChance(int objectType)
     {
-        if (fishType == 1)
+        if (objectType == 1)
         {
             return thisLevel.smallFishChance;
         }
-        else
+        else if(objectType == 2)
         {
             return thisLevel.mammelChance;
+        }
+        else
+        {
+            return thisLevel.abilitesChance;
         }
 
     }

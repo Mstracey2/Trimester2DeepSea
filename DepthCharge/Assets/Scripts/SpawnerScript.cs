@@ -8,12 +8,15 @@ public class SpawnerScript : MonoBehaviour
     [SerializeField] private GameManager manager;
     [SerializeField] private GameObject[] fish;
     [SerializeField] private GameObject[] mammels;
-    private float countdown;
+    [SerializeField] private GameObject[] Abilities;
+    private float randomNumberChance;
     private GameObject randomObstacle;
     private GameObject randomTarget;
     public int num;
     public Transform target;
     GameObject location;
+
+    public float AbilitiesSpawner = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -24,9 +27,13 @@ public class SpawnerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SpawnFish(fish, manager.GetChance(1));
-        SpawnFish(mammels, manager.GetChance(2));
-          
+        AbilitiesSpawner += Time.deltaTime;
+        SpawnObject(fish, manager.GetChance(1));
+        SpawnObject(mammels, manager.GetChance(2));
+        if(AbilitiesSpawner >= 0.01)
+        {
+          SpawnObject(Abilities, manager.GetChance(3));
+        }  
     }
 
     public float Randomizer(int min, int max)
@@ -34,12 +41,12 @@ public class SpawnerScript : MonoBehaviour
         return Random.Range(min, max);
     }
 
-    public void SpawnFish(GameObject[] thisFishList, int randomMultiplier)
+    public void SpawnObject(GameObject[] thisObjectList, int randomMultiplier)
     {
-        countdown = Random.Range(1, randomMultiplier);
-        if (countdown == 2)
+        randomNumberChance = Random.Range(1, randomMultiplier);
+        if (randomNumberChance == 2)
         {
-            randomObstacle = thisFishList[(int)Randomizer(0, thisFishList.Length)];
+            randomObstacle = thisObjectList[(int)Randomizer(0, thisObjectList.Length)];
             EnviormentMovement currentObstacle = randomObstacle.GetComponent<EnviormentMovement>();
             if (currentObstacle.checkRunning() == false)
             {
@@ -65,4 +72,5 @@ public class SpawnerScript : MonoBehaviour
         location = spawnChildren[num];
         return location.transform.GetChild(0); ;
     }
+
 }

@@ -12,4 +12,5 @@ public class Depths : ScriptableObject
     public int smallFishChance;
     public int mammelChance;
     public int speedMultiplier;
+    public int abilitesChance;
 }
