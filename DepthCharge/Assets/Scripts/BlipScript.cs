@@ -63,6 +63,7 @@ public class BlipScript : MonoBehaviour
             // Radar end condition
             if (timer <= 0)
             {
+
                 radarWall.transform.position = radarWallOriginalPos;
                 processingRadar.profile = defaultEffect;
                 ChangeFogColour(GameManager.currentManager.thisLevel.cameraBackgroundColour);
@@ -104,6 +105,7 @@ public class BlipScript : MonoBehaviour
     {
         if(timer >= 10)
         {
+            FindObjectOfType<AudioManager>().Play("Radar Blip");
             activated = act;
         }
     }

@@ -6,12 +6,13 @@ public class PlayerDamage : MonoBehaviour
 {  
     
     // Create a list to house the player's limb objects
-  //  public List<GameObject> limbs = new List<GameObject>();
+    //  public List<GameObject> limbs = new List<GameObject>();
     // Minimum limb number: set in editor
     public int minNumOfLimbs;
     public bool[] limbsRemoved = new bool[4];
     public int remainingLimbs;
-    [SerializeField] private List<GameObject> children = new List<GameObject>();
+    public List<GameObject> limbs = new List<GameObject>();
+    public List<GameObject> DamagedLimbs = new List<GameObject>();
     [SerializeField] private List<Renderer> childrensRenders = new List<Renderer>();
     private Renderer playerRend;
     private float dullTimer = 0;
@@ -24,7 +25,7 @@ public class PlayerDamage : MonoBehaviour
     private void Start()
     {
         remainingLimbs = 4;
-        foreach(GameObject thisChild in children)
+        foreach(GameObject thisChild in limbs)
         {
             childrensRenders.Add(thisChild.GetComponent<Renderer>());
         }
@@ -126,7 +127,7 @@ public class PlayerDamage : MonoBehaviour
     public void DullPlayer()
     {
         gameObject.layer = LayerMask.NameToLayer("HurtLayer");
-        foreach (GameObject thisChild in children)
+        foreach (GameObject thisChild in limbs)
         {
             thisChild.gameObject.layer = LayerMask.NameToLayer("DullZone");
         }
@@ -138,7 +139,7 @@ public class PlayerDamage : MonoBehaviour
     {
         this.gameObject.layer = LayerMask.NameToLayer("Player");
 
-        foreach (GameObject thisChild in children)
+        foreach (GameObject thisChild in limbs)
         {
             thisChild.gameObject.layer = LayerMask.NameToLayer("Player");
         }
@@ -146,9 +147,9 @@ public class PlayerDamage : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Hit") && children.Count > 0)
+        if (collision.gameObject.CompareTag("Hit") && limbs.Count > 0)
         {
-            GameObject chosenLimb = children[Random.Range(0, children.Count)];
+            GameObject chosenLimb = limbs[Random.Range(0, limbs.Count)];
             chosenLimb.GetComponent<PlayerDamageLimb>().RemoveLimb();
         }
         else if (collision.gameObject.CompareTag("Hit"))
@@ -159,6 +160,7 @@ public class PlayerDamage : MonoBehaviour
 
     public void RemoveLimbFromList(GameObject limb)
     {
-        children.Remove(limb);
+        limbs.Remove(limb);
+        DamagedLimbs.Add(limb);
     }
 }

@@ -36,8 +36,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.Q))
         {
             radarBlip.active(true);
-
-            FindObjectOfType<AudioManager>().Play("Radar Blip");
         }
     }
 }

@@ -32,6 +32,7 @@ public class SpawnerScript : MonoBehaviour
         if(AbilitiesSpawner >= 0.01)
         {
           SpawnObject(Abilities,GameManager.currentManager.GetChance(3));
+            AbilitiesSpawner = 0;
         }  
     }
 
