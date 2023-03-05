@@ -10,7 +10,7 @@ public class AchivementsManager : MonoBehaviour
     [SerializeField] private GameObject[] challengeObject = new GameObject[30];
     [SerializeField] private Achivements[] achivementScript = new Achivements[30];
 
-    public string path = "Assets/Saves/Achivement.txt";
+    public string path;
 
 
     public float experienceReward;
@@ -28,6 +28,13 @@ public class AchivementsManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI experienceRewardText;
     [SerializeField] private TextMeshProUGUI lootcratesRewardText;
+
+
+
+    public void Awake()
+    {
+         path = Application.streamingAssetsPath + "/Saves" + "/Achivement" + ".txt";
+    }
 
     public void UnlockAll()
     {

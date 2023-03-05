@@ -37,8 +37,13 @@ public class InventoryScript : MonoBehaviour
     [SerializeField] private GameObject dynamicButtonObject;
     private int lastRollover;
 
-    public string path = "Assets/Saves/Inventory.txt";
+    public string path;
 
+
+    public void Awake()
+    {
+        path = Application.streamingAssetsPath + "/Saves" + "/Inventory" + ".txt";
+    }
     void Update()
     {
         if (inventoryOpen)
@@ -164,25 +169,18 @@ public class InventoryScript : MonoBehaviour
             }
         }
 
-        Debug.Log(lines[30]);
-        Debug.Log(lines[31]);
+
+
 
         if (lines[30] != "null")
         {
-            EnableObject(int.Parse(lines[30]));
-        }
-        else
-        {
-
+            EnableObject(int.Parse(lines[30]));     
+            Debug.Log(lines[30]);
         }
         if (lines[31] != "null")
         {
-            EnableObject(int.Parse(lines[31]));
-        }
-        else
-        {
-
-
+            EnableObject(int.Parse(lines[31]));   
+            Debug.Log(lines[31]);
         }
     }
 

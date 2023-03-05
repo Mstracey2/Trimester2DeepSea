@@ -10,7 +10,10 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        currentManager = this;
+
+        currentManager = this;       
+     //   Invoke("LoadMasterFunction",0.01f);
+        
     }
 
     [SerializeField] private TMP_Text DepthText;
@@ -42,11 +45,12 @@ public class GameManager : MonoBehaviour
 
     private bool gamePaused;
 
+
+
     public void Start()
     {     
         Time.timeScale = 0.01f;
         sceneColour = cam.backgroundColor;
-       // LoadMasterFunction();
       //  PauseGame();
         saveStatistics.timesLaunched++;
         //  gameStart = true;
@@ -195,9 +199,13 @@ public class GameManager : MonoBehaviour
     public void LoadMasterFunction()
     {
         Debug.Log("GAME LOADED - " + Time.time);
-        saveInventory.ReadSave();
-        saveStatistics.loadStats();
-        achivementsManager.ReadSave();
+        saveInventory.Invoke("ReadSave",0f);
+        saveStatistics.Invoke("loadStats", 0f);
+        achivementsManager.Invoke("ReadSave", 0f);
+
+        //saveInventory.ReadSave();
+        //saveStatistics.loadStats();
+        //achivementsManager.ReadSave();
         // dailyChallengesManager.ReadSave();
     }
 

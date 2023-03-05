@@ -6,7 +6,7 @@ using System;
 
 public class Statistics : MonoBehaviour
 {
-    public string path = "Assets/Saves/Statistics.txt";
+    public string path;
 
     public float runs;
     public float itemsOwned;
@@ -20,9 +20,14 @@ public class Statistics : MonoBehaviour
 
     public List<string> listOfStats = new List<string>(10);
 
+    public void Awake()
+    {
+               path = Application.streamingAssetsPath + "/Saves" + "/Statistics" + ".txt"; 
+    }
 
     public void Start()
     {
+
         loadStats();
     }
 
