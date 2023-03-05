@@ -30,7 +30,6 @@ public class InventoryButtons : MonoBehaviour
 
     public void Start()
     {
-
         SetVariables();
     }
 

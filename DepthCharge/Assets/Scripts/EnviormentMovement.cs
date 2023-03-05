@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnviormentMovement : MonoBehaviour
 {
     private Vector3 restingPos;
-    [SerializeField] private List<GameObject> revertOnCollisionObjects = new List<GameObject>();
+    public SpawnerObstacleInfo currentTrack;
+    [SerializeField] private GameManager manager;
     [SerializeField] private GameObject playerWall;
     public float movementSpeed = 0;
     private bool running = false;
@@ -19,7 +20,7 @@ public class EnviormentMovement : MonoBehaviour
     {
         if (running)
         {
-            float step = movementSpeed * Time.deltaTime;
+            float step = movementSpeed * manager.thisLevel.speedMultiplier * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position,step);
             if(transform.position == target.transform.position)
             {
@@ -41,6 +42,7 @@ public class EnviormentMovement : MonoBehaviour
     {
         transform.position = restingPos;
         running = false;
+        currentTrack.listOfAnimals.Remove(this);
     }
 
 

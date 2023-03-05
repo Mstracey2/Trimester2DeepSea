@@ -11,4 +11,5 @@ public class Depths : ScriptableObject
     public float depthDensity;
     public int smallFishChance;
     public int mammelChance;
+    public int speedMultiplier;
 }

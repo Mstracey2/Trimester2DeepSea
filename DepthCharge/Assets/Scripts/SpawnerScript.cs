@@ -24,8 +24,8 @@ public class SpawnerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SpawnFish(fish, manager.GetFishChance(1));
-        SpawnFish(mammels, manager.GetFishChance(2));
+        SpawnFish(fish, manager.GetChance(1));
+        SpawnFish(mammels, manager.GetChance(2));
           
     }
 
@@ -43,9 +43,18 @@ public class SpawnerScript : MonoBehaviour
             EnviormentMovement currentObstacle = randomObstacle.GetComponent<EnviormentMovement>();
             if (currentObstacle.checkRunning() == false)
             {
-           //     randomObstacle.GetComponent<fishRandomScale>().randomiseScale();
                 currentObstacle.setTarget(GetDestination());
-                currentObstacle.obstacleActive(true);
+
+                SpawnerObstacleInfo currentTrack = location.gameObject.GetComponent<SpawnerObstacleInfo>();
+
+                if (currentTrack.CheckCurrentAnimalSpeeds(currentObstacle) == true)
+                {
+                    currentTrack.listOfAnimals.Add(currentObstacle);
+                    currentObstacle.transform.position = location.transform.position;
+                    currentObstacle.currentTrack = currentTrack;
+                    currentObstacle.obstacleActive(true);
+                }
+
             }
         }
     }
@@ -54,7 +63,6 @@ public class SpawnerScript : MonoBehaviour
     {
         num = (int)Randomizer(0, spawnChildren.Length);
         location = spawnChildren[num];
-        randomObstacle.transform.position = location.transform.position;
         return location.transform.GetChild(0); ;
     }
 }

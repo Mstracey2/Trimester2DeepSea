@@ -38,9 +38,9 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {     
-        //Time.timeScale = 0.01f;
+        Time.timeScale = 0.01f;
         sceneColour = cam.backgroundColor;
-        LoadMasterFunction();
+       // LoadMasterFunction();
       //  PauseGame();
         saveStatistics.timesLaunched++;
         //  gameStart = true;
@@ -206,7 +206,7 @@ public class GameManager : MonoBehaviour
         // SaveMasterFunction();
     }
 
-    public int GetFishChance(int fishType)
+    public int GetChance(int fishType)
     {
         if (fishType == 1)
         {
