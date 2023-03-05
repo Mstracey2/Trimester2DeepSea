@@ -6,8 +6,6 @@ public class EnviormentMovement : MonoBehaviour
 {
     private Vector3 restingPos;
     public SpawnerObstacleInfo currentTrack;
-    [SerializeField] private GameManager manager;
-    [SerializeField] private GameObject playerWall;
     public float movementSpeed = 0;
     private bool running = false;
     private Transform target;
@@ -20,7 +18,7 @@ public class EnviormentMovement : MonoBehaviour
     {
         if (running)
         {
-            float step = movementSpeed * manager.thisLevel.speedMultiplier * Time.deltaTime;
+            float step = movementSpeed * GameManager.currentManager.thisLevel.speedMultiplier * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position,step);
             if(transform.position == target.transform.position)
             {

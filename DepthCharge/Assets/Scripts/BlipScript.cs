@@ -6,7 +6,6 @@ using UnityEngine.Rendering.Universal;
 
 public class BlipScript : MonoBehaviour
 {
-    [SerializeField] private GameManager manager;
     [SerializeField] private Volume processingRadar;
     [SerializeField] private VolumeProfile RadarEffect;
     [SerializeField] private VolumeProfile defaultEffect;
@@ -66,7 +65,7 @@ public class BlipScript : MonoBehaviour
             {
                 radarWall.transform.position = radarWallOriginalPos;
                 processingRadar.profile = defaultEffect;
-                ChangeFogColour(manager.thisLevel.cameraBackgroundColour);
+                ChangeFogColour(GameManager.currentManager.thisLevel.cameraBackgroundColour);
                 activated = false;
             }
         }

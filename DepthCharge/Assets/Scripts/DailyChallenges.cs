@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class DailyChallenges : MonoBehaviour
 {
-    [SerializeField] GameManager gameManager;
     [SerializeField] Statistics statistics;
     [SerializeField] DailyChallengesManager dailyChallengesManager;
 
@@ -43,8 +42,7 @@ public class DailyChallenges : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = (GameManager)FindObjectOfType(typeof(GameManager));
-        statistics = gameManager.GetComponent<Statistics>();
+        statistics = GameManager.currentManager.GetComponent<Statistics>();
         dailyChallengesManager = (DailyChallengesManager)FindObjectOfType(typeof(DailyChallengesManager));
 
 

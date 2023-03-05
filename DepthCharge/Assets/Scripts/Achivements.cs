@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class Achivements : MonoBehaviour
 {
-    [SerializeField] GameManager gameManager;
     [SerializeField] Statistics statistics;
     [SerializeField] AchivementsManager achivementsManager;
 
@@ -42,8 +41,8 @@ public class Achivements : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = (GameManager)FindObjectOfType(typeof(GameManager));
-        statistics = gameManager.GetComponent<Statistics>();
+        GameManager.currentManager = (GameManager)FindObjectOfType(typeof(GameManager));
+        statistics = GameManager.currentManager.GetComponent<Statistics>();
         achivementsManager = (AchivementsManager)FindObjectOfType(typeof(AchivementsManager));
 
 

@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerDamage : MonoBehaviour
 {  
     
-    public GameManager gameManager;
     // Create a list to house the player's limb objects
   //  public List<GameObject> limbs = new List<GameObject>();
     // Minimum limb number: set in editor
@@ -48,9 +47,9 @@ public class PlayerDamage : MonoBehaviour
 
         if (remainingLimbs <= minNumOfLimbs)
         {
-            if (gameManager.gameStart == true)
+            if (GameManager.currentManager.gameStart == true)
             {
-                gameManager.EndGame();
+              GameManager.currentManager.EndGame();
             }
         }
 

@@ -16,8 +16,6 @@ public class Statistics : MonoBehaviour
     public float timesLaunched;
     public float timesReviewed;
 
-    public GameManager gameManager;
-
     public float experience;
 
     public List<string> listOfStats = new List<string>(10);
@@ -30,7 +28,7 @@ public class Statistics : MonoBehaviour
 
     void Update()
     {       
-        listOfStats[1] = gameManager.experienceFloat.ToString();
+        listOfStats[1] = GameManager.currentManager.experienceFloat.ToString();
         listOfStats[2] = runs.ToString();
         listOfStats[3] = playtimeSeconds.ToString();
         listOfStats[4] = boxesOpened.ToString();
@@ -59,7 +57,7 @@ public class Statistics : MonoBehaviour
         using StreamReader reader = new StreamReader(path);
 
 
-        gameManager.experienceFloat = float.Parse(lines[1]);
+      GameManager.currentManager.experienceFloat = float.Parse(lines[1]);
         runs = float.Parse(lines[2]);
         playtimeSeconds = float.Parse(lines[3]);
         boxesOpened = float.Parse(lines[4]);

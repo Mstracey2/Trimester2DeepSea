@@ -7,7 +7,6 @@ public class ScrollCrate : MonoBehaviour
 {
     [SerializeField] private GameObject crateObject;
     [SerializeField] private Statistics statistics;
-    [SerializeField] private GameManager gameManager;
 
     [SerializeField] float speed;
     public InventoryScript inventoryScript;

@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class ExperiencePageManager : MonoBehaviour
 {
-
-    public GameManager gameManager;
     public GameObject deathScreen;
 
     public float addedExperience;
@@ -48,16 +46,16 @@ public class ExperiencePageManager : MonoBehaviour
 
         if (sentFromAchivements == false)
         {
-            gameManager.ResumeGame();
-            addedExperience = gameManager.earntExperience;
+            GameManager.currentManager.ResumeGame();
+            addedExperience =GameManager.currentManager.earntExperience;
         }
         else
         {
-            gameManager.ResumeGame();
+           GameManager.currentManager.ResumeGame();
         }
 
 
-        percentageCurrent = ((currentExperienceFloat - gameManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
+        percentageCurrent = ((currentExperienceFloat - GameManager.currentManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
         experienceEarnt.text = addedExperience.ToString("0");
         lootcratesEarnt = 1;
 
@@ -66,25 +64,25 @@ public class ExperiencePageManager : MonoBehaviour
 
     void Update()
     {
-        if(gameManager.experienceLevel == currentLevel + 1)
+        if(GameManager.currentManager.experienceLevel == currentLevel + 1)
         {
             barCurrent.gameObject.SetActive(false);
         }
-        currentLevel = gameManager.experienceLevel;
-        requiredExperienceFloat = gameManager.requiredExperience[currentLevel + 1];
-        currentExperienceFloat = gameManager.experienceFloat;
+        currentLevel =GameManager.currentManager.experienceLevel;
+        requiredExperienceFloat = GameManager.currentManager.requiredExperience[currentLevel + 1];
+        currentExperienceFloat = GameManager.currentManager.experienceFloat;
         levelCurrent.text = currentLevel.ToString();
         levelNext.text = (currentLevel + 1).ToString();
 
         if (runOnce == false) 
         {
             runOnce = true;
-            percentageCurrent = ((currentExperienceFloat - gameManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
+            percentageCurrent = ((currentExperienceFloat - GameManager.currentManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
         }
 
-        if (gameManager.experienceFloat >= 1)
+        if (GameManager.currentManager.experienceFloat >= 1)
         {
-            percentageChange = ((currentExperienceFloat - gameManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
+            percentageChange = ((currentExperienceFloat - GameManager.currentManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
         }
 
 
@@ -98,7 +96,7 @@ public class ExperiencePageManager : MonoBehaviour
         {
             addedExperience -= Time.deltaTime * 100;
          //   percentageCurrent = ((currentExperienceFloat - Time.deltaTime * 200 - gameManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
-            gameManager.experienceFloat += Time.deltaTime * 100;
+           GameManager.currentManager.experienceFloat += Time.deltaTime * 100;
 
             barDisplacement.transform.localScale = new Vector2(percentageChange * 2, 1);
         }
@@ -122,7 +120,7 @@ public class ExperiencePageManager : MonoBehaviour
         claimExperience = true;
         claimButtonObj.SetActive(false);
         continueButtonObj.SetActive(true);
-        gameManager.SaveMasterFunction();
+       GameManager.currentManager.SaveMasterFunction();
     }
 
     public void Continue()
@@ -143,7 +141,7 @@ public class ExperiencePageManager : MonoBehaviour
     {    
         
         lootcratesEarnt--;
-            gameManager.PauseGame();
+           GameManager.currentManager.PauseGame();
         
         crateObject.SetActive(true);
         scrollCrate.StartRoll();
@@ -153,7 +151,7 @@ public class ExperiencePageManager : MonoBehaviour
     {
         if (sentFromAchivements == false)
         {
-            gameManager.PauseGame();
+          GameManager.currentManager.PauseGame();
         }
         crateObject.SetActive(true);
         scrollCrate.StartRoll();
@@ -162,11 +160,11 @@ public class ExperiencePageManager : MonoBehaviour
 
     public void ReturnToGame()
     {
-        gameManager.SaveMasterFunction();
+      GameManager.currentManager.SaveMasterFunction();
 
         if (sentFromAchivements == false)
         {
-            gameManager.ResumeGame();
+          GameManager.currentManager.ResumeGame();
             SceneManager.LoadScene("Scene");
         }
         else

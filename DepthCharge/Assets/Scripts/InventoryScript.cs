@@ -26,8 +26,6 @@ public class InventoryScript : MonoBehaviour
     [SerializeField] private Material[] additonalMechMaterial = new Material[5];
 
 
-    public GameManager gameManager;
-
     public bool inventoryOpen;
     [SerializeField] private GameObject inventoryObject;
     [SerializeField] private Statistics statistics;

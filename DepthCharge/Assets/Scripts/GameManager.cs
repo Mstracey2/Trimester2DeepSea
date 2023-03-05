@@ -6,11 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager currentManager;
+
+    private void Awake()
+    {
+        currentManager = this;
+    }
+
     [SerializeField] private TMP_Text DepthText;
     [SerializeField] private Camera cam;
     private float depthMeter;
     public bool gameStart;
-    private float obstacleSpeed;
     [SerializeField] private List<Depths> levels = new List<Depths>();
     public Depths thisLevel;
     private int levelCounter = 0;
@@ -167,7 +173,6 @@ public class GameManager : MonoBehaviour
     private void ChangeLevel()
     {
         //  PauseGame();
-        obstacleSpeed = thisLevel.obstacleSpeed;
         //   depthScreen.DisplayScreen();
         // depthScreen.depth = depthMeter;
         if (ColorUtility.TryParseHtmlString("#" + thisLevel.cameraBackgroundColour, out Color colour))

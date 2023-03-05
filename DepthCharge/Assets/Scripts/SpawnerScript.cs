@@ -5,7 +5,6 @@ using UnityEngine;
 public class SpawnerScript : MonoBehaviour
 {
     public GameObject[] spawnChildren;
-    [SerializeField] private GameManager manager;
     [SerializeField] private GameObject[] fish;
     [SerializeField] private GameObject[] mammels;
     [SerializeField] private GameObject[] Abilities;
@@ -28,11 +27,11 @@ public class SpawnerScript : MonoBehaviour
     void Update()
     {
         AbilitiesSpawner += Time.deltaTime;
-        SpawnObject(fish, manager.GetChance(1));
-        SpawnObject(mammels, manager.GetChance(2));
+        SpawnObject(fish,GameManager.currentManager.GetChance(1));
+        SpawnObject(mammels,GameManager.currentManager.GetChance(2));
         if(AbilitiesSpawner >= 0.01)
         {
-          SpawnObject(Abilities, manager.GetChance(3));
+          SpawnObject(Abilities,GameManager.currentManager.GetChance(3));
         }  
     }
 
