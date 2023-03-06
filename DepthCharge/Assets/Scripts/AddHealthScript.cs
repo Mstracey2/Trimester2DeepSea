@@ -18,6 +18,8 @@ public class AddHealthScript : MonoBehaviour
 
     public void addLimb()
     {
+        newLimb = null;
+
         if (playerStatus.DamagedLimbs.Count > 0)
         {
           newLimb = playerStatus.DamagedLimbs[Random.Range(0, playerStatus.DamagedLimbs.Count)];
