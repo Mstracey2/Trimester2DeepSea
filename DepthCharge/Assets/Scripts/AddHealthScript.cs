@@ -27,7 +27,6 @@ public class AddHealthScript : MonoBehaviour
         {
             playerStatus.DamagedLimbs.Remove(newLimb);
             playerStatus.limbs.Add(newLimb);
-            playerStatus.remainingLimbs++;
             PlayerDamageLimb currentLimb = newLimb.GetComponent<PlayerDamageLimb>();
             newLimb.GetComponent<PlayerDamageLimb>().limbStatus[0].SetActive(true);
             newLimb.GetComponent<PlayerDamageLimb>().limbStatus[1].SetActive(false);

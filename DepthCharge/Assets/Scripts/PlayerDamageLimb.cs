@@ -24,7 +24,6 @@ public class PlayerDamageLimb : MonoBehaviour
 
     public void RemoveLimb()
     {
-        playerDamageScript.remainingLimbs -= 1;
         playerDamageScript.RemoveLimbFromList(this.gameObject);
         this.gameObject.transform.parent = null;
         limbRB.isKinematic = false;

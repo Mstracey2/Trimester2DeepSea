@@ -10,7 +10,6 @@ public class PlayerDamage : MonoBehaviour
     // Minimum limb number: set in editor
     public int minNumOfLimbs;
     public bool[] limbsRemoved = new bool[4];
-    public int remainingLimbs;
     public List<GameObject> limbs = new List<GameObject>();
     public List<GameObject> DamagedLimbs = new List<GameObject>();
     [SerializeField] private List<Renderer> childrensRenders = new List<Renderer>();
@@ -24,29 +23,21 @@ public class PlayerDamage : MonoBehaviour
 
     private void Start()
     {
-        remainingLimbs = 4;
+
         foreach(GameObject thisChild in limbs)
         {
             childrensRenders.Add(thisChild.GetComponent<Renderer>());
         }
         playerRend = GetComponent<Renderer>();
-        //// Populate the limb list
-        //foreach (GameObject limb in GameObject.FindGameObjectsWithTag("PlayerLimb"))
-        //{
-        //    limbs.Add(limb);
-        //}
 
-        //for (int i = 0; i < transform.childCount; i++)
-        //{
-        //    children.Add(transform.GetChild(i).gameObject);
-        //}
     }
 
     public void Update()
     {
-        percentageBarScript.currentInput = remainingLimbs;
+
+        percentageBarScript.currentInput = limbs.Count;
         
-        if (remainingLimbs <= minNumOfLimbs)
+        if (limbs.Count <= minNumOfLimbs)
         {
             if (GameManager.currentManager.gameStart == true)
             {
@@ -76,28 +67,7 @@ public class PlayerDamage : MonoBehaviour
             }
         }
     }
-    //public void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Hit"))
-    //    {
-    //        Debug.Log("Player Hit by Obstacle");
 
-    //        // If the player still has a number of limbs over the minimum, then delete one...
-    //        if (limbs.Count >= minNumOfLimbs)
-    //        {
-    //            // Currently gonna set it up as a random limb being destroyed.
-    //            GameObject tempObj = limbs[0];
-    //            Destroy(tempObj);
-    //            limbs.RemoveAt(0);
-    //            Debug.Log("Limb destroyed");
-    //        }
-    //        // else, the player dies
-    //        else
-    //        {
-    //            Debug.Log("Player is dead lol");
-    //        }
-    //    }
-    //}
 
     public void RemoveLimb(string limbName)
     {
