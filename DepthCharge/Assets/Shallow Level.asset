@@ -18,4 +18,4 @@ MonoBehaviour:
   smallFishChance: 30
   mammelChance: 300
   speedMultiplier: 1
-  abilitesChance: 3
+  abilitesChance: 1000

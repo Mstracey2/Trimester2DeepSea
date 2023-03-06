@@ -26,14 +26,9 @@ public class SpawnerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AbilitiesSpawner += Time.deltaTime;
         SpawnObject(fish,GameManager.currentManager.GetChance(1));
         SpawnObject(mammels,GameManager.currentManager.GetChance(2));
-        if(AbilitiesSpawner >= 0.01)
-        {
-          SpawnObject(Abilities,GameManager.currentManager.GetChance(3));
-            AbilitiesSpawner = 0;
-        }  
+        SpawnObject(Abilities,GameManager.currentManager.GetChance(3));
     }
 
     public float Randomizer(int min, int max)
