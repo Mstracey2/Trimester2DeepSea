@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextLevelTarget: 4000
   cameraBackgroundColour: 05062E
-  depthDensity: 0.09
-  smallFishChance: 50
-  mammelChance: 500
-  speedMultiplier: 3
-  abilitesChance: 1
+  depthDensity: 0.07
+  smallFishChance: 8
+  mammelChance: 80
+  speedMultiplier: 2
+  abilitesChance: 4

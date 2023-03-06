@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80cc20d51d1a0ca4e9ae781f04a44df2, type: 3}
   m_Name: Shallow Level
   m_EditorClassIdentifier: 
-  nextLevelTarget: 100
+  nextLevelTarget: 1000
   cameraBackgroundColour: 20ACFB
   depthDensity: 0.02
   smallFishChance: 30
