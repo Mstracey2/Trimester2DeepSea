@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80cc20d51d1a0ca4e9ae781f04a44df2, type: 3}
   m_Name: Low Level
   m_EditorClassIdentifier: 
-  nextLevelTarget: 2500
+  nextLevelTarget: 4000
   cameraBackgroundColour: 05062E
   depthDensity: 0.09
   smallFishChance: 50
   mammelChance: 500
   speedMultiplier: 3
-  abilitesChance: 3
+  abilitesChance: 1
