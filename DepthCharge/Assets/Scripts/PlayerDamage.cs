@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerDamage : MonoBehaviour
+public class PlayerDamage : MonoBehaviour           // script that holds the infomation and important functions for the state of the player
 {  
     
     // Create a list to house the player's limb objects
@@ -10,12 +10,12 @@ public class PlayerDamage : MonoBehaviour
     // Minimum limb number: set in editor
     public int minNumOfLimbs;
     public bool[] limbsRemoved = new bool[4];
-    public List<GameObject> limbs = new List<GameObject>();
-    public List<GameObject> DamagedLimbs = new List<GameObject>();
+    public List<GameObject> limbs = new List<GameObject>();                     //limbs the player still has
+    public List<GameObject> DamagedLimbs = new List<GameObject>();              // limbs the player has damaged
     [SerializeField] private List<Renderer> childrensRenders = new List<Renderer>();
     private Renderer playerRend;
-    private float dullTimer = 0;
-    private bool inDull = false;
+    private float dullTimer = 0;                                                //timer for keeping track of how long the player stays invincible for
+    private bool inDull = false;                                                //checks if player is invincible
     public PercentageBarScript percentageBarScript;
 
 
@@ -23,10 +23,9 @@ public class PlayerDamage : MonoBehaviour
 
     private void Start()
     {
-
         foreach(GameObject thisChild in limbs)
         {
-            childrensRenders.Add(thisChild.GetComponent<Renderer>());
+            childrensRenders.Add(thisChild.GetComponent<Renderer>());                   //gets renderer for each limb
         }
         playerRend = GetComponent<Renderer>();
 
@@ -34,7 +33,6 @@ public class PlayerDamage : MonoBehaviour
 
     public void Update()
     {
-
         percentageBarScript.currentInput = limbs.Count;
         
         if (limbs.Count <= minNumOfLimbs)
@@ -45,20 +43,22 @@ public class PlayerDamage : MonoBehaviour
             }
         }
 
-        if (inDull)
+        if (inDull)                                                                 //if player has been hit and is now invincible
         {
-            dullTimer -= Time.deltaTime;
-            playerRend.enabled = !playerRend.enabled;
-            foreach (Renderer thisRend in childrensRenders)
+            dullTimer -= Time.deltaTime;                                            //timer starts
+            playerRend.enabled = !playerRend.enabled;                               //this will make the mesh of the object flash to visually show the player is invincible
+            foreach (Renderer thisRend in childrensRenders)                         //does the same to each limb
             {
                 thisRend.enabled = !thisRend.enabled;
             }
 
-            if (dullTimer <= 0)
+            if (dullTimer <= 0)                                                     //when time is over
             {
                 dullTimer = 0;
                 inDull = false;
-                BreakDull();
+                BreakDull();                                                        //the player is back in play
+
+                //safety net to make sure all renderers return to enabled so nothing becomes invisible
                 playerRend.enabled = true;
                 foreach (Renderer thisRend in childrensRenders)
                 {
@@ -96,7 +96,7 @@ public class PlayerDamage : MonoBehaviour
 
     public void DullPlayer()
     {
-        gameObject.layer = LayerMask.NameToLayer("HurtLayer");
+        gameObject.layer = LayerMask.NameToLayer("HurtLayer");              //these layers make it so for a while, collisions are disabled
         foreach (GameObject thisChild in limbs)
         {
             thisChild.gameObject.layer = LayerMask.NameToLayer("DullZone");
@@ -107,7 +107,7 @@ public class PlayerDamage : MonoBehaviour
 
     public void BreakDull()
     {
-        this.gameObject.layer = LayerMask.NameToLayer("Player");
+        this.gameObject.layer = LayerMask.NameToLayer("Player");                //layers return to normal and player is back in play
 
         foreach (GameObject thisChild in limbs)
         {
@@ -117,10 +117,10 @@ public class PlayerDamage : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Hit") && limbs.Count > 0)
+        if (collision.gameObject.CompareTag("Hit") && limbs.Count > 0)                  //if player collides with obstacle
         {
-            GameObject chosenLimb = limbs[Random.Range(0, limbs.Count)];
-            chosenLimb.GetComponent<PlayerDamageLimb>().RemoveLimb();
+            GameObject chosenLimb = limbs[Random.Range(0, limbs.Count)];                //chooses a random limb to dislocate
+            chosenLimb.GetComponent<PlayerDamageLimb>().RemoveLimb();                   //removes the limb
         }
         else if (collision.gameObject.CompareTag("Hit"))
         {
@@ -128,7 +128,7 @@ public class PlayerDamage : MonoBehaviour
         }
     }
 
-    public void RemoveLimbFromList(GameObject limb)
+    public void RemoveLimbFromList(GameObject limb)                                     //function that transfers limb objects across limb lists
     {
         limbs.Remove(limb);
         DamagedLimbs.Add(limb);

@@ -10,28 +10,33 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-
         currentManager = this;       
-     //   Invoke("LoadMasterFunction",0.01f);
-        
+     //   Invoke("LoadMasterFunction",0.01f); 
     }
-
-    [SerializeField] private TMP_Text DepthText;
+    
     [SerializeField] private Camera cam;
+
+    //Depth values and levels
+    [SerializeField] private TMP_Text DepthText;
+    [SerializeField] private TextMeshProUGUI depthText;
     private float depthMeter;
-    public bool gameStart;
     [SerializeField] private List<Depths> levels = new List<Depths>();
     public Depths thisLevel;
     private int levelCounter = 0;
+
+    public bool gameStart;
+
     [SerializeField] private GameObject deathScreen;
     [SerializeField] public int volume = 100;
-
+    //save states
     [SerializeField] private Statistics saveStatistics;
     [SerializeField] private InventoryScript saveInventory;
+    //challenges and achievements
     [SerializeField] private AchivementsManager achivementsManager;
     [SerializeField] private DailyChallengesManager dailyChallengesManager;
+
     [SerializeField] private BlipScript radar;
-    [SerializeField] private TextMeshProUGUI depthText;
+
     [SerializeField] private TextMeshProUGUI timeText;
     [SerializeField] private TextMeshProUGUI experienceText;
     private Color sceneColour;
@@ -50,8 +55,8 @@ public class GameManager : MonoBehaviour
     public void Start()
     {     
         Time.timeScale = 0.01f;
-        sceneColour = cam.backgroundColor;
-      //  PauseGame();
+        sceneColour = cam.backgroundColor;      //scene colour is the cameras background
+        //PauseGame();
         saveStatistics.timesLaunched++;
         //  gameStart = true;
         thisLevel = levels[0];
@@ -85,7 +90,7 @@ public class GameManager : MonoBehaviour
 
         if (gameStart == true)
         {
-            depthMeter += Time.deltaTime * 10;
+            depthMeter += Time.deltaTime * 10;          //depth metre starts
             DepthText.text = depthMeter.ToString("F0") + "m";
             CheckDepth();
             saveStatistics.playtimeSeconds = saveStatistics.playtimeSeconds + Time.deltaTime;
@@ -105,12 +110,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void CheckDepth()
+    private void CheckDepth()               //function which checks the players depth to see whether the level needs to be changed
     {
         if (depthMeter >= thisLevel.nextLevelTarget)
         {
             levelCounter++;
-            thisLevel = levels[levelCounter];
+            thisLevel = levels[levelCounter];       //next level
             ChangeLevel();
         }
     }
@@ -174,17 +179,17 @@ public class GameManager : MonoBehaviour
         experienceText.text = "Experience: " + earntExperience.ToString("0");
     }
 
-    private void ChangeLevel()
+    private void ChangeLevel()              
     {
         //  PauseGame();
         //   depthScreen.DisplayScreen();
         // depthScreen.depth = depthMeter;
-        if (ColorUtility.TryParseHtmlString("#" + thisLevel.cameraBackgroundColour, out Color colour))
+        if (ColorUtility.TryParseHtmlString("#" + thisLevel.cameraBackgroundColour, out Color colour))          //checks hex colour is accurate then changes the background to said colour
         {
             sceneColour = colour;
 
         }
-        RenderSettings.fogDensity = thisLevel.depthDensity;
+        RenderSettings.fogDensity = thisLevel.depthDensity;                             //fog density is set to the value in the level
     }
 
     public void SaveMasterFunction()
@@ -220,7 +225,7 @@ public class GameManager : MonoBehaviour
         // SaveMasterFunction();
     }
 
-    public int GetChance(int objectType)
+    public int GetChance(int objectType)                //function that returns the chance of spawning to the appropriote object
     {
         if (objectType == 1)
         {

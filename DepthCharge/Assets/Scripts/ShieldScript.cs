@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShieldScript : MonoBehaviour
+public class ShieldScript : MonoBehaviour                           //script for shield ability, holds functions to enable shield
 {
     [SerializeField] private GameObject player;
-    [SerializeField] private AbilityScript pickup;
+    [SerializeField] private AbilityScript pickup;                  //pickup orb
     private bool activated;
     private Vector3 restPos;
     private void Start()
     {
         restPos = transform.position;
-        pickup.ability = ShieldActivated;
+        pickup.ability = ShieldActivated;                           //the base ability has its delegate set to shield
     }
 
     private void Update()
     {
         if (activated)
         {
-            transform.position = player.transform.position;
+            transform.position = player.transform.position;         //shield orb follows the player
         }
     }
 
@@ -34,7 +34,7 @@ public class ShieldScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Hit"))
+        if (collision.gameObject.CompareTag("Hit"))                 //if shield is hit, the shield is sent back to resting position, the same is also done for the obstacle that hit the shield
         {
             collision.gameObject.GetComponent<EnviormentMovement>().returnToRest();
             transform.position = restPos;
