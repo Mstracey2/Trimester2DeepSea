@@ -6,6 +6,7 @@ public class UIPercentage : MonoBehaviour
 {
     [SerializeField] private int rangeMin;
     [SerializeField] private int rangeMax;
+    public float scale;
     [SerializeField] private GameObject scaleObject;
     public InventoryScript inventoryScript;
     public float number;
@@ -21,7 +22,7 @@ public class UIPercentage : MonoBehaviour
             {
                 number++;
                 percentage = number / (rangeMax+1);
-                scaleObject.gameObject.transform.localScale = new Vector2 (percentage*2, 1);
+                scaleObject.gameObject.transform.localScale = new Vector2 (percentage*scale, 1);
             }
         }
     }  

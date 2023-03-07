@@ -47,7 +47,11 @@ public class ScrollCrate : MonoBehaviour
         gambleButton.SetActive(false);
         wonScreen.SetActive(false);
         stopButton.SetActive(true);
-     //   gameManager.PauseGame();
+        loseScreen.SetActive(false);
+        gambleButtons.SetActive(false);
+        normalButtons.SetActive(true);
+
+        //   gameManager.PauseGame();
     }
 
     void Update()
