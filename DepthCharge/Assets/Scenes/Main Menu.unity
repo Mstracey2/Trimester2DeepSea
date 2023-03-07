@@ -6591,7 +6591,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Move yourself by using the WASD / Arrow Keys.
+  m_text: 'WASD - Movement
+
+    Space - Boost
+
+    Q - Enable Radar'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b4df20a347918f94686055fcee09f0dc, type: 2}
   m_sharedMaterial: {fileID: 8261783523450343731, guid: b4df20a347918f94686055fcee09f0dc, type: 2}
@@ -6654,10 +6658,10 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -687.66174, w: -68.766174}
+  m_margin: {x: 0, y: 20.654938, z: -687.66174, w: -111.16319}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1286476404
@@ -7514,7 +7518,7 @@ GameObject:
   - component: {fileID: 1390884706}
   - component: {fileID: 1390884705}
   m_Layer: 5
-  m_Name: Help Text
+  m_Name: Controls Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7560,7 +7564,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Help
+  m_text: Controls
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b4df20a347918f94686055fcee09f0dc, type: 2}
   m_sharedMaterial: {fileID: 8261783523450343731, guid: b4df20a347918f94686055fcee09f0dc, type: 2}
@@ -9508,7 +9512,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Help / Controls / FAQ
+  m_text: Controls
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b4df20a347918f94686055fcee09f0dc, type: 2}
   m_sharedMaterial: {fileID: 8261783523450343731, guid: b4df20a347918f94686055fcee09f0dc, type: 2}
@@ -9574,7 +9578,7 @@ MonoBehaviour:
   m_margin: {x: -349.7296, y: 0, z: -348.75275, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1832982051
@@ -10474,7 +10478,7 @@ GameObject:
   - component: {fileID: 2013886050}
   - component: {fileID: 2013886049}
   m_Layer: 5
-  m_Name: Help
+  m_Name: Controls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
