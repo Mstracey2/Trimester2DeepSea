@@ -17,6 +17,11 @@ public class sceneManager : MonoBehaviour
     [SerializeField] private Statistics saveStatistics;
     [SerializeField] private AchivementsManager achivementsManager;
 
+    private void Start()
+    {
+        FindObjectOfType<AudioManager>().Play("Menu Music");
+    }
+
     private void Update()
     {
         // If launch has started, go to first waypoint

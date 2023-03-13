@@ -10,7 +10,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-      playerRB = GetComponent<Rigidbody>();
+        playerRB = GetComponent<Rigidbody>();
+        FindObjectOfType<AudioManager>().Play("Level Music");
     }
 
     void FixedUpdate()
