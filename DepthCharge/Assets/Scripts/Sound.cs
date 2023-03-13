@@ -13,6 +13,8 @@ public class Sound
     [Range(0f, 1f)]
     public float volume;
 
+    public bool loop;
+
     // Variable is public, but won't show
     [HideInInspector]
     public AudioSource source;
