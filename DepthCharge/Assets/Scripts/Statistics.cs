@@ -27,7 +27,7 @@ public class Statistics : MonoBehaviour
 
     public void Start()
     {
-
+      //  saveStats();
         loadStats();
     }
 
@@ -45,30 +45,26 @@ public class Statistics : MonoBehaviour
 
     public void saveStats()
     {
-        File.WriteAllText(path, string.Empty);
-        StreamWriter writer = new StreamWriter(path, true);
-
-        for (int i = 0; i < 10; i++)
-        {
-            writer.WriteLine(listOfStats[i]);
-        }
-        writer.Close();
+        PlayerPrefs.SetFloat("savedExperience", GameManager.currentManager.experienceFloat);
+        PlayerPrefs.SetFloat("savedRuns", runs);
+        PlayerPrefs.SetFloat("savedPlaytime", playtimeSeconds);
+        PlayerPrefs.SetFloat("savedBoxesOpened", boxesOpened);
+        PlayerPrefs.SetFloat("savedItemsBought", itemsBought);
+        PlayerPrefs.SetFloat("savedTimesLaunched", timesLaunched);
+        PlayerPrefs.SetFloat("savedReviews", timesReviewed);
+        PlayerPrefs.Save();
     }
 
     public void loadStats()
     {
-        string[] lines = System.IO.File.ReadAllLines(path);
-
-        using StreamReader reader = new StreamReader(path);
-
-
-      GameManager.currentManager.experienceFloat = float.Parse(lines[1]);
-        runs = float.Parse(lines[2]);
-        playtimeSeconds = float.Parse(lines[3]);
-        boxesOpened = float.Parse(lines[4]);
-        itemsBought = float.Parse(lines[5]);
-        timesLaunched = float.Parse(lines[6]);
-        timesReviewed = float.Parse(lines[7]);
+        GameManager.currentManager.experienceFloat = PlayerPrefs.GetFloat("savedExperience");
+        runs = PlayerPrefs.GetFloat("savedRuns");
+        playtimeSeconds = PlayerPrefs.GetFloat("savedPlaytime");
+        boxesOpened = PlayerPrefs.GetFloat("savedBoxesOpened");
+        itemsBought = PlayerPrefs.GetFloat("savedItemsBought");
+        timesLaunched = PlayerPrefs.GetFloat("savedTimesLaunched");
+        timesReviewed = PlayerPrefs.GetFloat("savedReviews");
+        Debug.Log(PlayerPrefs.GetFloat("savedExperience"));
     }
 
     public void ResetStats()

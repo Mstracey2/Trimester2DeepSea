@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         currentManager = this;       
-     //   Invoke("LoadMasterFunction",0.01f); 
+        Invoke("LoadMasterFunction",0.01f); 
     }
     
     [SerializeField] private Camera cam;
@@ -194,24 +194,24 @@ public class GameManager : MonoBehaviour
 
     public void SaveMasterFunction()
     {
-        //Debug.Log("GAME SAVED - " + Time.time);
-        //saveInventory.SaveInventory();
-        //saveStatistics.saveStats();
-        //achivementsManager.SaveAchievements();
+        Debug.Log("GAME SAVED - " + Time.time);
+        saveInventory.SaveInventory();
+        saveStatistics.saveStats();
+        achivementsManager.SaveAchievements();
 
         // dailyChallengesManager.SaveChallenges();
     }
 
     public void LoadMasterFunction()
     {
-        //Debug.Log("GAME LOADED - " + Time.time);
-        //saveInventory.Invoke("ReadSave",0f);
-        //saveStatistics.Invoke("loadStats", 0f);
-        //achivementsManager.Invoke("ReadSave", 0f);
+        Debug.Log("GAME LOADED - " + Time.time);
+        saveInventory.Invoke("ReadSave", 0f);
+        saveStatistics.Invoke("loadStats", 0f);
+        achivementsManager.Invoke("ReadSave", 0f);
 
-        //saveInventory.ReadSave();
-        //saveStatistics.loadStats();
-        //achivementsManager.ReadSave();
+        saveInventory.ReadSave();
+        saveStatistics.loadStats();
+        achivementsManager.ReadSave();
         // dailyChallengesManager.ReadSave();
     }
 

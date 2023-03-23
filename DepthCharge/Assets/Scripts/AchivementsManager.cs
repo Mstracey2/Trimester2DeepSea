@@ -22,7 +22,7 @@ public class AchivementsManager : MonoBehaviour
     public GameObject deathScreen;
     public GameObject experienceBar;
     public ExperiencePageManager experiencePageManager;
-    
+
     [SerializeField] private GameObject claimLootCrate;
     [SerializeField] private GameObject claimExperience;
 
@@ -33,14 +33,14 @@ public class AchivementsManager : MonoBehaviour
 
     public void Awake()
     {
-         path = Application.streamingAssetsPath + "/Saves" + "/Achivement" + ".txt";
+        //  path = Application.streamingAssetsPath + "/Saves" + "/Achivement" + ".txt";
     }
 
     public void UnlockAll()
     {
         for (int i = 0; i < 27; i++)
         {
-                achivementScript[i].ClaimReward();
+            achivementScript[i].ClaimReward();
         }
     }
 
@@ -48,8 +48,8 @@ public class AchivementsManager : MonoBehaviour
     {
         experienceRewardText.text = experienceReward + " Experience";
         lootcratesRewardText.text = lootcratesReward + " Lootcrates";
-        
-        if(experienceReward > 0)
+
+        if (experienceReward > 0)
         {
             claimExperience.SetActive(true);
         }
@@ -86,29 +86,22 @@ public class AchivementsManager : MonoBehaviour
 
     public void SaveAchievements()
     {
-        File.WriteAllText(path, string.Empty);
-
-        StreamWriter writer = new StreamWriter(path, true);
-
         for (int i = 0; i < 27; i++)
         {
-            writer.WriteLine(achivementScript[i].claimed);
+            PlayerPrefs.SetString("AchivementStatus" + i, achivementScript[i].claimed.ToString());
         }
         Debug.Log("Achivements Saved");
 
-        writer.Close();
     }
 
     public void ReadSave()
     {
-        string[] lines = System.IO.File.ReadAllLines(path);
-
-        using StreamReader reader = new StreamReader(path);
         for (int i = 0; i < 27; i++)
         {
-            if (lines[i] == "True")
+            if (PlayerPrefs.GetString("AchivementStatus" + i).StartsWith("T"))
             {
                 achivementScript[i].claimed = true;
+                achivementScript[i].UpdateInformation();
             }
         }
     }
