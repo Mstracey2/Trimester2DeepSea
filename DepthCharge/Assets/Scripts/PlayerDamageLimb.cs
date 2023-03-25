@@ -7,6 +7,7 @@ public class PlayerDamageLimb : MonoBehaviour                       //script for
     [SerializeField] string limbName;
     private PlayerDamage playerDamageScript;
     [SerializeField]public GameObject[] limbStatus = new GameObject[2];
+    [SerializeField] private List<GameObject> particles = new List<GameObject>();
     private Rigidbody limbRB;
     //values that hold original pos/rot of limbs, used when returning a limb to the player (picks up health)
     public Vector3 limbPosition;
@@ -37,7 +38,7 @@ public class PlayerDamageLimb : MonoBehaviour                       //script for
             limbRB.AddForce(Vector3.left * 100);
             limbRB.AddTorque(Vector3.left * 100);
         }
-
+        SetParticles(true);
         this.gameObject.layer = LayerMask.NameToLayer("DullZone");      //limb enters a layer which avoids collision
         playerDamageScript.RemoveLimb(limbName);                        
         limbStatus[0].SetActive(false);
@@ -51,6 +52,15 @@ public class PlayerDamageLimb : MonoBehaviour                       //script for
         if (collision.gameObject.CompareTag("Hit"))                     //if the limb itself is hit, then it removes itself.
         {
             RemoveLimb();
+        }
+    }
+    
+
+    public void SetParticles(bool set)
+    {
+        foreach (GameObject particle in particles)
+        {
+            particle.SetActive(set);
         }
     }
 }

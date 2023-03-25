@@ -28,13 +28,14 @@ public class AddHealthScript : MonoBehaviour                //script used for th
             playerStatus.DamagedLimbs.Remove(newLimb);      //remove that limb from the damaged list
             playerStatus.limbs.Add(newLimb);                // put the lib back in active limbs
             PlayerDamageLimb currentLimb = newLimb.GetComponent<PlayerDamageLimb>();
-            newLimb.GetComponent<PlayerDamageLimb>().limbStatus[0].SetActive(true);
-            newLimb.GetComponent<PlayerDamageLimb>().limbStatus[1].SetActive(false);
+            currentLimb.limbStatus[0].SetActive(true);
+            currentLimb.limbStatus[1].SetActive(false);
             newLimb.transform.parent = playerStatus.gameObject.transform;               //return the limbs transform back to the original position and rotation on the player, the limb also returns to being a child of the player
             newLimb.transform.localPosition = currentLimb.limbPosition;
             newLimb.transform.localRotation = currentLimb.limbRotation;
             newLimb.gameObject.GetComponent<Rigidbody>().isKinematic = true;
             newLimb.layer = LayerMask.NameToLayer("Limbs");                             //layer returns to limbs to that collision is active again
+            currentLimb.SetParticles(false);
         }
     }
 }
