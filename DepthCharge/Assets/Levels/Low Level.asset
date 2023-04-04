@@ -17,5 +17,5 @@ MonoBehaviour:
   depthDensity: 0.07
   smallFishChance: 8
   mammelChance: 80
-  speedMultiplier: 2
+  speedMultiplier: 1
   abilitesChance: 600

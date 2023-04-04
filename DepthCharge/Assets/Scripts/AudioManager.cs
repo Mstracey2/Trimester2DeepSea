@@ -15,7 +15,16 @@ public class AudioManager : MonoBehaviour
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
 
-            s.source.volume = s.volume;
+            // Is it muted or not?
+            if (PlayerPrefs.GetInt("VolumeMuted") == 1)
+            {
+                s.source.volume = 0;
+            }
+            else
+            {
+                s.source.volume = s.volume * PlayerPrefs.GetFloat("VolumeValue");
+            }
+
             s.source.loop = s.loop;
         }
     }

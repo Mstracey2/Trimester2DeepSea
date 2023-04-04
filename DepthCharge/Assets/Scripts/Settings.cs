@@ -8,8 +8,7 @@ using UnityEngine.UI;
 public class Settings : MonoBehaviour
 {
 
-    public int volume = 100;
-    public bool muted;
+    public float volume = 100;
 
     public Sprite mutedSprite;
     public Sprite unmutedSprite;
@@ -22,12 +21,25 @@ public class Settings : MonoBehaviour
     
     void Start()
     {
-        volumeText.text = volume.ToString() + "%";
+        volume = PlayerPrefs.GetFloat("VolumeValue") * 100;
+
+        Debug.Log("Volume Muted: " + PlayerPrefs.GetInt("VolumeMuted"));
+
+        if (PlayerPrefs.GetInt("VolumeMuted") == 1)
+        {
+            muteButton.sprite = unmutedSprite;
+            volumeText.text = "*Muted*";
+        }
+        else
+        {
+            muteButton.sprite = mutedSprite;
+            volumeText.text = volume.ToString() + "%";
+        }
     }
 
     public void addVolume()
     {
-        if (muted)
+        if (PlayerPrefs.GetInt("VolumeMuted") == 1)
         {
             toggleMute();
         }
@@ -36,11 +48,14 @@ public class Settings : MonoBehaviour
             volume += 10;
         }
 
+        PlayerPrefs.SetFloat("VolumeValue", volume / 100);
+        PlayerPrefs.Save();
         volumeText.text = volume.ToString() + "%";
     }
+
     public void reduceVolume()
     {
-        if (muted)
+        if (PlayerPrefs.GetInt("VolumeMuted") == 1)
         {
             toggleMute();
         }
@@ -48,22 +63,28 @@ public class Settings : MonoBehaviour
         {
             volume -= 10;
         }
+
+        PlayerPrefs.SetFloat("VolumeValue", volume / 100);
+        PlayerPrefs.Save();
         volumeText.text = volume.ToString() + "%";
     }
 
     public void toggleMute()
     {
-        if (muted)
+        if (PlayerPrefs.GetInt("VolumeMuted") == 1)
         {
             muteButton.sprite = mutedSprite;
-            muted = false;
             volumeText.text = volume.ToString() + "%";
+            PlayerPrefs.SetInt("VolumeMuted", 0);
         }
+
         else
         {
             muteButton.sprite = unmutedSprite;
-            muted = true;
             volumeText.text = "*Muted*";
+            PlayerPrefs.SetInt("VolumeMuted", 1);
         }
+
+        PlayerPrefs.Save();
     }
 }
