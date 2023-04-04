@@ -44,38 +44,11 @@ public class BlipScript : MonoBehaviour                                         
         percentageBarScript.currentInput = timer;
         percentageBarScript.changeColour("green");
 
-        //the starting position for the line renderer is at the base of the mech model
-        blipLine.SetPosition(0, startLocation.transform.position);
-        blipLine.SetPosition(1, startLocation.transform.position);
-
-        if (activated)
-        {
-            timer -= Time.deltaTime;                        //start timer
-            // line render goes from the player, towards this game object, which is an object that bounces back and forth between two points
-            blipLine.SetPosition(0, transform.position);
-            blipLine.SetPosition(1,startLocation.transform.position);
-             transform.RotateAround(startLocation.transform.position, Vector3.up, angularSpeed * Time.deltaTime);               // does a arching motion       
-             percentageBarScript.currentInput = Mathf.Abs(timer);
-            percentageBarScript.changeColour("red");
-             
-             ChangeFogColour(radarFog);                    // changes the global fog colour to reveal obtacles   
-             processingRadar.profile = RadarEffect;        // post processing effect changes to radar effect (TV Static and green colour)
-            
-            // Radar end condition
-            if (timer <= 0)
-            {
-                processingRadar.profile = defaultEffect;    //PP effect returns to normal
-                ChangeFogColour(GameManager.currentManager.thisLevel.cameraBackgroundColour);           //fog colour returns to the level fog colour to hide obstacles again
-                activated = false;
-            }
-        }
-        
-       
+        UpdateScannerLine();
     }
 
     private void ChangeFogColour(string hexCol)
-    {
-        
+    { 
        if(ColorUtility.TryParseHtmlString("#" + hexCol, out colour))                                    // if hex colour code is accurate, it returns the colour
         {
             RenderSettings.fogColor = colour;                                                           // fog colour changes
@@ -98,6 +71,35 @@ public class BlipScript : MonoBehaviour                                         
         {
             FindObjectOfType<AudioManager>().Play("Radar Blip");
             activated = act;
+        }
+    }
+
+    public void UpdateScannerLine()
+    {
+        //the starting position for the line renderer is at the base of the mech model
+        blipLine.SetPosition(0, startLocation.transform.position);
+        blipLine.SetPosition(1, startLocation.transform.position);
+
+        if (activated)
+        {
+            timer -= Time.deltaTime;                        //start timer
+            // line render goes from the player, towards this game object, which is an object that bounces back and forth between two points
+            blipLine.SetPosition(0, transform.position);
+            blipLine.SetPosition(1, startLocation.transform.position);
+            transform.RotateAround(startLocation.transform.position, Vector3.up, angularSpeed * Time.deltaTime);               // does a arching motion       
+            percentageBarScript.currentInput = Mathf.Abs(timer);
+            percentageBarScript.changeColour("red");
+
+            ChangeFogColour(radarFog);                    // changes the global fog colour to reveal obtacles   
+            processingRadar.profile = RadarEffect;        // post processing effect changes to radar effect (TV Static and green colour)
+
+            // Radar end condition
+            if (timer <= 0)
+            {
+                processingRadar.profile = defaultEffect;    //PP effect returns to normal
+                ChangeFogColour(GameManager.currentManager.thisLevel.cameraBackgroundColour);           //fog colour returns to the level fog colour to hide obstacles again
+                activated = false;
+            }
         }
     }
 }
