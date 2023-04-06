@@ -6789,7 +6789,7 @@ GameObject:
   - component: {fileID: 1157277307}
   - component: {fileID: 1157277306}
   m_Layer: 5
-  m_Name: FAQ Text
+  m_Name: Mechanics Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6812,7 +6812,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -32.25}
+  m_AnchoredPosition: {x: 0, y: -35}
   m_SizeDelta: {x: 191.9099, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1157277306
@@ -6835,7 +6835,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: this is text
+  m_text: 'Hitting an animal will inflict damage on you
+
+    Picking up a Shield
+    will allow you to take a hit without taking damage
+
+    Picking up Health will
+    restore a damaged limb
+
+    Picking up a Coin will allow you to buy cosmetics
+    from the store'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b4df20a347918f94686055fcee09f0dc, type: 2}
   m_sharedMaterial: {fileID: 8261783523450343731, guid: b4df20a347918f94686055fcee09f0dc, type: 2}
@@ -6898,10 +6907,10 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -687.66174, w: -68.766174}
+  m_margin: {x: 0, y: 14.78093, z: -687.66174, w: -81.84506}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1157277307
@@ -7397,7 +7406,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -32.25}
+  m_AnchoredPosition: {x: 0, y: -35}
   m_SizeDelta: {x: 191.9099, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1286476403
@@ -7420,11 +7429,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'WASD - Movement
-
-    Space - Boost
-
-    Q - Enable Radar'
+  m_text: "WASD - Movement\nSpace - Boost\t\t\t(Unlimited)\nQ - Activate Radar\t\t(Will
+    deactivate after a set duration)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b4df20a347918f94686055fcee09f0dc, type: 2}
   m_sharedMaterial: {fileID: 8261783523450343731, guid: b4df20a347918f94686055fcee09f0dc, type: 2}
@@ -7487,7 +7493,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 20.654938, z: -687.66174, w: -111.16319}
+  m_margin: {x: 0, y: 14.895966, z: -687.66174, w: -111.16319}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -8211,7 +8217,7 @@ GameObject:
   - component: {fileID: 1389998945}
   - component: {fileID: 1389998944}
   m_Layer: 5
-  m_Name: -FAQ-
+  m_Name: -Objective-
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8235,7 +8241,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -343.4549, y: -130.69855}
+  m_AnchoredPosition: {x: -343.4549, y: 80}
   m_SizeDelta: {x: 191.9099, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1389998944
@@ -8258,7 +8264,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Frequently Asked Questions...
+  m_text: Mechanics
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b4df20a347918f94686055fcee09f0dc, type: 2}
   m_sharedMaterial: {fileID: 8261783523450343731, guid: b4df20a347918f94686055fcee09f0dc, type: 2}
@@ -8324,7 +8330,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -687.66174, w: -68.766174}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1389998945
@@ -8393,7 +8399,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Controls
+  m_text: How to Play
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b4df20a347918f94686055fcee09f0dc, type: 2}
   m_sharedMaterial: {fileID: 8261783523450343731, guid: b4df20a347918f94686055fcee09f0dc, type: 2}
@@ -10869,7 +10875,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Controls
+  m_text: How to Play
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b4df20a347918f94686055fcee09f0dc, type: 2}
   m_sharedMaterial: {fileID: 8261783523450343731, guid: b4df20a347918f94686055fcee09f0dc, type: 2}
