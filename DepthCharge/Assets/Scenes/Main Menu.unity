@@ -6835,16 +6835,26 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Hitting an animal will inflict damage on you
+  m_text: 'DAMAGE - Hitting an animal will inflict damage on you. Taking damage will
+    give you a small period of invincibility unless you are destroyed. You can see
+    your current health on the right hand side of the cockpit.
 
-    Picking up a Shield
-    will allow you to take a hit without taking damage
+    VISIBILITY -
+    As you descend into the depths, it will become harder to see. However, you can
+    activate your Radar in order to detect incoming threats. You can see how charged
+    the Radar is on the left hand side of the cockpit. Once the green bar is full,
+    you can activate it. The Radar will then deactivate when the bar is emptied.
 
-    Picking up Health will
-    restore a damaged limb
+    SHIELD
+    - Picking up a Shield will allow you to take a hit without taking damage, but
+    you will loose the shield in the process.
 
-    Picking up a Coin will allow you to buy cosmetics
-    from the store'
+    REPAIR - Picking up Health will
+    restore a detatched limb.
+
+    COINS - Picking up a Coin will allow you to buy
+    cosmetics from the store. You can see collected coins on the right side of the
+    cockpit as yellow buttons. Any missed coins will show a red button.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b4df20a347918f94686055fcee09f0dc, type: 2}
   m_sharedMaterial: {fileID: 8261783523450343731, guid: b4df20a347918f94686055fcee09f0dc, type: 2}
@@ -7429,8 +7439,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "WASD - Movement\nSpace - Boost\t\t\t(Unlimited)\nQ - Activate Radar\t\t(Will
-    deactivate after a set duration)"
+  m_text: 'WASD - Movement.
+
+    SPACE - Boost.
+
+    Q - Activate Radar.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b4df20a347918f94686055fcee09f0dc, type: 2}
   m_sharedMaterial: {fileID: 8261783523450343731, guid: b4df20a347918f94686055fcee09f0dc, type: 2}
@@ -8217,7 +8230,7 @@ GameObject:
   - component: {fileID: 1389998945}
   - component: {fileID: 1389998944}
   m_Layer: 5
-  m_Name: -Objective-
+  m_Name: -Mechanics-
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
