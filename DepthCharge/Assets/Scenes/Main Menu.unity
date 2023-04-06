@@ -3091,7 +3091,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volume: 0
-  muted: 0
   mutedSprite: {fileID: -1063813924, guid: 7c6aa2be329571d45b3b909c2bce544a, type: 3}
   unmutedSprite: {fileID: 174310688, guid: 7c6aa2be329571d45b3b909c2bce544a, type: 3}
   muteButton: {fileID: 1833140354}

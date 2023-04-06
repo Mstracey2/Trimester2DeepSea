@@ -8,6 +8,7 @@ public class CoinGeneratorObject : MonoBehaviour
 
 
     public Rigidbody thisBody;
+    public GameObject coinObject;
     private float addVelocity = 300f;
     void Start()
     {
@@ -26,18 +27,21 @@ public class CoinGeneratorObject : MonoBehaviour
         {
             thisBody.AddForce(new Vector3(-addVelocity, -addVelocity, 0));
         }
+        InvokeRepeating("SpawnCoin", 10, 3);
     }
-
-    public void Update()
+     
+    public void SpawnCoin()
     {
-        if (thisBody.velocity.x == 0)
-        {
-            thisBody.velocity = new Vector3(Random.Range(1, 3), thisBody.velocity.y,0);
-        }
-        else if(thisBody.velocity.y == 0)
-        {
-            thisBody.velocity = new Vector3(thisBody.velocity.x, Random.Range(1, 3),0);
-        }
-    } 
+        Instantiate(coinObject, new Vector3 (this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.identity);
 
+        float random = Random.Range(0, 2);
+        if (random < 1)
+        {
+            thisBody.AddForce(new Vector3(addVelocity, addVelocity, 0));
+        }
+        else
+        {
+            thisBody.AddForce(new Vector3(-addVelocity, -addVelocity, 0));
+        }
+    }
 }

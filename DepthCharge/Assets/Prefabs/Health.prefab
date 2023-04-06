@@ -112,8 +112,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentTrack: {fileID: 0}
-  manager: {fileID: 0}
-  playerWall: {fileID: 0}
   movementSpeed: 0
 --- !u!1 &7142423458338317047
 GameObject:
