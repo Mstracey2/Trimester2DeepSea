@@ -8,6 +8,8 @@ public class CoinScript : MonoBehaviour
     public bool despawning = false;
     public GameObject coinTracker;
     public CoinTracker coinsTrackerScript;
+    public GameObject floatingText;
+    public AppearingText spawnedText;
 
     void Start()
     {
@@ -41,8 +43,13 @@ public class CoinScript : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
-        {
+        {    
+            
+            Instantiate(floatingText, transform.position, transform.rotation);
             Invoke("PlayerHit", 0);
+
+            
+
         }
     }
 
