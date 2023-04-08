@@ -23,15 +23,13 @@ public class CoinTracker : MonoBehaviour
 
     public void Start()
     {
-        totalCoins = PlayerPrefs.GetInt("PlayerCoins");
-        UpdateText();
-       
+        UpdateText();    
     }
 
     public void UpdateText()
     {
-
-        coinsText.text = "Found Coins: " + foundCoins.ToString() + "\n\n" + "Streak: " + streak.ToString() + "x" + "\n\n" + "Total Coins: " + totalCoins.ToString(); 
+        totalCoins = PlayerPrefs.GetInt("PlayerCoins");
+        coinsText.text = "Found Coins: " + foundCoins.ToString() + "\n\n" + "Streak: " + streak.ToString() + "x" + "\n\n" + "Total Coins: " + totalCoins.ToString();
 
     }
 
@@ -50,6 +48,8 @@ public class CoinTracker : MonoBehaviour
         {
             streak++;
             foundCoins += (1 * streak);
+            PlayerPrefs.SetInt("PlayerCoins", PlayerPrefs.GetInt("PlayerCoins") + (foundCoins += (1 * streak)));
+            PlayerPrefs.Save();
         }
         else
         {
@@ -76,7 +76,7 @@ public class CoinTracker : MonoBehaviour
 
         if (onStreak)
         {
-            streak = 0;
+            streak = 1;
             onStreak = false;
         }
         UpdateText();

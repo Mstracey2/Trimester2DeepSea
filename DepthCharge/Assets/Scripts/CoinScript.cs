@@ -43,12 +43,15 @@ public class CoinScript : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
-        {    
-            
-            Instantiate(floatingText, transform.position, transform.rotation);
+        {
+
+            GameObject spawnedObj = Instantiate(floatingText, transform.position, transform.rotation);
+       //     spawnedObj.GetComponent<TextMesh>().text = (coinsTrackerScript.streak * 1).ToString();
+
+
             Invoke("PlayerHit", 0);
 
-            
+           spawnedObj.GetComponent<AppearingText>().textString = "+ " + (coinsTrackerScript.streak).ToString();
 
         }
     }

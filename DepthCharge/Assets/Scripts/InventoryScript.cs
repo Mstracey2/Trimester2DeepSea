@@ -35,11 +35,19 @@ public class InventoryScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI rolloverPrice;
     [SerializeField] private TextMeshProUGUI dynamicButtonText;
     [SerializeField] private GameObject dynamicButtonObject;
+
+    [SerializeField] private TextMeshProUGUI playersCoins;
     private int lastRollover;
 
 
+    private void Start()
+    {
+    //    playersCoins.text = PlayerPrefs.GetInt("PlayerCoins").ToString();
+    }
+
     void Update()
     {
+        playersCoins.text = PlayerPrefs.GetInt("PlayerCoins").ToString();
         if (inventoryOpen)
         {
             inventoryObject.SetActive(true);
@@ -51,7 +59,15 @@ public class InventoryScript : MonoBehaviour
         }
         else if (unlockedBool[lastRollover] == false)
         {
-            dynamicButtonText.text = "Buy";
+            if (cosmeticItemPrice[lastRollover] <= PlayerPrefs.GetInt("PlayerCoins"))
+            {
+                dynamicButtonText.text = "Buy";
+            }
+            else
+            {
+                dynamicButtonText.text = "Insufficent Funds";
+            }
+            
         }
     }
 
@@ -68,7 +84,15 @@ public class InventoryScript : MonoBehaviour
         }
         else if (unlockedBool[itemNumber] == false)
         {
-            dynamicButtonText.text = "Buy";
+            if(cosmeticItemPrice[itemNumber] >= PlayerPrefs.GetInt("PlayerCoins"))
+            {
+                dynamicButtonText.text = "Buy";
+            }
+            else
+            {
+                dynamicButtonText.text = "Insufficent Funds";
+            }
+
         }
     }
 
@@ -81,9 +105,16 @@ public class InventoryScript : MonoBehaviour
 
         else if (unlockedBool[lastRollover] == false)
         {
-            unlockedBool[lastRollover] = true;
-            statistics.itemsBought++;
-            
+            if (cosmeticItemPrice[lastRollover] <= PlayerPrefs.GetInt("PlayerCoins"))
+            {
+                unlockedBool[lastRollover] = true;
+                PlayerPrefs.SetInt("PlayerCoins", PlayerPrefs.GetInt("PlayerCoins") - cosmeticItemPrice[lastRollover]);
+                playersCoins.text = PlayerPrefs.GetInt("PlayerCoins").ToString();
+                Debug.Log("RAN");
+                statistics.itemsBought++;
+                statistics.saveStats();
+                SaveInventory();
+            }
         }
     }
 

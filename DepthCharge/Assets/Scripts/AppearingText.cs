@@ -6,25 +6,30 @@ using TMPro;
 public class AppearingText : MonoBehaviour
 {
 
-    public TextMeshPro text;
-    public float color = 255;
+    public TextMeshPro textMesh;
+    public string textString;
+    public float color = 1;
 
     private void Start()
     {
-        text = this.GetComponent<TextMeshPro>();
+        textMesh = this.GetComponent<TextMeshPro>();
+        textMesh.overrideColorTags = true;
         Debug.Log("Text spawned");
     }
 
     public void Update()
     {
-        color = color - (Time.deltaTime * 100);
+        textMesh.text = textString.ToString();
+        color = color - Time.deltaTime;
 
-        text.color = new Vector4(0, 255, 19, color);
+        textMesh.color = new Color32(0, 1, 0, 10);
+
+        Debug.Log(color);
 
         if (color <= 0)
         {
             Debug.Log("Text DESPAWNED");
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class Settings : MonoBehaviour
@@ -86,5 +87,12 @@ public class Settings : MonoBehaviour
         }
 
         PlayerPrefs.Save();
+    }
+
+    public void resetSave()
+    {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+        SceneManager.LoadScene(0);
     }
 }
