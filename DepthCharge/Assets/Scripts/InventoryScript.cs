@@ -42,7 +42,6 @@ public class InventoryScript : MonoBehaviour
 
     private void Start()
     {
-        //    playersCoins.text = PlayerPrefs.GetInt("PlayerCoins").ToString();
         ReadSave();
     }
 
@@ -68,7 +67,7 @@ public class InventoryScript : MonoBehaviour
             {
                 dynamicButtonText.text = "Insufficent Funds";
             }
-            
+
         }
     }
 
@@ -85,7 +84,7 @@ public class InventoryScript : MonoBehaviour
         }
         else if (unlockedBool[itemNumber] == false)
         {
-            if(cosmeticItemPrice[itemNumber] >= PlayerPrefs.GetInt("PlayerCoins"))
+            if (cosmeticItemPrice[itemNumber] >= PlayerPrefs.GetInt("PlayerCoins"))
             {
                 dynamicButtonText.text = "Buy";
             }
