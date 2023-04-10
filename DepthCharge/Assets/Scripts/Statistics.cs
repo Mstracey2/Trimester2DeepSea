@@ -15,19 +15,15 @@ public class Statistics : MonoBehaviour
     public float itemsBought;
     public float timesLaunched;
     public float timesReviewed;
+    public float highestStreak;
 
     public float experience;
 
     public List<string> listOfStats = new List<string>(10);
 
-    public void Awake()
-    {
-               path = Application.streamingAssetsPath + "/Saves" + "/Statistics" + ".txt"; 
-    }
 
     public void Start()
     {
-      //  saveStats();
         loadStats();
     }
 
@@ -40,6 +36,7 @@ public class Statistics : MonoBehaviour
         listOfStats[5] = itemsBought.ToString();
         listOfStats[6] = timesLaunched.ToString();
         listOfStats[7] = timesReviewed.ToString();
+        listOfStats[8] = highestStreak.ToString();
        
     }
 
@@ -52,6 +49,7 @@ public class Statistics : MonoBehaviour
         PlayerPrefs.SetFloat("savedItemsBought", itemsBought);
         PlayerPrefs.SetFloat("savedTimesLaunched", timesLaunched);
         PlayerPrefs.SetFloat("savedReviews", timesReviewed);
+        PlayerPrefs.SetFloat("storedHighestStreak", highestStreak);
         PlayerPrefs.Save();
     }
 
@@ -64,19 +62,9 @@ public class Statistics : MonoBehaviour
         itemsBought = PlayerPrefs.GetFloat("savedItemsBought");
         timesLaunched = PlayerPrefs.GetFloat("savedTimesLaunched");
         timesReviewed = PlayerPrefs.GetFloat("savedReviews");
+        highestStreak = PlayerPrefs.GetFloat("storedHighestStreak");
         Debug.Log(PlayerPrefs.GetFloat("savedExperience"));
     }
 
-    public void ResetStats()
-    {
-        File.WriteAllText(path, string.Empty);
-        StreamWriter writer = new StreamWriter(path, true);
-
-        for (int i = 0; i < 10; i++)
-        {
-            writer.WriteLine(0);
-        }
-        writer.Close();
-    }
 }
 

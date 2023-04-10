@@ -47,7 +47,7 @@ public class ExperiencePageManager : MonoBehaviour
         if (sentFromAchivements == false)
         {
             GameManager.currentManager.ResumeGame();
-            addedExperience =GameManager.currentManager.earntExperience;
+            addedExperience = GameManager.currentManager.earntExperience;
         }
         else
         {
@@ -70,7 +70,7 @@ public class ExperiencePageManager : MonoBehaviour
         }
         currentLevel = GameManager.currentManager.experienceLevel;
         requiredExperienceFloat = GameManager.currentManager.requiredExperience[currentLevel + 1];
-        currentExperienceFloat = GameManager.currentManager.experienceFloat;
+        currentExperienceFloat = PlayerPrefs.GetFloat("savedExperience");
         levelCurrent.text = currentLevel.ToString();
         levelNext.text = (currentLevel + 1).ToString();
 

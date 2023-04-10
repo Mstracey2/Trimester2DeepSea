@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
         currentManager = this;       
         Invoke("LoadMasterFunction",0.01f); 
     }
-    
+
+    #region Variables
     [SerializeField] private Camera cam;
 
     //Depth values and levels
@@ -50,15 +51,15 @@ public class GameManager : MonoBehaviour
 
     private bool gamePaused;
 
+    #endregion
 
 
     public void Start()
     {     
-        Time.timeScale = 0.01f;
+        Time.timeScale = 0.01f; //Pause time
         sceneColour = cam.backgroundColor;      //scene colour is the cameras background
-        //PauseGame();
-        saveStatistics.timesLaunched++;
-        //  gameStart = true;
+        saveStatistics.timesLaunched++; //Add to the amount of times launched.
+        saveStatistics.saveStats(); 
         thisLevel = levels[0];
 
         requiredExperience[1] = 10;
@@ -80,6 +81,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        experienceFloat = PlayerPrefs.GetFloat("savedExperience");
+        Debug.Log("EXPERIENCE:" + experienceFloat);
         for (int i = 0; i < 10; i++)
         {
             if (experienceFloat >= requiredExperience[i])

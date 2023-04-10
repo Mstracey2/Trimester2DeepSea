@@ -6,23 +6,29 @@ using UnityEngine.UI;
 
 public class Achivements : MonoBehaviour
 {
-    [SerializeField] Statistics statistics;
-    [SerializeField] AchivementsManager achivementsManager;
+    /// <summary>
+    /// This script is placed duplicated  for each instance of an achivement, they all know what they are based on the achivementNumber int. 
+    /// </summary>
 
-    [SerializeField] private string[] achivementString = new string[30];
+    #region Variables
+
+    [SerializeField] Statistics statistics; //A lot of the achivements need to access the statistics to know the progression of the player.
+    [SerializeField] AchivementsManager achivementsManager; //They also need a reference to the manager so they can add the reward.
+
+    [SerializeField] private string[] achivementString = new string[30]; //The description of the achivement
     [SerializeField] private int[] difficulty = new int[30];
     [SerializeField] private Sprite[] imageCover = new Sprite[30];
-    [SerializeField] private int[] requiredInt = new int[30];
+    [SerializeField] private int[] requiredInt = new int[30]; //How many of the statistic assosiated are required, for example, 300 minutes or 5 times played
     [SerializeField] private string[] statisticAssosiated = new string[30];
 
-    [SerializeField] private TextMeshProUGUI descriptionText;
+    [SerializeField] private TextMeshProUGUI descriptionText; //Reference to the text which will become the description
     [SerializeField] private Image achivementImage;
     [SerializeField] private RawImage difficultyFilter;
     [SerializeField] private TextMeshProUGUI rewardText;
     [SerializeField] private TextMeshProUGUI percentageText;
 
-    [SerializeField] private Image claimButton;
-    [SerializeField] private Sprite claimedSprite;
+    [SerializeField] private Image claimButton; //The sprite that shows if the achivement is completed but not yet redeemed
+    [SerializeField] private Sprite claimedSprite; //The sprite that shows if the achivement has been claimed
     [SerializeField] private Image percentageBar;
     [SerializeField] private float percentageComplete;
     [SerializeField] private TextMeshProUGUI progressText;
@@ -32,19 +38,24 @@ public class Achivements : MonoBehaviour
     public Sprite unlockedButton;
     public float percentageCurrent;
 
+
+    //Difficulty ints listed. 
+
     //Easy = 1
     //Medium = 2
     //Hard = 3
     //Extreme = 4
     //Legendary = 5
 
-    // Start is called before the first frame update
+    #endregion
+
     void Start()
     {
-        GameManager.currentManager = (GameManager)FindObjectOfType(typeof(GameManager));
-        statistics = GameManager.currentManager.GetComponent<Statistics>();
-        achivementsManager = (AchivementsManager)FindObjectOfType(typeof(AchivementsManager));
+        GameManager.currentManager = (GameManager)FindObjectOfType(typeof(GameManager)); //Get the game manager from the scene
+        statistics = GameManager.currentManager.GetComponent<Statistics>(); //Get the statistics from the scene
+        achivementsManager = (AchivementsManager)FindObjectOfType(typeof(AchivementsManager)); //Get the achivements manager from the scene
 
+        #region Create the achivements
 
         achivementString[0] = "Play 5 Runs";
         difficulty[0] = 1;
@@ -98,21 +109,30 @@ public class Achivements : MonoBehaviour
         statisticAssosiated[9] = "itemsBought";
 
 
-        achivementString[10] = "Reach The Twilight Zone";
+        achivementString[10] = "Reach a 5 streak of Coins";
         difficulty[10] = 1;
-        //  requiredInt[10] = ;
+        requiredInt[10] = 5;
+        statisticAssosiated[10] = "highestStreak";
 
-        achivementString[11] = "Reach The Midnight Zone";
+        achivementString[11] = "Reach a 10 streak of Coins";
         difficulty[11] = 2;
+        requiredInt[11] = 10;
+        statisticAssosiated[11] = "highestStreak";
 
-        achivementString[12] = "Reach The Abyss Zone";
+        achivementString[12] = "Reach a 20 streak of Coins";
         difficulty[12] = 3;
+        requiredInt[12] = 20;
+        statisticAssosiated[12] = "highestStreak";
 
-        achivementString[13] = "Reach The Trenches Zone";
+        achivementString[13] = "Reach a 50 streak of Coins";
         difficulty[13] = 4;
+        requiredInt[13] = 50;
+        statisticAssosiated[13] = "highestStreak";
 
-        achivementString[14] = "Reach The Unknowns Zone";
+        achivementString[14] = "Reach a 75 streak of Coins";
         difficulty[14] = 5;
+        requiredInt[14] = 75;
+        statisticAssosiated[14] = "highestStreak";
 
 
         achivementString[15] = "Play for 5 Minutes";
@@ -139,7 +159,6 @@ public class Achivements : MonoBehaviour
         difficulty[19] = 5;
         requiredInt[19] = 18000;
         statisticAssosiated[19] = "playtimeSeconds";
-
 
 
         achivementString[20] = "Launch the game";
@@ -177,7 +196,7 @@ public class Achivements : MonoBehaviour
         difficulty[26] = 5;
         requiredInt[26] = 1;
 
-
+        #endregion
 
         SetInformation();
         UpdateInformation();
@@ -188,10 +207,10 @@ public class Achivements : MonoBehaviour
         descriptionText.text = achivementString[achivementNumber];
         achivementImage.sprite = imageCover[achivementNumber];
         rewardText.text = (100 * difficulty[achivementNumber]).ToString();
-        switch (difficulty[achivementNumber])
+        switch (difficulty[achivementNumber]) //Change based on the difficulty
         {
             case 1:
-                difficultyFilter.color = new Color32(19, 255, 0, 75);
+                difficultyFilter.color = new Color32(19, 255, 0, 75); //Default
                 break;
             case 2:
                 difficultyFilter.color = new Color32(236, 255, 0, 75);
@@ -203,7 +222,7 @@ public class Achivements : MonoBehaviour
                 difficultyFilter.color = new Color32(255, 0, 175, 75);
                 break;
             case 5:
-                difficultyFilter.color = new Color32(0, 30, 255, 75);
+                difficultyFilter.color = new Color32(0, 30, 255, 75); //Legendary
                 break;
         }
     }
@@ -214,10 +233,9 @@ public class Achivements : MonoBehaviour
         switch (statisticAssosiated[achivementNumber])
         {
 
-            case "runs":
-                percentageCurrent = statistics.runs / requiredInt[achivementNumber];
-
-                progressText.text = statistics.runs + "/" + requiredInt[achivementNumber];
+            case "runs": //If the achivement requires runs information... 
+                percentageCurrent = statistics.runs / requiredInt[achivementNumber]; //Calculate the percentage
+                progressText.text = statistics.runs + "/" + requiredInt[achivementNumber]; //Crate the text
                 break;
 
             case "itemsBought":
@@ -233,48 +251,53 @@ public class Achivements : MonoBehaviour
             case "timesLaunched":
                 percentageCurrent = statistics.timesLaunched / requiredInt[achivementNumber];
                 progressText.text = statistics.timesLaunched + "/" + requiredInt[achivementNumber];
+                break;
 
+            case "highestStreak":
+                percentageCurrent = statistics.highestStreak / requiredInt[achivementNumber];
+                progressText.text = statistics.highestStreak + "/" + requiredInt[achivementNumber];
                 break;
         }
-        if (percentageCurrent >= 1)
+
+        if (percentageCurrent >= 1) //Make sure the number doesn't go over 100%
         {
             progressText.text = requiredInt[achivementNumber] + "/" + requiredInt[achivementNumber];
         }
 
         if (percentageCurrent <= 1 && percentageCurrent >= 0)
         {
-            percentageBar.gameObject.transform.localScale = new Vector3(percentageCurrent, 1, 1);
-            percentageText.text = (percentageCurrent * 100).ToString("0") + "%";
+            percentageBar.gameObject.transform.localScale = new Vector3(percentageCurrent, 1, 1); //Scale the percentageBar to the correct scale
+            percentageText.text = (percentageCurrent * 100).ToString("0") + "%"; //Set the text
         }
-        if (percentageCurrent >= 1)
+        if (percentageCurrent >= 1) //If over 100%...
         {
-            percentageBar.gameObject.transform.localScale = new Vector3(1, 1, 1);
-            percentageText.text = "100%";
-        }
-
-
-
-        if (claimed == false && percentageCurrent >= 1)
-        {
-            claimButton.sprite = unlockedButton;
+            percentageBar.gameObject.transform.localScale = new Vector3(1, 1, 1);  //Set the percentage bar to full
+            percentageText.text = "100%"; //And set the text to 100%
         }
 
 
-        if (claimed == true)
+
+        if (claimed == false && percentageCurrent >= 1) //If the reward hasn't been claimed and is at 100% or over
         {
-            claimButton.sprite = claimedSprite;
-            claimButton.GetComponent<Button>().interactable = false;
+            claimButton.sprite = unlockedButton; //Change the image
+        }
+
+
+        if (claimed == true) //If the item has been claimed already...
+        {
+            claimButton.sprite = claimedSprite; //Set the image to claimed
+            claimButton.GetComponent<Button>().interactable = false; //And remove the collect reward button
         }
     }
 
-    public void ClaimReward()
+    public void ClaimReward() //The button on the achivement canvas runs this function, 
     {
-        if (percentageCurrent >= 1 && claimed == false)
+        if (percentageCurrent >= 1 && claimed == false) //If it hasn't been claimed and is at 100%
         {
-            claimed = true;
-            UpdateInformation();
-            achivementsManager.lootcratesReward++;
-            achivementsManager.experienceReward += (difficulty[achivementNumber] * 100);
+            claimed = true; //Set it to claimed,
+            UpdateInformation(); //Update the information, such as text and images
+            achivementsManager.lootcratesReward++; //Give the player a lootcrate
+            achivementsManager.experienceReward += (difficulty[achivementNumber] * 100); //And give them experience. 
         }
     }
 }

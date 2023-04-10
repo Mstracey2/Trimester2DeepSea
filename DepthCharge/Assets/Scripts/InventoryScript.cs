@@ -42,7 +42,8 @@ public class InventoryScript : MonoBehaviour
 
     private void Start()
     {
-    //    playersCoins.text = PlayerPrefs.GetInt("PlayerCoins").ToString();
+        //    playersCoins.text = PlayerPrefs.GetInt("PlayerCoins").ToString();
+        ReadSave();
     }
 
     void Update()
@@ -170,8 +171,6 @@ public class InventoryScript : MonoBehaviour
             PlayerPrefs.SetString("Inventory" + inventoryNumber, unlockedBool[inventoryNumber].ToString());
         }
 
-
-
         PlayerPrefs.SetInt("ActiveDeskToy", EquiptedObject[1]);
         PlayerPrefs.SetInt("ActiveMechColour", EquiptedObject[2]);
         PlayerPrefs.Save();
@@ -184,7 +183,18 @@ public class InventoryScript : MonoBehaviour
             unlockedBool[inventoryNumber] = PlayerPrefs.GetString("Inventory" + inventoryNumber).StartsWith("T");
         }
 
-        EnableObject(PlayerPrefs.GetInt("ActiveDeskToy"));
+        if (string.IsNullOrEmpty((PlayerPrefs.GetInt("ActiveDeskToy").ToString())))
+        {
+
+        }
+        else
+        {
+            EnableObject(PlayerPrefs.GetInt("ActiveDeskToy"));
+        }
+
+        {
+
+        }
         EnableObject(PlayerPrefs.GetInt("ActiveMechColour"));
 
     }

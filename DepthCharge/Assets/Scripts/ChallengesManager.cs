@@ -5,9 +5,14 @@ using TMPro;
 
 public class ChallengesManager : MonoBehaviour
 {
-    private string[] challengeStringPart1 = new string[10];
-    private string[] challengeStringPart2 = new string[10];
-    private int[] rangeMin = new int[10];
+
+    //THIS SCRIPT IS NOT CURRENTLY BEING USED.
+    //MAY BE USED EVENTUALLY... -BILL
+
+
+    private string[] challengeStringPart1 = new string[10]; //First part of the string
+    private string[] challengeStringPart2 = new string[10]; //Second part of the string (After the number)
+    private int[] rangeMin = new int[10]; 
     private int[] rangeMax = new int[10];
 
     [SerializeField] private TextMeshProUGUI[] challengeString = new TextMeshProUGUI[5];
