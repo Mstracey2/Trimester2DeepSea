@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        currentManager = this;       
-        Invoke("LoadMasterFunction",0.01f); 
+        currentManager = this;
+        Invoke("LoadMasterFunction", 0.01f);
     }
 
     #region Variables
@@ -55,13 +55,14 @@ public class GameManager : MonoBehaviour
 
 
     public void Start()
-    {     
+    {
         Time.timeScale = 0.01f; //Pause time
         sceneColour = cam.backgroundColor;      //scene colour is the cameras background
         saveStatistics.timesLaunched++; //Add to the amount of times launched.
-        saveStatistics.saveStats(); 
+        saveStatistics.saveStats();
         thisLevel = levels[0];
 
+        //The experience required to reach that level...
         requiredExperience[1] = 10;
         requiredExperience[2] = 100;
         requiredExperience[3] = 250;
@@ -82,27 +83,27 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         experienceFloat = PlayerPrefs.GetFloat("savedExperience");
-        Debug.Log("EXPERIENCE:" + experienceFloat);
-        for (int i = 0; i < 10; i++)
+
+        for (int i = 0; i < 10; i++) //Run 10 times
         {
-            if (experienceFloat >= requiredExperience[i])
+            if (experienceFloat >= requiredExperience[i]) //If the player has enough experience 
             {
-                experienceLevel = i;
+                experienceLevel = i; //Set that level to the currnet level, will always be the highest possible
             }
         }
 
         if (gameStart == true)
         {
             depthMeter += Time.deltaTime * 10;          //depth metre starts
-            DepthText.text = depthMeter.ToString("F0") + "m";
+            DepthText.text = depthMeter.ToString("F0") + "m"; //Set the Depth text on the cockpit
             CheckDepth();
             saveStatistics.playtimeSeconds = saveStatistics.playtimeSeconds + Time.deltaTime;
         }
-        if(gameStart == false)
+        if (gameStart == false) //If the game hasn't started yet
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space)) //And the player presses Space
             {
-                StartGame();
+                StartGame(); //Start the Game process
             }
         }
 
@@ -122,13 +123,18 @@ public class GameManager : MonoBehaviour
             ChangeLevel();
         }
     }
-
+    /// <summary>
+    /// Button runs function which returns the player to the main menu
+    /// </summary>
     public void ReturnToMenu()
     {
         SaveMasterFunction();
         SceneManager.LoadScene(0);
     }
 
+    /// <summary>
+    /// Button runs function that resumes the progress of the game
+    /// </summary>
     public void ResumeGame()
     {
         pausedScreen.SetActive(false);
@@ -136,16 +142,20 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    /// <summary>
+    /// Button runs function which starts the process of the game.
+    /// </summary>
     public void StartGame()
-    {     
+    {
         Time.timeScale = 1;
         pausedScreen.SetActive(false);
         gamePaused = false;
         gameStart = true;
-
-
     }
 
+    /// <summary>
+    /// Button runs function which slows down gameplay and enables a canvas for Paused game info
+    /// </summary>
     public void PauseGame()
     {
         gamePaused = true;
@@ -153,6 +163,9 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0.01f;
     }
 
+    /// <summary>
+    /// Toggle between Paused and Unpaused.
+    /// </summary>
     public void TogglePause()
     {
         if (gamePaused == false)
@@ -170,7 +183,10 @@ public class GameManager : MonoBehaviour
     }
 
 
-
+    /// <summary>
+    /// Function runs when the player dies, 
+    /// Sets all the text as the stats of that run
+    /// </summary>
     public void EndGame()
     {
         saveStatistics.runs++;
@@ -182,11 +198,8 @@ public class GameManager : MonoBehaviour
         experienceText.text = "Experience: " + earntExperience.ToString("0");
     }
 
-    private void ChangeLevel()              
+    private void ChangeLevel()
     {
-        //  PauseGame();
-        //   depthScreen.DisplayScreen();
-        // depthScreen.depth = depthMeter;
         if (ColorUtility.TryParseHtmlString("#" + thisLevel.cameraBackgroundColour, out Color colour))          //checks hex colour is accurate then changes the background to said colour
         {
             sceneColour = colour;
@@ -201,8 +214,6 @@ public class GameManager : MonoBehaviour
         saveInventory.SaveInventory();
         saveStatistics.saveStats();
         achivementsManager.SaveAchievements();
-
-        // dailyChallengesManager.SaveChallenges();
     }
 
     public void LoadMasterFunction()
@@ -215,17 +226,6 @@ public class GameManager : MonoBehaviour
         saveInventory.ReadSave();
         saveStatistics.loadStats();
         achivementsManager.ReadSave();
-        // dailyChallengesManager.ReadSave();
-    }
-
-    public void ResetMasterFunction()
-    {
-        //Debug.Log("SAVE DELETED - " + Time.time);
-        //saveInventory.ResetSave();
-        //saveStatistics.ResetStats();
-        //achivementsManager.ResetSave();
-        //dailyChallengesManager.ResetSave();
-        // SaveMasterFunction();
     }
 
     public int GetChance(int objectType)                //function that returns the chance of spawning to the appropriote object
@@ -234,7 +234,7 @@ public class GameManager : MonoBehaviour
         {
             return thisLevel.smallFishChance;
         }
-        else if(objectType == 2)
+        else if (objectType == 2)
         {
             return thisLevel.mammelChance;
         }

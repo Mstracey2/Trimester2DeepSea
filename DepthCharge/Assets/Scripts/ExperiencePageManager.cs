@@ -6,40 +6,45 @@ using UnityEngine.SceneManagement;
 
 public class ExperiencePageManager : MonoBehaviour
 {
-    public GameObject deathScreen;
 
-    public float addedExperience;
+    #region Variables
 
-    public bool sentFromAchivements = false;
+    public GameObject deathScreen;                                  //The next UI Screen
 
-    [SerializeField] private GameObject barCurrent;
-    [SerializeField] private GameObject barDisplacement;
-    [SerializeField] private TextMeshProUGUI levelCurrent;
-    [SerializeField] private TextMeshProUGUI levelNext;
-    [SerializeField] private TextMeshProUGUI experienceEarnt;
+    public float addedExperience;                                   //How much experience the player earnt
+    public bool sentFromAchivements = false;                        //If the player has just ended a run or was sent from achivements as there is a different protocol
 
-    public bool claimExperience = false;
-    public bool runOnce = false;
+    [SerializeField] private GameObject barCurrent;                 //The current percentage of way through the level the player is
+    [SerializeField] private GameObject barDisplacement;            //The new percentage of way through the level the player is
 
-    [SerializeField] private float currentExperienceFloat;
-    [SerializeField] private float requiredExperienceFloat;
-    [SerializeField] private int currentLevel;
+    [SerializeField] private TextMeshProUGUI levelCurrent;          //What current level is the player
+    [SerializeField] private TextMeshProUGUI levelNext;             //What is the next level for the player to reach
+    [SerializeField] private TextMeshProUGUI experienceEarnt;       //How much experience the player earnt in this event
+
+    public bool claimExperience = false;                            //If the player pressed 'Claim Experience'
+    public bool runOnce = false;                                    //Making sure it is only ran once
+
+    [SerializeField] private float currentExperienceFloat;          //How much experience the player currently has
+    [SerializeField] private float requiredExperienceFloat;         //The amount of required experience to level up
+    [SerializeField] private int currentLevel;                      //The current level the player is on, for example Level 3.
 
     [SerializeField] private GameObject claimButtonObj;
     [SerializeField] private GameObject continueButtonObj;
     [SerializeField] private GameObject rewardsObj;
 
 
-    [SerializeField] private float percentageCurrent;
-    [SerializeField] private float percentageChange;
-
+    [SerializeField] private float percentageCurrent;               //Calculated current percentage to the next level
+    [SerializeField] private float percentageChange;                //Calculated percentage that the players experience changes.
 
     [SerializeField] private int lootcratesEarnt;
     [SerializeField] private TextMeshProUGUI lootcratesEarntText;
     [SerializeField] private GameObject claimButton;
 
-    [SerializeField] private GameObject crateObject;
-    [SerializeField] private ScrollCrate scrollCrate;
+    [SerializeField] private GameObject crateObject;                //The game object of the lootcrate function
+    [SerializeField] private ScrollCrate scrollCrate;               //The script for the lootcrate function
+
+
+    #endregion
 
     void Start()
     {
@@ -51,30 +56,35 @@ public class ExperiencePageManager : MonoBehaviour
         }
         else
         {
-           GameManager.currentManager.ResumeGame();
+            GameManager.currentManager.ResumeGame();
         }
 
+        claimExperience = true;
 
-        percentageCurrent = ((currentExperienceFloat - GameManager.currentManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
-        experienceEarnt.text = addedExperience.ToString("0");
+        percentageCurrent = ((currentExperienceFloat - GameManager.currentManager.requiredExperience[currentLevel]) / requiredExperienceFloat); //Calculate the percentage bar scale
+        experienceEarnt.text = addedExperience.ToString("0"); //Set the text to the correct experience
         lootcratesEarnt = 1;
 
+        PlayerPrefs.SetFloat("savedExperience", currentExperienceFloat + addedExperience); //Save the experience to PlayerPrefs
+        PlayerPrefs.Save();
 
     }
 
     void Update()
     {
-        if(GameManager.currentManager.experienceLevel == currentLevel + 1)
+        if (GameManager.currentManager.experienceLevel == currentLevel + 1) //If the player levels up
         {
-            barCurrent.gameObject.SetActive(false);
+            barCurrent.gameObject.SetActive(false); //Remove the old current bar as it would now be wrong
         }
-        currentLevel = GameManager.currentManager.experienceLevel;
-        requiredExperienceFloat = GameManager.currentManager.requiredExperience[currentLevel + 1];
-        currentExperienceFloat = PlayerPrefs.GetFloat("savedExperience");
+        currentLevel = GameManager.currentManager.experienceLevel; //Get the current level
+        requiredExperienceFloat = GameManager.currentManager.requiredExperience[currentLevel + 1]; //Get the amount required to reach the next level
+
+        currentExperienceFloat = PlayerPrefs.GetFloat("savedExperience"); //Get the current experience from PlayerPrefs
+
         levelCurrent.text = currentLevel.ToString();
         levelNext.text = (currentLevel + 1).ToString();
 
-        if (runOnce == false) 
+        if (runOnce == false)
         {
             runOnce = true;
             percentageCurrent = ((currentExperienceFloat - GameManager.currentManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
@@ -85,8 +95,7 @@ public class ExperiencePageManager : MonoBehaviour
             percentageChange = ((currentExperienceFloat - GameManager.currentManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
         }
 
-
-        if (percentageCurrent > 0 )
+        if (percentageCurrent > 0)
         {
             barCurrent.transform.localScale = new Vector2(percentageCurrent * 2, 1);
         }
@@ -95,25 +104,24 @@ public class ExperiencePageManager : MonoBehaviour
         if (addedExperience > 0 && claimExperience == true && percentageChange <= 1)
         {
             addedExperience -= Time.deltaTime * 100;
-         //   percentageCurrent = ((currentExperienceFloat - Time.deltaTime * 200 - gameManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
-           GameManager.currentManager.experienceFloat += Time.deltaTime * 100;
-
-            barDisplacement.transform.localScale = new Vector2(percentageChange * 2, 1);
+            //   percentageCurrent = ((currentExperienceFloat - Time.deltaTime * 200 - gameManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
+            GameManager.currentManager.experienceFloat += Time.deltaTime * 100; //Add experience over time to animate the bar
+            barDisplacement.transform.localScale = new Vector2(percentageChange * 2, 1); //Scale the percentage bar
         }
 
-
-
-        if (lootcratesEarnt >= 1)
+        if (lootcratesEarnt >= 1) //If any lootcrates have been earnt
         {
-            claimButton.SetActive(true);
+            claimButton.SetActive(true); //Enable the button to open them
         }
         else
         {
-            claimButton.SetActive(false);
+            claimButton.SetActive(false); //Otherwise, remove the button.
         }
 
     }
-
+    /// <summary>
+    /// Button ran when the player clicks on the "Claim Experience" button
+    /// </summary>
     public void ClaimExperience()
     {
 
@@ -122,7 +130,9 @@ public class ExperiencePageManager : MonoBehaviour
         continueButtonObj.SetActive(true);
         GameManager.currentManager.SaveMasterFunction();
     }
-
+    /// <summary>
+    /// Button ran when the player clicks on the "Play Again" button
+    /// </summary>
     public void Continue()
     {
         if (sentFromAchivements == false)
@@ -136,40 +146,47 @@ public class ExperiencePageManager : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Button runs this function when the player claims a lootcrate from the achivements tab
+    /// </summary>
     public void OpenCrateFromAchivements()
-    {    
-        
+    {
+
         lootcratesEarnt--;
         GameManager.currentManager.PauseGame();
-        
+
         crateObject.SetActive(true);
         scrollCrate.StartRoll();
 
     }
+    /// <summary>
+    /// Button runs this function when the player claims a lootcrate at the end of a run
+    /// </summary>
     public void OpenCrate()
     {
         if (sentFromAchivements == false)
         {
-          GameManager.currentManager.PauseGame();
+            GameManager.currentManager.PauseGame();
         }
         crateObject.SetActive(true);
         scrollCrate.StartRoll();
         lootcratesEarnt--;
     }
 
+    /// <summary>
+    /// Button runs this function when the lootcrate process is complete
+    /// </summary>
     public void ReturnToGame()
     {
-      GameManager.currentManager.SaveMasterFunction();
+        GameManager.currentManager.SaveMasterFunction();
 
         if (sentFromAchivements == false)
         {
-          GameManager.currentManager.ResumeGame();
+            GameManager.currentManager.ResumeGame();
             SceneManager.LoadScene("Scene");
         }
         else
         {
-
             this.gameObject.SetActive(false);
             deathScreen.SetActive(false);
         }

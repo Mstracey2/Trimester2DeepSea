@@ -21,14 +21,14 @@ public class Statistics : MonoBehaviour
 
     public List<string> listOfStats = new List<string>(10);
 
-
-    public void Start()
+    public void Awake()
     {
-        loadStats();
+      loadStats(); //Load all stats before everything else...
     }
 
     void Update()
     {       
+        //Make a list of all the stats that are required to be saved
         listOfStats[1] = GameManager.currentManager.experienceFloat.ToString();
         listOfStats[2] = runs.ToString();
         listOfStats[3] = playtimeSeconds.ToString();
@@ -39,7 +39,9 @@ public class Statistics : MonoBehaviour
         listOfStats[8] = highestStreak.ToString();
        
     }
-
+    /// <summary>
+    /// Save all the information to PlayerPrefs
+    /// </summary>
     public void saveStats()
     {
         PlayerPrefs.SetFloat("savedExperience", GameManager.currentManager.experienceFloat);
@@ -52,7 +54,10 @@ public class Statistics : MonoBehaviour
         PlayerPrefs.SetFloat("storedHighestStreak", highestStreak);
         PlayerPrefs.Save();
     }
-
+    
+    /// <summary>
+    /// Get all the information from PlayerPrefs and save it 
+    /// </summary>
     public void loadStats()
     {
         GameManager.currentManager.experienceFloat = PlayerPrefs.GetFloat("savedExperience");

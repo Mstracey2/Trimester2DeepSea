@@ -35,14 +35,15 @@ public class ScrollCrate : MonoBehaviour
     public void StartRoll()
     {
 
-        this.transform.localPosition = new Vector3(0, 26, 0);
-        stopping = false;
-        wonTitle.text = "";
-        timer = 5;
-        gambled = false;
-        rollStoppedRunOnce = true;
-        speed = 50000;
-        randomness = Random.Range(100, 300);
+        #region Variables
+        this.transform.localPosition = new Vector3(0, 26, 0); //Set the moving items to the correct start position
+        stopping = false; //If it has started to slow down
+        wonTitle.text = ""; //The item which has been won
+        timer = 5; //Time before the roll stops on its own
+        gambled = false; //If the current role has been gambled from a previous win
+        rollStoppedRunOnce = true; //Make sure it only runs once
+        speed = 50000; //Speed that the roll moves at
+        randomness = Random.Range(100, 300); //Randomness for when to stop 
         collectButton.SetActive(false);
         gambleButton.SetActive(false);
         wonScreen.SetActive(false);
@@ -50,54 +51,56 @@ public class ScrollCrate : MonoBehaviour
         loseScreen.SetActive(false);
         gambleButtons.SetActive(false);
         normalButtons.SetActive(true);
-
-        //   gameManager.PauseGame();
+        #endregion
     }
 
     void Update()
     {
-        this.transform.position += Vector3.right * Time.deltaTime * speed;
-        timer = timer - Time.deltaTime * 100;
-        if (timer < 0)
-        {
-            stopping = true;
-        }
-        if (stopping == true)
-        {
-            stopButton.SetActive(false);
+        this.transform.position += Vector3.right * Time.deltaTime * speed; //Scroll for the player 
+        timer = timer - Time.deltaTime * 100; //Count down
 
-            if (speed > 0)
+        if (timer < 0) //If the timer has reached 0...
+        {
+            stopping = true; //Start stopping 
+        }
+        if (stopping == true) //If stopping has started...
+        {
+            stopButton.SetActive(false); //Remove the stop button
+
+            if (speed > 0) //If the roll is still moving...
             {
-                speed = speed - Time.deltaTime * randomness * 10000;
-                if (speed <= 0)
+                speed = speed - Time.deltaTime * randomness * 10000; //Move at a random speed
+                if (speed <= 0) //If speed has reached 0
                 {
-                    speed = 0;
-                    if (rollStoppedRunOnce == true)
-                    {
+                    speed = 0; //Make sure its not moving
+                    if (rollStoppedRunOnce == true) //Make sure it only runs once...
+                    { 
                         RollStopped();
                     }
                 }
             }
         }
     }
-
+    /// <summary>
+    /// Function that runs once the roll has finished
+    /// </summary>
     public void RollStopped()
     {
         rollStoppedRunOnce = false;
-        closestButton.TryGetComponent<InventoryButtons>(out InventoryButtons chosenButton);
+        closestButton.TryGetComponent<InventoryButtons>(out InventoryButtons chosenButton); //Get the script for the closest button
 
-        if (chosenButton != null)
+        if (chosenButton != null) //If its succsessful...
         {
-            collectButton.SetActive(true);
+            collectButton.SetActive(true); //Turn on the collect button
 
-            if (gambled == false)
+            if (gambled == false) //If it hasn't already been gambled...
             {
-                gambleButton.SetActive(true);
+                gambleButton.SetActive(true); //Allow the player to gamble again...
             }
         }
         else
         {
-            loseScreen.SetActive(true);
+            loseScreen.SetActive(true); //Else, its not a successful run, the player has landed on a loss and turn on the loss screen
         }
     }
 
@@ -105,18 +108,21 @@ public class ScrollCrate : MonoBehaviour
     {
         stopping = true;
     }
-
+    /// <summary>
+    /// Button ran when the player presses Collect on a winning button
+    /// </summary>
     public void Collect()
     {
-        gambleButton.SetActive(false);
-        wonScreen.SetActive(true);
-        itemNumber = closestButton.GetComponent<InventoryButtons>().itemNumber;
-        wonButton.GetComponent<InventoryButtons>().itemNumber = itemNumber;
+        gambleButton.SetActive(false); //Remove the gamble button
+        wonScreen.SetActive(true); //Enable the won screen
+        itemNumber = closestButton.GetComponent<InventoryButtons>().itemNumber; //Get the number of the won item
+        wonButton.GetComponent<InventoryButtons>().itemNumber = itemNumber; 
         wonButton.GetComponent<InventoryButtons>().Invoke("SetVariables", 0);
-        wonTitle.text = "You Won: " + inventoryScript.cosmeticItemTitle[itemNumber];
-        inventoryScript.unlockedBool[itemNumber] = true;
-        wonType.text = inventoryScript.cosmeticRarity[itemNumber];
-        statistics.boxesOpened++;
+        wonTitle.text = "You Won: " + inventoryScript.cosmeticItemTitle[itemNumber]; //Set the text to the won title
+        inventoryScript.unlockedBool[itemNumber] = true; //Give the player that cosmetic
+        wonType.text = inventoryScript.cosmeticRarity[itemNumber]; //Display the rarity of that item
+        statistics.boxesOpened++; //Add to how many times the player has opened a crate
+        statistics.saveStats();
     }
 
     public void Claim()
@@ -126,14 +132,12 @@ public class ScrollCrate : MonoBehaviour
 
     public void Enable()
     {
-        //if (inventoryScript.cosmeticItemType[itemNumber] != 2) { 
-        //inventoryScript.DespawnOfType(inventoryScript.cosmeticItemType[itemNumber]);
-        //inventoryScript.cosmeticItemObject[itemNumber].SetActive(true);
+        inventoryScript.EnableObject(itemNumber);
+    }
 
-            inventoryScript.EnableObject(itemNumber);
-    } 
-
-
+    /// <summary>
+    /// Function runs when the player choses to gamble their winnings. Resets the scroll with 50% win and 50% lose buttons
+    /// </summary>
     public void Gamble()
     {
         gambled = true;

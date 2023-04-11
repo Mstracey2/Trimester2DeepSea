@@ -71,7 +71,6 @@ public class PlayerDamage : MonoBehaviour           // script that holds the inf
 
     public void RemoveLimb(string limbName)
     {
-        
         Debug.Log("Removed Limb" + limbName);
 
         switch (limbName)

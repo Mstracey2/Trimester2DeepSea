@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class UserInterface : MonoBehaviour
 {
-    public GameObject upKey;
+    //Buttons change colour based on if the player is currently holding them down
+    public GameObject upKey; 
     public GameObject downKey;
     public GameObject rightKey;
     public GameObject leftKey;
 
+    //Copy of the Mech which changes colour if the player loses that limb
     public GameObject leftLegDisplay;
     public GameObject rightLegDisplay;
     public GameObject leftArmDisplay;
     public GameObject rightArmDisplay;
+
     [SerializeField] PlayerDamage playerDamageScript;
     [SerializeField] Material removedLimbMaterial;
     public void Update()
@@ -52,23 +55,5 @@ public class UserInterface : MonoBehaviour
         {
             downKey.SetActive(true);
         }
-
-
-        //if (playerDamageScript.limbsRemoved[0] == true)
-        //{
-        //    leftLegDisplay.gameObject.GetComponent<Renderer>().material = removedLimbMaterial;
-        //}
-        //if (playerDamageScript.limbsRemoved[1] == true)
-        //{
-        //    rightLegDisplay.gameObject.GetComponent<Renderer>().material = removedLimbMaterial;
-        //}
-        //if (playerDamageScript.limbsRemoved[2] == true)
-        //{
-        //    leftArmDisplay.gameObject.GetComponent<Renderer>().material = removedLimbMaterial;
-        //}
-        //if (playerDamageScript.limbsRemoved[3] == true)
-        //{
-        //    rightArmDisplay.gameObject.GetComponent<Renderer>().material = removedLimbMaterial;
-        //}
     }
 }

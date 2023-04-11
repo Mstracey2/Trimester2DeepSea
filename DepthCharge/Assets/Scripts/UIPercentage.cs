@@ -22,7 +22,7 @@ public class UIPercentage : MonoBehaviour
             {
                 number++;
                 percentage = number / (rangeMax+1);
-                scaleObject.gameObject.transform.localScale = new Vector2 (percentage*scale, 1);
+                scaleObject.gameObject.transform.localScale = new Vector2 (percentage*scale, 1); //Scale to the current percentage
             }
         }
     }  

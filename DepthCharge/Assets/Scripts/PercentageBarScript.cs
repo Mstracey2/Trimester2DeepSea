@@ -5,40 +5,38 @@ using UnityEngine;
 public class PercentageBarScript : MonoBehaviour
 {
 
-    public GameObject movingBar;
-    public GameObject staticBar;
+    public GameObject movingBar; //The part of the bar which moves
+    public GameObject staticBar; //The background of the percentage bar
 
-    public Material green;
+    public Material green; 
     public Material orange;
     public Material red;
 
-    public float maxInput;
+    public float maxInput; 
     public float currentInput;
 
     public float percentage;
 
     void Update()
     {
-        percentage = currentInput / maxInput;
+        percentage = currentInput / maxInput; //Calculate the percentage
 
-        if (percentage < 0)
+        if (percentage < 0) //If smaller than 0...
         {
-            percentage = 0;
-            movingBar.gameObject.SetActive(false);
+            percentage = 0; //Set to 0 to stop visual bugs
+            movingBar.gameObject.SetActive(false); //And hide the moving bar
         }
-        else
+        else //Else, its bigger than 0
         {
-            movingBar.gameObject.SetActive(true);
+            movingBar.gameObject.SetActive(true); //Turn on the moving bar again
         }
         
-        if (percentage > 100)
+        if (percentage > 100) //If the percentage somehow surpasses 100...
         {
-            percentage = 100;
+            percentage = 100; //Set back to 100 to stop visual bugs
         }
 
-       
-
-        movingBar.gameObject.transform.localScale = new Vector3(percentage,1,1);
+        movingBar.gameObject.transform.localScale = new Vector3(percentage,1,1); //Set the moving bar to the current percentage
     }
 
     public void changeColour(string Colour)
