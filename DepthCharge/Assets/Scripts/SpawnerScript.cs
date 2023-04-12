@@ -14,7 +14,6 @@ public class SpawnerScript : MonoBehaviour                  //This script is in 
     public Transform target;
     GameObject location;
 
-    // Update is called once per frame
     void Update()
     {
         SpawnObject(fish,GameManager.currentManager.GetChance(1));              //on each frame, the script rolls a random number to attempt to spawn each type of object, this also gets the random number range, which changes how likely the object is to spawn

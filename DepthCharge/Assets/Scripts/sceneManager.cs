@@ -52,7 +52,7 @@ public class sceneManager : MonoBehaviour
 
     public void playGame()
     {
-        // Safety measurt to prevent the button from activating multiple times
+        // Safety measure to prevent the button from activating multiple times
         if (launch == 0)
         {
             launch = 1f;
@@ -67,7 +67,7 @@ public class sceneManager : MonoBehaviour
     public void setToClipboard()
     {
         GUIUtility.systemCopyBuffer = Link;
-  //      statistics.timesReviewed++;
+        PlayerPrefs.SetInt("StoredReviews", 1);
     }
 
     // Load the main level
