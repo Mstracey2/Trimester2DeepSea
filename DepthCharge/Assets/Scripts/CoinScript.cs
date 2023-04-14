@@ -50,7 +50,7 @@ public class CoinScript : MonoBehaviour
             GameObject spawnedObj = Instantiate(floatingText, transform.position, transform.rotation); //Spawn the floating text at the same location as the coin was
             Invoke("PlayerHit", 0); //Run the function PlayerHit
 
-            spawnedObj.GetComponent<AppearingText>().textString = "+ " + (coinsTrackerScript.streak).ToString(); //Tell the floating text what to display
+            spawnedObj.GetComponent<AppearingText>().textString = "+ " + (coinsTrackerScript.streak+1).ToString(); //Tell the floating text what to display
 
         }
     }

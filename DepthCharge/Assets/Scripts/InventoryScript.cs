@@ -133,9 +133,10 @@ public class InventoryScript : MonoBehaviour
     {
         for (int i = 1; i < 4; i++)
         {
+            Debug.Log(cosmeticItemType[ObjectNumber]);
             if (cosmeticItemType[ObjectNumber] == i) //If the same item type is ran, (1 = Desk and 2 = Mech Colour)
             {
-                EquiptedObject[i] = ObjectNumber; 
+                EquiptedObject[i] = ObjectNumber;
             }
         }
         if (cosmeticItemType[ObjectNumber] == 1 || cosmeticItemType[ObjectNumber] == 3) //If the item type is a desk toy
@@ -146,7 +147,7 @@ public class InventoryScript : MonoBehaviour
         }
         else if (cosmeticItemType[ObjectNumber] == 2) //If the type is a colour
         {
-            for (int i = 0; i < 5; i++) 
+            for (int i = 0; i < 5; i++)
             {
                 if (ObjectNumber != int.Parse("19"))  //And if the number isn't 19
                 {
@@ -180,7 +181,7 @@ public class InventoryScript : MonoBehaviour
     /// </summary>
     public void SaveInventory()
     {
-        for (int inventoryNumber = 0; inventoryNumber < 30; inventoryNumber++) //Run for each inventory item
+        for (int inventoryNumber = 0; inventoryNumber < 19; inventoryNumber++) //Run for each inventory item
         {
             PlayerPrefs.SetString("Inventory" + inventoryNumber, unlockedBool[inventoryNumber].ToString()); //Set to True or False for if unlocked 
         }
@@ -192,24 +193,13 @@ public class InventoryScript : MonoBehaviour
 
     public void ReadSave()
     {
-        for (int inventoryNumber = 0; inventoryNumber < 30; inventoryNumber++) //Run for each inventory item
+        for (int inventoryNumber = 0; inventoryNumber < 19; inventoryNumber++) //Run for each inventory item
         {
             unlockedBool[inventoryNumber] = PlayerPrefs.GetString("Inventory" + inventoryNumber).StartsWith("T"); //If it is true
         }
 
-        if (string.IsNullOrEmpty((PlayerPrefs.GetInt("ActiveDeskToy").ToString()))) //If not empty
-        {
-
-        }
-        else
-        {
             EnableObject(PlayerPrefs.GetInt("ActiveDeskToy")); //Set the same item back to active
-        }
-
-        {
-
-        }
-        EnableObject(PlayerPrefs.GetInt("ActiveMechColour"));
-
+            EnableObject(PlayerPrefs.GetInt("ActiveMechColour"));
+        
     }
 }

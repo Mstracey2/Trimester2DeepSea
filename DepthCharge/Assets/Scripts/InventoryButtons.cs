@@ -22,6 +22,8 @@ public class InventoryButtons : MonoBehaviour
 
     [SerializeField] private RawImage sprite;
 
+    int randomAttempts = 0;
+
     public bool disableButton = false; //If the button should be clickable or not.
 
     public void Start()
@@ -89,18 +91,26 @@ public class InventoryButtons : MonoBehaviour
 
     private IEnumerator PickRandomObject()
     {
-        randomObject = false;
-
-        while(randomObject == false)
+        if (randomAttempts < 50)
         {
-            itemNumber = Random.Range(0, 19);
-            if(inventoryScript.unlockedBool[itemNumber] == false)
+            randomObject = false;
+
+            while (randomObject == false)
             {
-                randomObject = true;
+                itemNumber = Random.Range(0, 19);
+                if (inventoryScript.unlockedBool[itemNumber] == false)
+                {
+                    randomObject = true;
+                }
             }
+            randomAttempts++;
+
+            yield return null;
+
         }
-
-        yield return null;
-
+        else
+        {
+            Debug.Log("BROKEN");
+        }
     }
 }

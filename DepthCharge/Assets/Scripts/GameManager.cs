@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI experienceText;
     private Color sceneColour;
     [SerializeField] private GameObject pausedScreen;
+    [SerializeField] private GameObject tutorialObject;
 
     public int experienceLevel;
     public float experienceFloat;
@@ -56,11 +57,26 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
+        Debug.Log(PlayerPrefs.GetFloat("savedRuns") + "SAVED RUNS");
+        if(PlayerPrefs.GetFloat("savedRuns") == 0)
+        {
+            tutorialObject.SetActive(true);
+        }
+        else
+        {
+            tutorialObject.SetActive(false);
+        }
+
+
+
+
         Time.timeScale = 0.01f; //Pause time
         sceneColour = cam.backgroundColor;      //scene colour is the cameras background
-        saveStatistics.timesLaunched++; //Add to the amount of times launched.
+        saveStatistics.runs++; //Add to the amount of times launched.
         saveStatistics.saveStats();
         thisLevel = levels[0];
+
+
 
         //The experience required to reach that level...
         requiredExperience[1] = 10;

@@ -58,16 +58,17 @@ public class CoinTracker : MonoBehaviour
         {
             streak++; //Add 1 to the streak
             foundCoins += (1 * streak); //Times the found coins to the streak
-            PlayerPrefs.SetInt("PlayerCoins", PlayerPrefs.GetInt("PlayerCoins") + (foundCoins += (1 * streak))); //Add the new coins to the player prefs
+            PlayerPrefs.SetInt("PlayerCoins", PlayerPrefs.GetInt("PlayerCoins") + (1 * streak)); //Add the new coins to the player prefs
             PlayerPrefs.Save(); //Save
 
             Debug.Log("STREAK " + PlayerPrefs.GetFloat("storedHighestStreak"));
 
             if(PlayerPrefs.GetFloat("storedHighestStreak") <= streak)
             {
-                PlayerPrefs.SetFloat("storedHighestStreak", streak);
-                highscoreObject.SetActive(true);
+                PlayerPrefs.SetFloat("storedHighestStreak", streak);        
                 PlayerPrefs.Save();
+                highscoreObject.SetActive(true);
+
             }
         }
         else

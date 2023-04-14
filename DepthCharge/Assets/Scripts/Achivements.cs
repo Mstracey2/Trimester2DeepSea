@@ -249,13 +249,13 @@ public class Achivements : MonoBehaviour
                 break;
 
             case "timesLaunched":
-                percentageCurrent = statistics.timesLaunched / requiredInt[achivementNumber];
-                progressText.text = statistics.timesLaunched + "/" + requiredInt[achivementNumber];
+                percentageCurrent = PlayerPrefs.GetInt("savedTimesLaunched") / requiredInt[achivementNumber];
+                progressText.text = PlayerPrefs.GetInt("savedTimesLaunched") + "/" + requiredInt[achivementNumber];
                 break;
 
             case "highestStreak":
-                percentageCurrent = statistics.highestStreak / requiredInt[achivementNumber];
-                progressText.text = statistics.highestStreak + "/" + requiredInt[achivementNumber];
+                percentageCurrent = PlayerPrefs.GetFloat("storedHighestStreak") / requiredInt[achivementNumber];
+                progressText.text = PlayerPrefs.GetFloat("storedHighestStreak") + "/" + requiredInt[achivementNumber];
                 break;
         }
 

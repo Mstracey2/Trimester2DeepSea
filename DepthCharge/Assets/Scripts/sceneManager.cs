@@ -68,6 +68,7 @@ public class sceneManager : MonoBehaviour
     {
         GUIUtility.systemCopyBuffer = Link;
         PlayerPrefs.SetInt("StoredReviews", 1);
+        PlayerPrefs.Save();
     }
 
     // Load the main level

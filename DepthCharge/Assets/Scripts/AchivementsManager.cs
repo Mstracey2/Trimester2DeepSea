@@ -15,7 +15,7 @@ public class AchivementsManager : MonoBehaviour
     public string path;
 
 
-    public float experienceReward;
+    public int experienceReward;
     public float lootcratesReward;
 
     public GameObject Crate;
@@ -30,6 +30,9 @@ public class AchivementsManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI experienceRewardText;
     [SerializeField] private TextMeshProUGUI lootcratesRewardText;
+    [SerializeField] private TextMeshProUGUI playersCoins;
+
+    public bool playerMaxedInventory;
 
     #endregion
     /// <summary>
@@ -45,8 +48,9 @@ public class AchivementsManager : MonoBehaviour
 
     public void Update()
     {
-        experienceRewardText.text = experienceReward + " Experience"; //Display the amount of experience the player currently has earnt
+        experienceRewardText.text = experienceReward + " Coins"; //Display the amount of experience the player currently has earnt
         lootcratesRewardText.text = lootcratesReward + " Lootcrates"; //Display the amount of loot crates the player has currently earnt
+        playersCoins.text = PlayerPrefs.GetInt("PlayerCoins",0).ToString() + " Coins";
 
         if (experienceReward > 0) //If there is any experience waiting to be claimed...
         {
@@ -59,12 +63,23 @@ public class AchivementsManager : MonoBehaviour
 
         if (lootcratesReward > 0)
         {
+            //for (int inventoryNumber = 0; inventoryNumber < 19; inventoryNumber++) //Run for each inventory item
+            //{
+            //    if (PlayerPrefs.GetString("Inventory" + inventoryNumber).StartsWith("T") && playerMaxedInventory == true)
+            //    {
+            //        playerMaxedInventory = true;
+
             claimLootCrate.SetActive(true);
         }
+        //}        
+
+
         else
         {
             claimLootCrate.SetActive(false);
         }
+
+
     }
 
 
@@ -73,10 +88,11 @@ public class AchivementsManager : MonoBehaviour
     /// </summary>
     public void ClaimExperience()
     {
-        deathScreen.SetActive(true);
-        experienceBar.SetActive(true);
-        experiencePageManager.addedExperience = experienceReward;
-        experiencePageManager.sentFromAchivements = true;
+        //deathScreen.SetActive(true);
+        //experienceBar.SetActive(true);
+        //experiencePageManager.addedExperience = experienceReward;
+        //experiencePageManager.sentFromAchivements = true;
+        PlayerPrefs.SetInt("PlayerCoins", PlayerPrefs.GetInt("PlayerCoins") + experienceReward);
         experienceReward = 0;
     }
 
