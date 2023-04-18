@@ -44,29 +44,40 @@ public class ExperiencePageManager : MonoBehaviour
     [SerializeField] private ScrollCrate scrollCrate;               //The script for the lootcrate function
 
 
+    public float newExperience;
+
     #endregion
 
+
+    private void Awake()
+    {
+        addedExperience = GameManager.currentManager.earntExperience;
+        currentExperienceFloat = PlayerPrefs.GetFloat("savedExperience");
+        currentLevel = GameManager.currentManager.experienceLevel; //Get the current level
+        requiredExperienceFloat = GameManager.currentManager.requiredExperience[currentLevel + 1]; //Get the amount required to reach the next level
+
+    }
     void Start()
     {
+        GameManager.currentManager.ResumeGame();
 
-        if (sentFromAchivements == false)
+        Debug.Log("Added:" + addedExperience);
+        Debug.Log("Current:" + currentExperienceFloat);
+        Debug.Log("Current Level:" + currentLevel);
+        Debug.Log("Required Experience:" + requiredExperienceFloat);
+
+
+        //  claimExperience = true;
+        if (requiredExperienceFloat != 0f)
         {
-            GameManager.currentManager.ResumeGame();
-            addedExperience = GameManager.currentManager.earntExperience;
-        }
-        else
-        {
-            GameManager.currentManager.ResumeGame();
+            percentageCurrent = ((currentExperienceFloat - GameManager.currentManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
         }
 
-        claimExperience = true;
-
-        percentageCurrent = ((currentExperienceFloat - GameManager.currentManager.requiredExperience[currentLevel]) / requiredExperienceFloat); //Calculate the percentage bar scale
+        //percentageCurrent = ((currentExperienceFloat - GameManager.currentManager.requiredExperience[currentLevel]) / requiredExperienceFloat); //Calculate the percentage bar scale
         experienceEarnt.text = addedExperience.ToString("0"); //Set the text to the correct experience
         lootcratesEarnt = 1;
+        Debug.Log(percentageCurrent);
 
-        PlayerPrefs.SetFloat("savedExperience", currentExperienceFloat + addedExperience); //Save the experience to PlayerPrefs
-        PlayerPrefs.Save();
 
     }
 
@@ -76,10 +87,12 @@ public class ExperiencePageManager : MonoBehaviour
         {
             barCurrent.gameObject.SetActive(false); //Remove the old current bar as it would now be wrong
         }
+
+
         currentLevel = GameManager.currentManager.experienceLevel; //Get the current level
         requiredExperienceFloat = GameManager.currentManager.requiredExperience[currentLevel + 1]; //Get the amount required to reach the next level
 
-        currentExperienceFloat = PlayerPrefs.GetFloat("savedExperience"); //Get the current experience from PlayerPrefs
+        //   currentExperienceFloat = PlayerPrefs.GetFloat("savedExperience"); //Get the current experience from PlayerPrefs
 
         levelCurrent.text = currentLevel.ToString();
         levelNext.text = (currentLevel + 1).ToString();
@@ -104,7 +117,7 @@ public class ExperiencePageManager : MonoBehaviour
         if (addedExperience > 0 && claimExperience == true && percentageChange <= 1)
         {
             addedExperience -= Time.deltaTime * 100;
-            //   percentageCurrent = ((currentExperienceFloat - Time.deltaTime * 200 - gameManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
+            percentageCurrent = ((currentExperienceFloat - Time.deltaTime * 200 - GameManager.currentManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
             GameManager.currentManager.experienceFloat += Time.deltaTime * 100; //Add experience over time to animate the bar
             barDisplacement.transform.localScale = new Vector2(percentageChange * 2, 1); //Scale the percentage bar
         }
@@ -135,6 +148,9 @@ public class ExperiencePageManager : MonoBehaviour
     /// </summary>
     public void Continue()
     {
+        PlayerPrefs.SetFloat("savedExperience", currentExperienceFloat + addedExperience); //Save the experience to PlayerPrefs
+        PlayerPrefs.Save();
+
         if (sentFromAchivements == false)
         {
             rewardsObj.SetActive(true);

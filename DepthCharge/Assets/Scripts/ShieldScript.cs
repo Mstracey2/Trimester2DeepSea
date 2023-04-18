@@ -8,6 +8,7 @@ public class ShieldScript : MonoBehaviour                           //script for
     [SerializeField] private AbilityScript pickup;                  //pickup orb
     private bool activated;
     private Vector3 restPos;
+
     private void Start()
     {
         restPos = transform.position;

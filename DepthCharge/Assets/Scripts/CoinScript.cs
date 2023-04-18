@@ -12,6 +12,7 @@ public class CoinScript : MonoBehaviour
     public CoinTracker coinsTrackerScript; //The script which is required to control all coins
     public GameObject floatingText; //The prefab of the text which appears once a coin is collected
     public AppearingText spawnedText; //The script of it
+    public GameObject bubbleParticle;
     #endregion
 
     void Start()
@@ -48,6 +49,8 @@ public class CoinScript : MonoBehaviour
         if (other.gameObject.tag == "Player") //If the object it triggered with was the player
         {
             GameObject spawnedObj = Instantiate(floatingText, transform.position, transform.rotation); //Spawn the floating text at the same location as the coin was
+            Instantiate(bubbleParticle, transform.position, transform.rotation);
+
             Invoke("PlayerHit", 0); //Run the function PlayerHit
 
             spawnedObj.GetComponent<AppearingText>().textString = "+ " + (coinsTrackerScript.streak+1).ToString(); //Tell the floating text what to display
@@ -61,6 +64,7 @@ public class CoinScript : MonoBehaviour
     public void PlayerHit()
     {
         coinsTrackerScript.Invoke("collectedCoin", 0);
+
         Invoke("DespawnSelf", 0);
     }
 

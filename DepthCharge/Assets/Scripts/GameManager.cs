@@ -45,9 +45,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject tutorialObject;
 
     public int experienceLevel;
-    public float experienceFloat;
-    public float[] requiredExperience = new float[50];
 
+    public float[] requiredExperience = new float[50];
+    public float experienceFloat;
     public float earntExperience;
 
     private bool gamePaused;
@@ -57,7 +57,6 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
-        Debug.Log(PlayerPrefs.GetFloat("savedRuns") + "SAVED RUNS");
         if(PlayerPrefs.GetFloat("savedRuns") == 0)
         {
             tutorialObject.SetActive(true);
@@ -165,6 +164,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         pausedScreen.SetActive(false);
+        tutorialObject.SetActive(false);
         gamePaused = false;
         gameStart = true;
     }
@@ -206,12 +206,14 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         saveStatistics.runs++;
+        saveStatistics.saveStats();
         gameStart = false;
         earntExperience = depthMeter;
         deathScreen.SetActive(true);
         depthText.text = "Depth: " + depthMeter.ToString("0") + "M";
         timeText.text = "Time: " + (depthMeter / 10).ToString("0" + " Seconds");
         experienceText.text = "Experience: " + earntExperience.ToString("0");
+        
     }
 
     private void ChangeLevel()

@@ -47,4 +47,9 @@ public class TutorialPages : MonoBehaviour
     {
         parent.SetActive(false);
     }
+
+    public void openTutorial()
+    {
+        parent.SetActive(true);
+    }
 }
