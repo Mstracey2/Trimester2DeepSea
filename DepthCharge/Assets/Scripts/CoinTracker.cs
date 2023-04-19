@@ -31,7 +31,7 @@ public class CoinTracker : MonoBehaviour
     public void UpdateText()
     {
         totalCoins = PlayerPrefs.GetInt("PlayerCoins"); //Get the total amount of coins the player has
-        coinsText.text = "Found Coins: " + foundCoins.ToString() + "\n\n" + "Streak: " + streak.ToString() + "x" + "\n\n" + "Total Coins: " + totalCoins.ToString();
+        coinsText.text = "Found Coins: " + foundCoins.ToString() + "\n\n" + "Streak: " + streak.ToString() + "x" + "\n\n" + "Total Coins: " + "\n" + totalCoins.ToString();
         //Create the backing text
 
         //Example:

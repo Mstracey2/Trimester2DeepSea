@@ -38,6 +38,11 @@ public class AchivementsManager : MonoBehaviour
     /// <summary>
     /// Button on the UI which unlocks all completed achivements
     /// </summary>
+    /// 
+    public void Start()
+    {
+        ReadSave();
+    }
     public void UnlockAll()
     {
         for (int i = 0; i < 27; i++) //Runs through all achivements
@@ -71,8 +76,6 @@ public class AchivementsManager : MonoBehaviour
 
             claimLootCrate.SetActive(true);
         }
-        //}        
-
 
         else
         {
@@ -88,10 +91,6 @@ public class AchivementsManager : MonoBehaviour
     /// </summary>
     public void ClaimExperience()
     {
-        //deathScreen.SetActive(true);
-        //experienceBar.SetActive(true);
-        //experiencePageManager.addedExperience = experienceReward;
-        //experiencePageManager.sentFromAchivements = true;
         PlayerPrefs.SetInt("PlayerCoins", PlayerPrefs.GetInt("PlayerCoins") + experienceReward);
         experienceReward = 0;
     }
@@ -101,6 +100,8 @@ public class AchivementsManager : MonoBehaviour
     /// </summary>
     public void ClaimLootcrate()
     {
+        PlayerPrefs.SetInt("LootcratesHolding", PlayerPrefs.GetInt("LootcratesHolding") - 1);
+        PlayerPrefs.Save();
         lootcratesReward--;
         Crate.SetActive(true);
         scrollCrate.StartRoll();
@@ -115,6 +116,7 @@ public class AchivementsManager : MonoBehaviour
         {
             PlayerPrefs.SetString("AchivementStatus" + i, achivementScript[i].claimed.ToString()); //Save if the player has claimed the achivement yet to ensure each is only claimed once.
         }
+        PlayerPrefs.Save();
     }
     /// <summary>
     /// Read the PlayerPrefs save and if it has been previously claimed, set it to be claimed again.

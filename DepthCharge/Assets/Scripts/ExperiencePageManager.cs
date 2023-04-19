@@ -73,11 +73,17 @@ public class ExperiencePageManager : MonoBehaviour
             percentageCurrent = ((currentExperienceFloat - GameManager.currentManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
         }
 
-        //percentageCurrent = ((currentExperienceFloat - GameManager.currentManager.requiredExperience[currentLevel]) / requiredExperienceFloat); //Calculate the percentage bar scale
+        percentageCurrent = ((currentExperienceFloat - GameManager.currentManager.requiredExperience[currentLevel]) / requiredExperienceFloat); //Calculate the percentage bar scale
         experienceEarnt.text = addedExperience.ToString("0"); //Set the text to the correct experience
         lootcratesEarnt = 1;
+        PlayerPrefs.SetInt("LootcratesHolding", PlayerPrefs.GetInt("LootcratesHolding") + 1);
+        PlayerPrefs.Save();
         Debug.Log(percentageCurrent);
 
+        if (percentageCurrent > 0)
+        {
+            barCurrent.transform.localScale = new Vector2(percentageCurrent * 2, 1);
+        }
 
     }
 
@@ -108,21 +114,19 @@ public class ExperiencePageManager : MonoBehaviour
             percentageChange = ((currentExperienceFloat - GameManager.currentManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
         }
 
-        if (percentageCurrent > 0)
-        {
-            barCurrent.transform.localScale = new Vector2(percentageCurrent * 2, 1);
-        }
+
 
 
         if (addedExperience > 0 && claimExperience == true && percentageChange <= 1)
         {
             addedExperience -= Time.deltaTime * 100;
             percentageCurrent = ((currentExperienceFloat - Time.deltaTime * 200 - GameManager.currentManager.requiredExperience[currentLevel]) / requiredExperienceFloat);
-            GameManager.currentManager.experienceFloat += Time.deltaTime * 100; //Add experience over time to animate the bar
+            PlayerPrefs.SetFloat("savedExperience", PlayerPrefs.GetFloat("savedExperience") + Time.deltaTime * 100); //Add experience over time to animate the bar
+            currentExperienceFloat = PlayerPrefs.GetFloat("savedExperience");
             barDisplacement.transform.localScale = new Vector2(percentageChange * 2, 1); //Scale the percentage bar
         }
 
-        if (lootcratesEarnt >= 1) //If any lootcrates have been earnt
+        if (lootcratesEarnt >= 1 && PlayerPrefs.GetInt("LootcratesHolding") >= 1) //If any lootcrates have been earnt
         {
             claimButton.SetActive(true); //Enable the button to open them
         }
@@ -148,7 +152,7 @@ public class ExperiencePageManager : MonoBehaviour
     /// </summary>
     public void Continue()
     {
-        PlayerPrefs.SetFloat("savedExperience", currentExperienceFloat + addedExperience); //Save the experience to PlayerPrefs
+        PlayerPrefs.SetFloat("savedExperience", currentExperienceFloat += addedExperience); //Save the experience to PlayerPrefs
         PlayerPrefs.Save();
 
         if (sentFromAchivements == false)
@@ -180,13 +184,17 @@ public class ExperiencePageManager : MonoBehaviour
     /// </summary>
     public void OpenCrate()
     {
-        if (sentFromAchivements == false)
+        if (PlayerPrefs.GetInt("LootcratesHolding") >= 1)
         {
-            GameManager.currentManager.PauseGame();
+            PlayerPrefs.SetInt("LootcratesHolding", (PlayerPrefs.GetInt("LootcratesHolding") - 1));
+            if (sentFromAchivements == false)
+            {
+                GameManager.currentManager.PauseGame();
+            }
+            crateObject.SetActive(true);
+            scrollCrate.StartRoll();
+            lootcratesEarnt--;
         }
-        crateObject.SetActive(true);
-        scrollCrate.StartRoll();
-        lootcratesEarnt--;
     }
 
     /// <summary>
@@ -206,5 +214,12 @@ public class ExperiencePageManager : MonoBehaviour
             this.gameObject.SetActive(false);
             deathScreen.SetActive(false);
         }
+    }
+
+    public void QuickReplay()
+    {
+        PlayerPrefs.SetInt("LootcratesHolding", PlayerPrefs.GetInt("LootcratesHolding") + 1);
+        PlayerPrefs.Save();
+        ReturnToGame();
     }
 }

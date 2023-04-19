@@ -161,40 +161,42 @@ public class Achivements : MonoBehaviour
         statisticAssosiated[19] = "playtimeSeconds";
 
 
-        achivementString[20] = "Launch the game";
+        achivementString[20] = "Reach Level 3";
         difficulty[20] = 1;
-        requiredInt[20] = 1;
-        statisticAssosiated[20] = "timesLaunched";
+        requiredInt[20] = 3;
+        statisticAssosiated[20] = "level";
 
 
-        achivementString[21] = "Launch the game 3 times";
+        achivementString[21] = "Reach Level 5";
         difficulty[21] = 2;
-        requiredInt[21] = 3;
-        statisticAssosiated[21] = "timesLaunched";
+        requiredInt[21] = 5;
+        statisticAssosiated[21] = "level";
 
-        achivementString[22] = "Launch the game 5 times";
+        achivementString[22] = "Reach Level 8";
         difficulty[22] = 3;
-        requiredInt[22] = 5;
-        statisticAssosiated[22] = "timesLaunched";
+        requiredInt[22] = 8;
+        statisticAssosiated[22] = "level";
 
-        achivementString[23] = "Launch the game 10 times";
+        achivementString[23] = "Reach Level 9";
         difficulty[23] = 4;
-        requiredInt[23] = 10;
-        statisticAssosiated[23] = "timesLaunched";
+        requiredInt[23] = 9;
+        statisticAssosiated[23] = "level";
 
-        achivementString[24] = "Launch the game 15 times";
+        achivementString[24] = "Reach Level 10";
         difficulty[24] = 5;
-        requiredInt[24] = 15;
-        statisticAssosiated[24] = "timesLaunched";
+        requiredInt[24] = 10;
+        statisticAssosiated[24] = "level";
 
 
         achivementString[25] = "Beat your Highscore";
         difficulty[25] = 3;
         requiredInt[25] = 1;
+        statisticAssosiated[25] = "highscore";
 
         achivementString[26] = "Review the game";
         difficulty[26] = 5;
         requiredInt[26] = 1;
+        statisticAssosiated[26] = "review";
 
         #endregion
 
@@ -248,14 +250,24 @@ public class Achivements : MonoBehaviour
                 progressText.text = (statistics.playtimeSeconds / 60).ToString("0") + "/" + (requiredInt[achivementNumber] / 60).ToString("0");
                 break;
 
-            case "timesLaunched":
-                percentageCurrent = PlayerPrefs.GetInt("savedTimesLaunched") / requiredInt[achivementNumber];
-                progressText.text = PlayerPrefs.GetInt("savedTimesLaunched") + "/" + requiredInt[achivementNumber];
+            case "level":
+                percentageCurrent = GameManager.currentManager.experienceLevel / requiredInt[achivementNumber];
+                progressText.text = GameManager.currentManager.experienceLevel + "/" + requiredInt[achivementNumber];
                 break;
 
             case "highestStreak":
                 percentageCurrent = PlayerPrefs.GetFloat("storedHighestStreak") / requiredInt[achivementNumber];
                 progressText.text = PlayerPrefs.GetFloat("storedHighestStreak") + "/" + requiredInt[achivementNumber];
+                break;
+
+            case "highscore":
+              //  percentageCurrent = PlayerPrefs.GetFloat("") / requiredInt[achivementNumber];
+              // progressText.text = PlayerPrefs.GetFloat("") + "/" + requiredInt[achivementNumber];
+                break;
+
+            case "review":
+                percentageCurrent = PlayerPrefs.GetInt("StoredReviews") / requiredInt[achivementNumber];
+                progressText.text = PlayerPrefs.GetInt("StoredReviews") + "/" + requiredInt[achivementNumber];
                 break;
         }
 
@@ -296,6 +308,8 @@ public class Achivements : MonoBehaviour
         {
             claimed = true; //Set it to claimed,
             UpdateInformation(); //Update the information, such as text and images
+            PlayerPrefs.SetInt("LootcratesHolding", PlayerPrefs.GetInt("LootcratesHolding") + 1);
+            PlayerPrefs.Save();
             achivementsManager.lootcratesReward++; //Give the player a lootcrate
             achivementsManager.experienceReward += (difficulty[achivementNumber] * 100); //And give them experience. 
         }

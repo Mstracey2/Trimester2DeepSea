@@ -66,9 +66,6 @@ public class GameManager : MonoBehaviour
             tutorialObject.SetActive(false);
         }
 
-
-
-
         Time.timeScale = 0.01f; //Pause time
         sceneColour = cam.backgroundColor;      //scene colour is the cameras background
         saveStatistics.runs++; //Add to the amount of times launched.

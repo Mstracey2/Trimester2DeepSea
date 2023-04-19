@@ -12,6 +12,7 @@ public class sceneManager : MonoBehaviour
     public Transform waypoint1;
     public Transform waypoint2;
     public float launch = 0f;
+    public GameObject menuObjects;
     [SerializeField] private Statistics statistics;
     [SerializeField] private InventoryScript saveInventory;
     [SerializeField] private Statistics saveStatistics;
@@ -52,6 +53,7 @@ public class sceneManager : MonoBehaviour
 
     public void playGame()
     {
+        menuObjects.SetActive(false);
         // Safety measure to prevent the button from activating multiple times
         if (launch == 0)
         {
@@ -68,6 +70,7 @@ public class sceneManager : MonoBehaviour
     {
         GUIUtility.systemCopyBuffer = Link;
         PlayerPrefs.SetInt("StoredReviews", 1);
+        PlayerPrefs.Save();
         PlayerPrefs.Save();
     }
 
