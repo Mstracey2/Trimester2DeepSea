@@ -16,6 +16,6 @@ MonoBehaviour:
   cameraBackgroundColour: 20ACFB
   depthDensity: 0.02
   smallFishChance: 30
-  mammelChance: 300
+  mammelChance: 150
   speedMultiplier: 1
   abilitesChance: 600
