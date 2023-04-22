@@ -184,9 +184,6 @@ public class ExperiencePageManager : MonoBehaviour
     /// </summary>
     public void OpenCrate()
     {
-        if (PlayerPrefs.GetInt("LootcratesHolding") >= 1)
-        {
-            PlayerPrefs.SetInt("LootcratesHolding", (PlayerPrefs.GetInt("LootcratesHolding") - 1));
             if (sentFromAchivements == false)
             {
                 GameManager.currentManager.PauseGame();
@@ -194,7 +191,7 @@ public class ExperiencePageManager : MonoBehaviour
             crateObject.SetActive(true);
             scrollCrate.StartRoll();
             lootcratesEarnt--;
-        }
+        
     }
 
     /// <summary>
@@ -202,6 +199,11 @@ public class ExperiencePageManager : MonoBehaviour
     /// </summary>
     public void ReturnToGame()
     {
+        if(lootcratesEarnt <= 0) 
+        {
+            PlayerPrefs.SetInt("LootcratesHolding", (PlayerPrefs.GetInt("LootcratesHolding") - 1));
+            PlayerPrefs.Save();
+        }
         GameManager.currentManager.SaveMasterFunction();
 
         if (sentFromAchivements == false)

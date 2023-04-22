@@ -101,6 +101,7 @@ public class Settings : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
+        PlayerPrefs.SetFloat("VolumeValue", 0.7f);
         PlayerPrefs.SetInt("ActiveMechColour", 1000);
         PlayerPrefs.SetInt("ActiveDeskToy", 1000);
         SceneManager.LoadScene(0);
